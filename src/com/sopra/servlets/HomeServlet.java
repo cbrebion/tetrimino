@@ -34,6 +34,9 @@ public class HomeServlet extends HttpServlet {
 			req.getSession().setAttribute("username", username);
 			req.getSession().setAttribute("pass", pass);
 		}
+		
+		req.setAttribute("valUsername", username);
+		
 		this.doGet(req, resp);
 	}
 }

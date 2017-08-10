@@ -45,7 +45,7 @@
 	<div class="container">
 		<form method="POST" class="row center">
 			<h5>Nom utilisateur</h5>
-			<input type="text" name="username" class="row center"></input><br>
+			<input type="text" name="username" value="<c:out value="${ valUsername }"/>" class="row center"></input><br>
 			<h5>Mot de passe</h5>
 			<input type="password" name="password" class="row center"></input>
 
