@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/home")
+@WebServlet("/accueil")
 public class HomeServlet extends HttpServlet {
 	private static final String VUE_GET		= "/WEB-INF/Accueil.jsp";
 	private static final String VUE_POST	= "accueilAdmin";
 	
 	private static final String CHAMP_USER	= "username";
-	private static final String CHAMP_PASS	= "pass";
+	private static final String CHAMP_PASS	= "password";
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
