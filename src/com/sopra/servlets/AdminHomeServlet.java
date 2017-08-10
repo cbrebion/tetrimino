@@ -17,9 +17,4 @@ public class AdminHomeServlet extends HttpServlet {
 		this.getServletContext().getRequestDispatcher(VUE_GET).forward(req, resp);
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-	}
-
 }
