@@ -1,24 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-        
+	pageEncoding="ISO-8859-1"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link href="css/materialize.min.css" type="text/css" rel="stylesheet"
+	media="screen,projection" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <title>Bienvenue sur Tetrimino</title>
 </head>
-<body>
 
-		<form method="POST">
-			<h1>Nom utilisateur</h1>
-			 <input type="text" name="username" ></input><br>
-			 <h1>Mot de passe</h1>
-			 <input type="password" name="password" ></input>
-			<input type="submit" name="submit" value="connexion" ></input>
-			<br>
-		</form>	
+<body>
+	<nav class="light-red lighten-1" role="navigation">
+	<div class="nav-wrapper container">
+		<a id="logo-container" href="#" class="brand-logo">TETRIMINO</a>
+
+		<ul class="right hide-on-med-and-down">
+			<li><a href="#">Liste Tetriminos</a></li>
+		</ul>
+		<ul id="nav-mobile" class="side-nav">
+			<li><a href="#">Liste Tetriminos</a></li>
+		</ul>
+		<ul class="right hide-on-med-and-down">
+			<li><a href="#">Liste Joueurs</a></li>
+		</ul>
+		<ul id="nav-mobile" class="side-nav">
+			<li><a href="#">Liste Joueurs</a></li>
+		</ul>
+		
+		
+		<a href="#" data-activates="nav-mobile" class="button-collapse"><i
+			class="material-icons">menu</i></a>
+	</div>
+	</nav>
+
+	<form method="POST" class="row center">
+		<h5>Nom utilisateur</h5>
+		<input type="text" name="username" class="row center"></input><br>
+		<h5>Mot de passe</h5>
+		<input type="password" name="password" class="row center"></input> 
+
+		<div class="row center">
+        <a href="http://google.com" id="download-button" class="btn-large waves-effect waves-light red lighten-1">Commencer à jouer</a>
+      </div>
+      
+	</form>
+
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
 
 </body>
 </html>
