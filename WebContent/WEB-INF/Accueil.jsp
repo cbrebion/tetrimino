@@ -52,13 +52,6 @@
 			<button class="btn waves-effect waves-light red lighten-1" type="submit" name="action">
 				Se connecter <i class="material-icons right">send</i>
 			</button>
-	<div class="container">
-		<a
-			class="btn-floating btn-small waves-effect waves-light red lighten-1">
-			<i class="material-icons">add</i>
-		</a>
-			<span class="red-text lighten-1">Ajouter un Tetrimino</span>
-	</div>
 		</form>
 	</div>
 
