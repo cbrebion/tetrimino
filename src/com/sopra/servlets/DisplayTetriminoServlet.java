@@ -15,7 +15,7 @@ import com.sopra.model.Tetrimino;
 
 @WebServlet("/admin/listeTetriminos")
 public class DisplayTetriminoServlet extends HttpServlet {
-	public static final String VUE_GET		= "/WEB-INF/admin/afficherTetriminos.jsp";
+	public static final String VUE_GET		= "/WEB-INF/admin/AfficherTetriminos.jsp";
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

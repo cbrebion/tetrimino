@@ -19,10 +19,18 @@ public class ApplicationDataInitializeListeners implements javax.servlet.Servlet
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
-		// TODO Auto-generated method stub
-		System.out.println("Initialisation du contexte");	
-
 		List<Tetrimino> tetriminos = new ArrayList<Tetrimino>();
+		Tetrimino tetri;
+		tetri = new Tetrimino("L", "Vert");
+		tetriminos.add(tetri);
+		tetri = new Tetrimino("T", "Rouge");
+		tetriminos.add(tetri);
+		tetri = new Tetrimino("S", "Bleu");
+		tetriminos.add(tetri);
+		tetri = new Tetrimino("L", "Orange");
+		tetriminos.add(tetri);
+		
+		event.getServletContext().setAttribute("tetriminos", tetriminos);
 	}
 }
 
