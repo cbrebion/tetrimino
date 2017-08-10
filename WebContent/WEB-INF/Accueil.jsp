@@ -35,24 +35,26 @@
 		<ul id="nav-mobile" class="side-nav">
 			<li><a href="#">Liste Joueurs</a></li>
 		</ul>
-		
-		
+
+
 		<a href="#" data-activates="nav-mobile" class="button-collapse"><i
 			class="material-icons">menu</i></a>
 	</div>
 	</nav>
 
-	<form method="POST" class="row center">
-		<h5>Nom utilisateur</h5>
-		<input type="text" name="username" class="row center"></input><br>
-		<h5>Mot de passe</h5>
-		<input type="password" name="password" class="row center"></input> 
+	<div class="container">
+		<form method="POST" class="row center">
+			<h5>Nom utilisateur</h5>
+			<input type="text" name="username" class="row center"></input><br>
+			<h5>Mot de passe</h5>
+			<input type="password" name="password" class="row center"></input>
 
-		<div class="row center">
-        <a href="http://google.com" id="download-button" class="btn-large waves-effect waves-light red lighten-1">Commencer à jouer</a>
-      </div>
-      
-	</form>
+			<button class="btn waves-effect waves-light red lighten-1" type="submit" name="action">
+				Se connecter <i class="material-icons right">send</i>
+			</button>
+
+		</form>
+	</div>
 
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
