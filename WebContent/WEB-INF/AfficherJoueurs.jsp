@@ -37,10 +37,10 @@
 			<li><a href="#">Liste Tetriminos</a></li>
 		</ul>
 		<ul class="right hide-on-med-and-down">
-			<li><a href="#">Liste Joueurs</a></li>
+			<li><a href="listeJoueurs">Liste Joueurs</a></li>
 		</ul>
 		<ul id="nav-mobile" class="side-nav">
-			<li><a href="listeJoueurs">Liste Joueurs</a></li>
+			<li><a href="#">Liste Joueurs</a></li>
 		</ul>
 
 
@@ -59,7 +59,6 @@
 		<div class="collection">
 			<c:forEach items="${joueurs}" var="item">
 			    <li class="collection-item avatar">
-
 					<c:out value="${item.id}" /> : <c:out value="${item.nom}" /> : <c:out value="${item.couleur}" />
 					<a href="#!" class="secondary-content posRelative"><i class="material-icons">airplay</i></a> 
 					<a href="#!" class="secondary-content posRelative"><i class="material-icons">edit</i></a> 
