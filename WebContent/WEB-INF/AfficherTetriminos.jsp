@@ -16,6 +16,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<style>
+.posRelative {
+	position : relative !important;
+}
+</style>
+
 <title>Bienvenue sur Tetrimino</title>
 </head>
 
@@ -52,13 +58,16 @@
 	<div class="container">
 		<div class="collection">
 			<c:forEach items="${tetriminos}" var="item">
-			    <a class="collection-item avatar" href="#">
+			    <li class="collection-item avatar">
 			     	<c:choose>
 				     	<c:when test="${ item.nom eq 'T' || item.nom eq 'L' || item.nom eq 'S' || item.nom eq 'carre' || item.nom eq 'ligne' }"><img src="img/<c:out value="${ item.nom }" />.png" alt="" class="circle"></c:when>
 				     	<c:otherwise><img src="img/tetris.jpg" alt="" class="circle"></c:otherwise>
 			     	</c:choose>
 					<c:out value="${item.id}" /> : <c:out value="${item.nom}" /> : <c:out value="${item.couleur}" />
-				</a>
+					<a href="#!" class="secondary-content posRelative"><i class="material-icons">airplay</i></a> 
+					<a href="#!" class="secondary-content posRelative"><i class="material-icons">edit</i></a> 
+					<a href="#!" class="secondary-content posRelative"><i class="material-icons">cancel</i></a> 
+				</li>
 			</c:forEach>
 		</div>
 	</div>
