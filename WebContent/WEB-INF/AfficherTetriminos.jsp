@@ -34,11 +34,8 @@
 			<li><a href="listeTetriminos">Liste Tetriminos</a></li>
 		</ul>
 		<ul id="nav-mobile" class="side-nav">
-<<<<<<< Updated upstream
-			<li><a href="listeJoueurs">Liste Tetriminos</a></li>
-=======
 			<li><a href="listeTetriminos">Liste Tetriminos</a></li>
->>>>>>> Stashed changes
+
 		</ul>
 		<ul class="right hide-on-med-and-down">
 			<li><a href="listeJoueurs">Liste Joueurs</a></li>
@@ -68,16 +65,9 @@
 				     	<c:otherwise><img src="img/tetris.jpg" alt="" class="circle"></c:otherwise>
 			     	</c:choose>
 					<c:out value="${item.id}" /> : <c:out value="${item.nom}" /> : <c:out value="${item.couleur}" />
-<<<<<<< Updated upstream
 					<a href="supprimePiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Supprimer"><i class="material-icons">cancel</i></a>
 					<a href="modifPiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Editer"><i class="material-icons">edit</i></a>
 					<a href="affichePiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Afficher"><i class="material-icons">airplay</i></a>
-=======
-					<a href="#!" class="secondary-content posRelative"><i class="material-icons">cancel</i></a> 
-					<a href="#!" class="secondary-content posRelative"><i class="material-icons">edit</i></a> 
-					<a href="#!" class="secondary-content posRelative"><i class="material-icons">airplay</i></a> 
-
->>>>>>> Stashed changes
 				</li>
 			</c:forEach>
 		</div>
