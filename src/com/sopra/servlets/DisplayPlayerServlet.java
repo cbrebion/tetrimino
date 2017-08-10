@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/admin/listeJoueurs")
+@WebServlet("/listeJoueurs")
 public class DisplayPlayerServlet extends HttpServlet {
-	public static final String VUE_GET		= "/WEB-INF/admin/listeJoueurs.jsp";
+	public static final String VUE_GET		= "/WEB-INF/listeJoueurs.jsp";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
