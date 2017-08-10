@@ -50,14 +50,13 @@
 		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 
-	<c:forEach items="${tetriminos}" var="item">
-		<p>
-			<c:out value="${item.id}" /> 
-			<c:out value="${item.nom}" />
-			:
-			<c:out value="${item.couleur}" />
-		</p>
-	</c:forEach>
-
+	<div class="collection">
+		<c:forEach items="${tetriminos}" var="item">
+		    <a class="collection-item avatar" href="#">
+		     	<c:if test="${ item.nom eq 'T' || item.nom eq 'L' || item.nom eq 'S' || item.nom eq 'carre' || item.nom eq 'ligne' }"><img src="images/<c:out value="${ item.nom }" />.jpg" alt="" class="circle"></c:if>
+				<c:out value="${item.id}" /> : <c:out value="${item.nom}" /> : <c:out value="${item.couleur}" />
+			</a>
+		</c:forEach>
+	</div>
 </body>
 </html>
