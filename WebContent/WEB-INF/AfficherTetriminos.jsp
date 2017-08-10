@@ -52,6 +52,7 @@
 
 	<c:forEach items="${tetriminos}" var="item">
 		<p>
+			<c:out value="${item.id}" /> 
 			<c:out value="${item.nom}" />
 			:
 			<c:out value="${item.couleur}" />

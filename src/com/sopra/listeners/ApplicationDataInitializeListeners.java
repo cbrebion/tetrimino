@@ -21,13 +21,13 @@ public class ApplicationDataInitializeListeners implements javax.servlet.Servlet
 	public void contextInitialized(ServletContextEvent event) {
 		List<Tetrimino> tetriminos = new ArrayList<Tetrimino>();
 		Tetrimino tetri;
-		tetri = new Tetrimino("L", "Vert");
+		tetri = new Tetrimino(0, "L", "Vert");
 		tetriminos.add(tetri);
-		tetri = new Tetrimino("T", "Rouge");
+		tetri = new Tetrimino(1, "T", "Rouge");
 		tetriminos.add(tetri);
-		tetri = new Tetrimino("S", "Bleu");
+		tetri = new Tetrimino(2, "S", "Bleu");
 		tetriminos.add(tetri);
-		tetri = new Tetrimino("L", "Orange");
+		tetri = new Tetrimino(3, "L", "Orange");
 		tetriminos.add(tetri);
 		
 		event.getServletContext().setAttribute("tetriminos", tetriminos);
