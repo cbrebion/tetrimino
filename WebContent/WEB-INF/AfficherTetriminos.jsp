@@ -52,7 +52,7 @@
 			class="material-icons">menu</i></a>
 	</div>
 	</nav>
-	</div>
+	</div> 
 
 	</form>
 
