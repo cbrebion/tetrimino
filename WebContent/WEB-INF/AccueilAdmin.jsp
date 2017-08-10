@@ -11,14 +11,7 @@
 </head>
 <body>
 
-		<form method="POST">
-			<h1>Nom administrateur</h1>
-			 <input type="text" name="username" ></input><br>
-			 <h1>Mot de passe</h1>
-			 <input type="password" name="pass" ></input>
-			<input type="submit" name="submit" value="connexion" ></input>
-			<br>
-		</form>	
+		<p>Ca marche</p>
 		
 </body>
 </html>
