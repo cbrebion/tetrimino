@@ -42,6 +42,13 @@
 			class="material-icons">menu</i></a>
 	</div>
 	</nav>
+	<br>
+	<div class="container">
+		<a
+			class="btn-floating btn-small waves-effect waves-light red lighten-1">
+			<i class="material-icons">add</i>
+		</a>
+			<span class="red-text lighten-1">Ajouter un Tetrimino</span>
 	</div>
 
 	</form>
