@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/accueilAdmin")
 public class AdminHomeServlet extends HttpServlet {
-	public static final String VUE_GET		= "/WEB-INF/accueilAdmin.jsp";
+	public static final String VUE_GET		= "/WEB-INF/AccueilAdmin.jsp";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
