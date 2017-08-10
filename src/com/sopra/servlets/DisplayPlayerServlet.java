@@ -18,7 +18,7 @@ import com.sopra.model.Tetrimino;
 
 @WebServlet("/listeJoueurs")
 public class DisplayPlayerServlet extends HttpServlet {
-	public static final String VUE_GET		= "/WEB-INF/listeJoueurs.jsp";
+	public static final String VUE_GET		= "/WEB-INF/AfficherJoueurs.jsp";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
