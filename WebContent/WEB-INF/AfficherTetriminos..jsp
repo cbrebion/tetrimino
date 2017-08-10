@@ -50,6 +50,10 @@
 		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 
-</body>
+	<c:forEach items=${tetriminos} var="item">
+        <p>  <c:out value = "${item.nom}"/> </p> 
+         <p> <c:out value = "${item.couleur}"/> </p> 
+      </c:forEach>
 
+</body>
 </html>
