@@ -24,16 +24,16 @@
 		<a id="logo-container" href="#" class="brand-logo">TETRIMINO</a>
 
 		<ul class="right hide-on-med-and-down">
-			<li><a href="#">Liste Tetriminos</a></li>
+			<li><a href="listeTetriminos">Liste Tetriminos</a></li>
 		</ul>
 		<ul id="nav-mobile" class="side-nav">
-			<li><a href="#">Liste Tetriminos</a></li>
+			<li><a href="listeTetriminos">Liste Tetriminos</a></li>
 		</ul>
 		<ul class="right hide-on-med-and-down">
-			<li><a href="#">Liste Joueurs</a></li>
+			<li><a href="listeJoueurs">Liste Joueurs</a></li>
 		</ul>
 		<ul id="nav-mobile" class="side-nav">
-			<li><a href="#">Liste Joueurs</a></li>
+			<li><a href="listeJoueurs">Liste Joueurs</a></li>
 		</ul>
 
 
