@@ -28,7 +28,7 @@ public class JoueurServerDAO implements IJoueurDAO{
 	}
 
 	@Override
-	public Joueur modifier(Joueur obj) {
+	public Joueur modifier(HttpServletRequest req, Joueur obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}

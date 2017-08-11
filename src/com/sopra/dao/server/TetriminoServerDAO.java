@@ -10,6 +10,7 @@ import com.sopra.model.Tetrimino;
 
 public class TetriminoServerDAO implements ITetriminoDAO {
 	public static final String ATT_LIST_TETRIMINOS		= "tetriminos";
+	public static final String ATT_TETRIMINO			= "tetrimino";
 
 	@Override
 	public List<Tetrimino> rechercher(HttpServletRequest req) {
@@ -22,14 +23,30 @@ public class TetriminoServerDAO implements ITetriminoDAO {
 
 	@Override
 	public Tetrimino rechercher(HttpServletRequest req, int id) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Tetrimino> tetriminos = rechercher(req);
+		Tetrimino tetrimino = null;
+		
+		for (Tetrimino tetri : tetriminos) {
+			if (tetri.getId() == id) {
+				tetrimino = tetri;
+			}
+		}
+		
+		return tetrimino;
 	}
 
 	@Override
-	public Tetrimino modifier(Tetrimino obj) {
-		// TODO Auto-generated method stub
-		return null;
+	public Tetrimino modifier(HttpServletRequest req, Tetrimino newTetrimino) {		
+		List<Tetrimino> tetriminos = new ArrayList<Tetrimino>();
+		Tetrimino tetrimino;
+		
+		tetriminos = rechercher(req);
+		tetrimino = rechercher(req, newTetrimino.getId());
+		
+		tetrimino.setNom(newTetrimino.getNom());
+		tetrimino.setCouleur(newTetrimino.getCouleur());
+		
+		return tetrimino;
 	}
 
 	@Override
