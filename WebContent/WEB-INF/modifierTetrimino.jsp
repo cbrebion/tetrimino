@@ -44,10 +44,11 @@
 
 	<div class="container">
 		<form method="POST" class="row center">
+			<input type="text" name="id" class="row center" value="${ tetri.id }" placeholder="Entrez un nom" hidden />
 			<h5>Nom Tetrimino</h5>
-			<input type="text" name="nom" class="row center" placeholder="Entrez un nom"></input>
+			<input type="text" name="nom" class="row center" value="${ tetri.nom }" placeholder="Entrez un nom" />
 			<h5>Couleur</h5>
-			<input type="text" name="couleur" class="row center" placeholder="Entrez une couleur"></input>
+			<input type="text" name="couleur" class="row center" value="${ tetri.couleur }" placeholder="Entrez une couleur" />
 
 			<button class="btn waves-effect waves-light red lighten-1" type="submit" name="action">
 				Modifier <i class="material-icons right">send</i>

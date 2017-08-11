@@ -22,6 +22,7 @@ public class ModifyTetriminoServlet extends HttpServlet {
 	
 	private static final String PARAM_ID		= "id";
 	
+	private static final String CHAMP_ID		= "id";
 	private static final String CHAMP_NOM		= "nom";
 	private static final String CHAMP_COULEUR	= "couleur";
 	private static final String ATT_TETRI		= "tetri";
@@ -46,10 +47,13 @@ public class ModifyTetriminoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String nom = getValeurChamp(req, CHAMP_NOM);
 		String couleur = getValeurChamp(req, CHAMP_COULEUR);
+		int id = Integer.parseInt(req.getParameter(CHAMP_ID));
 		
 		ITetriminoDAO tetriminoServerDAO = new TetriminoServerDAO();
 		
-		Tetrimino tetri = (Tetrimino) req.getAttribute(ATT_TETRI);
+		Tetrimino tetri = new Tetrimino();
+		
+		tetri.setId(id);
 		
 		try {
 			validationNom(nom);
