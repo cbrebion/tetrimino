@@ -6,7 +6,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -16,7 +15,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Bienvenue sur Tetrimino</title>
+<title>Ajout de tetrimino</title>
 </head>
 
 <body>
@@ -25,7 +24,7 @@
 		<a id="logo-container" href="#" class="brand-logo">TETRIMINO</a>
 
 		<ul class="right hide-on-med-and-down">
-			<li><a href="listeTetriminos">Liste Tetriminos</a></li>
+			<li><a href="#">Liste Tetriminos</a></li>
 		</ul>
 		<ul id="nav-mobile" class="side-nav">
 			<li><a href="#">Liste Tetriminos</a></li>
@@ -34,7 +33,7 @@
 			<li><a href="#">Liste Joueurs</a></li>
 		</ul>
 		<ul id="nav-mobile" class="side-nav">
-			<li><a href="listeJoueurs">Liste Joueurs</a></li>
+			<li><a href="#">Liste Joueurs</a></li>
 		</ul>
 
 
@@ -42,30 +41,23 @@
 			class="material-icons">menu</i></a>
 	</div>
 	</nav>
-	<br>
+
 	<div class="container">
-		<a
-			class="btn-floating btn-small waves-effect waves-light red lighten-1"  href="ajoutTetrimino">
-			<i class="material-icons">add</i>
+		<form method="POST" class="row center">
+			<h5>Nom Tetrimino</h5>
+			<input type="text" name="nom" class="row center" placeholder="Entrez un nom"></input>
+			<h5>Couleur</h5>
+			<input type="text" name="couleur" class="row center" placeholder="Entrez une couleur"></input>
 
-		</a>
-			<span class="red-text lighten-1"> Ajouter Tetrimino</span>
-			<br>
-			<br>
-			<a
-			class="btn-floating btn-small waves-effect waves-light red lighten-1"  href="ajoutJoueur">
-			<i class="material-icons">add</i>
-
-		</a>
-			<span class="red-text lighten-1"> Ajouter Joueur</span>
+			<button class="btn waves-effect waves-light red lighten-1" type="submit" name="action">
+				Ajouter <i class="material-icons right">send</i>
+			</button>
+		</form>
 	</div>
-
-	</form>
 
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 
 </body>
-
 </html>
