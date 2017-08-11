@@ -22,8 +22,9 @@ public class AddTetriminoServlet extends HttpServlet {
 	
 	private static final String ATT_NOM					= "nom";
 	private static final String ATT_COULEUR				= "couleur";
+	private static final String ATT_ERREUR				= "erreurs";
 	
-	private static final Map<String, String> erreurs	= new HashMap<String, String>();
+	private Map<String, String> erreurs	= new HashMap<String, String>();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,6 +33,8 @@ public class AddTetriminoServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		erreurs.clear();
+		
 		// Récupération des valeurs
 		String nom = getValeurChamp(req, ATT_NOM);
 		String couleur = getValeurChamp(req, ATT_COULEUR);
@@ -62,10 +65,13 @@ public class AddTetriminoServlet extends HttpServlet {
 		}
 		tetrimino.setCouleur(couleur);
 		
-		tetriminoServerDAO.enregistrer(req, tetrimino);
-		
-		
-		this.getServletContext().getRequestDispatcher(VUE_POST).forward(req, resp);
+		if (erreurs.isEmpty()) {
+			tetriminoServerDAO.enregistrer(req, tetrimino);
+			resp.sendRedirect(VUE_POST);
+		} else {
+			req.setAttribute(ATT_ERREUR, erreurs);
+			this.getServletContext().getRequestDispatcher(VUE_GET).forward(req, resp);
+		}
 	}
 	
 	

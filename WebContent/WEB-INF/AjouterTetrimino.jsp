@@ -41,13 +41,28 @@
 			class="material-icons">menu</i></a>
 	</div>
 	</nav>
-
+	
+	
+	<c:set var="placeholderNom">
+		<c:choose>
+			<c:when test="${ empty erreurs['nom'] }">Nom</c:when>
+			<c:otherwise>${ erreurs['nom'] }</c:otherwise>
+		</c:choose>
+	</c:set>
+	<c:set var="placeholderCouleur">
+		<c:choose>
+			<c:when test="${ empty erreurs['couleur'] }">Couleur</c:when>
+			<c:otherwise>${ erreurs['couleur'] }</c:otherwise>
+		</c:choose>
+	</c:set>
+	
 	<div class="container">
 		<form method="POST" class="row center">
+		<p><c:out value ="${ placholderNom }"/></p>
 			<h5>Nom Tetrimino</h5>
-			<input type="text" name="nom" class="row center" placeholder="Entrez un nom"></input>
+			<input type="text" name="nom" class="row center" placeholder="<c:out value="${ placeholderNom }" />" />
 			<h5>Couleur</h5>
-			<input type="text" name="couleur" class="row center" placeholder="Entrez une couleur"></input>
+			<input type="text" name="couleur" class="row center" placeholder="<c:out value="${ placeholderCouleur }" />" />
 
 			<button class="btn waves-effect waves-light red lighten-1" type="submit" name="action">
 				Ajouter <i class="material-icons right">send</i>
