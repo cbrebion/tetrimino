@@ -13,7 +13,8 @@ import com.sopra.dao.server.TetriminoServerDAO;
 
 @WebServlet("/supprimerPiece")
 public class DeleteTetriminoServlet extends HttpServlet {
-	private static final String ATT_ID	= "id";
+	private static final String ATT_ID				= "id";
+	private static final String VUE_POST			= "/tetrimino/listeTetriminos";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,6 +23,8 @@ public class DeleteTetriminoServlet extends HttpServlet {
 		ITetriminoDAO tetriminoServerDAO = new TetriminoServerDAO();
 		int id = Integer.parseInt(req.getParameter(ATT_ID));
 		tetriminoServerDAO.supprimer(req, id);
+		
+		resp.sendRedirect(VUE_POST);
 	}
 
 }
