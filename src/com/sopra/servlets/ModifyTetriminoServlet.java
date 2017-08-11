@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/modifPiece")
 public class ModifyTetriminoServlet extends HttpServlet {
-	private static final String VUE_GET		= "/WEB-INF/modifierTetrimino.jsp";
+	public static final String VUE_GET		= "/WEB-INF/modifierTetrimino.jsp";
 	
 	private static final String PARAM_ID	= "id";
 	
