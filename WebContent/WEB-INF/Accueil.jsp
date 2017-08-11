@@ -45,9 +45,9 @@
 	<div class="container">
 		<form method="POST" class="row center">
 			<h5>Nom utilisateur</h5>
-			<input type="text" name="username" value="<c:out value="${ valUsername }"/>" class="row center"></input><br>
+			<input type="text" name="username" value="<c:out value="${ valUsername }"/>" class="row center" placeholder="Entrez nom"></input><br>
 			<h5>Mot de passe</h5>
-			<input type="password" name="password" class="row center"></input>
+			<input type="password" name="password" class="row center" placeholder="Entrez mot de passe"></input>
 
 			<button class="btn waves-effect waves-light red lighten-1" type="submit" name="action">
 				Se connecter <i class="material-icons right">send</i>

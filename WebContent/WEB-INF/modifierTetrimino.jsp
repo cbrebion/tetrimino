@@ -50,7 +50,7 @@
 			<input type="text" name="couleur" class="row center" placeholder="Entrez une couleur"></input>
 
 			<button class="btn waves-effect waves-light red lighten-1" type="submit" name="action">
-				Ajouter <i class="material-icons right">send</i>
+				Modifier <i class="material-icons right">send</i>
 			</button>
 		</form>
 	</div>
