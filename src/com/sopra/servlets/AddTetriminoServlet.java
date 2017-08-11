@@ -18,7 +18,7 @@ import com.sopra.model.Tetrimino;
 @WebServlet("/ajoutTetrimino")
 public class AddTetriminoServlet extends HttpServlet {
 	private static final String VUE_GET					= "/WEB-INF/AjouterTetrimino.jsp";
-	private static final String VUE_POST				= "/listeTetriminos";
+	private static final String VUE_POST				= "/tetrimino/listeTetriminos";
 	
 	private static final String ATT_NOM					= "nom";
 	private static final String ATT_COULEUR				= "couleur";
