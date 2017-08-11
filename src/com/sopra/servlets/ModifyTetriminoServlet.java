@@ -75,6 +75,7 @@ public class ModifyTetriminoServlet extends HttpServlet {
 			tetriminoServerDAO.modifier(req, tetri);
 			resp.sendRedirect(VUE_POST);
 		} else {
+			req.setAttribute(ATT_TETRI, tetri);
 			req.setAttribute(ATT_ERREUR, erreurs);
 			this.getServletContext().getRequestDispatcher(VUE_GET).forward(req, resp);
 		}
