@@ -39,4 +39,10 @@ public class JoueurServerDAO implements IJoueurDAO{
 		
 	}
 
+	@Override
+	public void enregistrer(HttpServletRequest req, Joueur obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

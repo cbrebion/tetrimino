@@ -38,4 +38,13 @@ public class TetriminoServerDAO implements ITetriminoDAO {
 		
 	}
 
+	@Override
+	public void enregistrer(HttpServletRequest req, Tetrimino tetri) {
+		List<Tetrimino> tetriminos = rechercher(req);
+		
+		tetriminos.add(tetri);
+		
+		req.getServletContext().setAttribute(ATT_LIST_TETRIMINOS, tetriminos);
+	}
+
 }
