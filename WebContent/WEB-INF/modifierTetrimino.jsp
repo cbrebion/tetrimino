@@ -20,14 +20,27 @@
 
 <body>
 	<c:import url="/inc/menu.jsp" />
+	
+	<c:set var="placeholderNom">
+		<c:choose>
+			<c:when test="${ empty erreurs['nom'] }">Nom</c:when>
+			<c:otherwise>${ erreurs['nom'] }</c:otherwise>
+		</c:choose>
+	</c:set>
+	<c:set var="placeholderCouleur">
+		<c:choose>
+			<c:when test="${ empty erreurs['couleur'] }">Couleur</c:when>
+			<c:otherwise>${ erreurs['couleur'] }</c:otherwise>
+		</c:choose>
+	</c:set>
 
 	<div class="container">
 		<form method="POST" class="row center">
-			<input type="text" name="id" class="row center" value="${ tetri.id }" placeholder="Entrez un nom" hidden />
+			<input type="text" name="id" class="row center" value="${ tetri.id }" hidden />
 			<h5>Nom Tetrimino</h5>
-			<input type="text" name="nom" class="row center" value="${ tetri.nom }" placeholder="Entrez un nom" />
+			<input type="text" name="nom" class="row center" value="${ tetri.nom }" placeholder="<c:out value="${ placeholderNom }" />" />
 			<h5>Couleur</h5>
-			<input type="text" name="couleur" class="row center" value="${ tetri.couleur }" placeholder="Entrez une couleur" />
+			<input type="text" name="couleur" class="row center" value="${ tetri.couleur }" placeholder="<c:out value="${ placeholderCouleur }" />" />
 
 			<button class="btn waves-effect waves-light red lighten-1" type="submit" name="action">
 				Modifier <i class="material-icons right">send</i>

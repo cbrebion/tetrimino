@@ -45,6 +45,8 @@ public class ModifyTetriminoServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		erreurs.clear();
+		
 		String nom = getValeurChamp(req, CHAMP_NOM);
 		String couleur = getValeurChamp(req, CHAMP_COULEUR);
 		int id = Integer.parseInt(req.getParameter(CHAMP_ID));
