@@ -51,8 +51,15 @@ public class TetriminoServerDAO implements ITetriminoDAO {
 
 	@Override
 	public void supprimer(HttpServletRequest req, int id) {
-		// TODO Auto-generated method stub
+		List<Tetrimino> tetriminos = rechercher(req);
+		Tetrimino tetrimino = null;
 		
+		for (Tetrimino tetri : tetriminos) {
+			if (tetri.getId() == id) {
+				tetrimino = tetri;
+			}
+		}
+		tetriminos.remove(tetrimino);
 	}
 
 	@Override
