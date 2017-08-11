@@ -26,29 +26,7 @@
 </head>
 
 <body>
-	<nav class="light-red lighten-1" role="navigation">
-	<div class="nav-wrapper container">
-		<a id="logo-container" href="#" class="brand-logo">TETRIMINO</a>
-
-		<ul class="right hide-on-med-and-down">
-			<li><a href="listeTetriminos">Liste Tetriminos</a></li>
-		</ul>
-		<ul id="nav-mobile" class="side-nav">
-			<li><a href="listeTetriminos">Liste Tetriminos</a></li>
-
-		</ul>
-		<ul class="right hide-on-med-and-down">
-			<li><a href="listeJoueurs">Liste Joueurs</a></li>
-		</ul>
-		<ul id="nav-mobile" class="side-nav">
-			<li><a href="listeJoueurs">Liste Joueurs</a></li>
-		</ul>
-
-
-		<a href="#" data-activates="nav-mobile" class="button-collapse"><i
-			class="material-icons">menu</i></a>
-	</div>
-	</nav>
+	<c:import url="/inc/menu.jsp" />
 	</div> 
 
 	</form>
@@ -70,6 +48,12 @@
 				</li>
 			</c:forEach>
 		</div>
+		<p>
+			<a class="btn-floating btn-small waves-effect waves-light red lighten-1"  href="ajoutTetrimino">
+				<i class="material-icons">add</i>
+			</a>
+			<a href="ajoutTetrimino"><span class="red-text lighten-1"> Ajouter Tetrimino</span></a>
+		</p>
 	</div>
 </body>
 </html>
