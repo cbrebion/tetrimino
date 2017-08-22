@@ -10,11 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="personne")
+@Table(name="personne", uniqueConstraints=@UniqueConstraint(columnNames="per_username"))
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Personne implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -64,6 +65,8 @@ public class Personne implements Serializable {
 	public String getPrenom() {
 		return prenom;
 	}
+	
+	public int getType() { return 0; }
 	
 
 	public void setId(int id) {

@@ -25,6 +25,10 @@ public class PersonneHibernateDAO implements IPersonneDAO {
 	public Personne find(int id) {
 		return em.find(Personne.class, id);
 	}
+	
+	public Personne findByUsername(String username) {
+		return (Personne) em.createQuery("FROM Personne p WHERE p.username = '" + username + "'").getSingleResult();
+	}
 
 	@Override
 	public Personne save(Personne personne) {

@@ -21,6 +21,10 @@ public class Joueur extends Personne {
 		return parties;
 	}
 	
+	public int getType() {
+		return 2;
+	}
+	
 	public void setParties(List<Partie> parties) {
 		this.parties = parties;
 	}

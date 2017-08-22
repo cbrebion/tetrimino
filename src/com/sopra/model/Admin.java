@@ -11,5 +11,9 @@ public class Admin extends Personne {
 	private static final long serialVersionUID = 1L;
 	
 	public Admin() {}
+	
+	public int getType() {
+		return 1;
+	}
 
 }
