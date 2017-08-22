@@ -22,7 +22,7 @@ public class TetriminoHibernateDAO implements ITetriminoDAO {
 	}
 
 	@Override
-	public Tetrimino find(Tetrimino id) {
+	public Tetrimino find(int id) {
 		return em.find(Tetrimino.class, id);
 	}
 

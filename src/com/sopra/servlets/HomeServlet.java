@@ -2,11 +2,16 @@ package com.sopra.servlets;
 
 import java.io.IOException;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.sopra.dao.IAdminDAO;
+import com.sopra.dao.IJoueurDAO;
+import com.sopra.dao.IPersonneDAO;
 
 @WebServlet("/accueil")
 public class HomeServlet extends HttpServlet {
@@ -15,6 +20,15 @@ public class HomeServlet extends HttpServlet {
 	
 	private static final String CHAMP_USER	= "username";
 	private static final String CHAMP_PASS	= "password";
+	
+	@EJB(name="personneHibernateDAO")
+	private IPersonneDAO personneHibernateDAO;
+	
+	@EJB(name="adminHibernateDAO")
+	private IAdminDAO adminHibernateDAO;
+	
+	@EJB(name="joueurHibernateDAO")
+	private IJoueurDAO joueurHibernateDAO;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,10 +44,9 @@ public class HomeServlet extends HttpServlet {
 		String username = req.getParameter(CHAMP_USER);
 		String pass = req.getParameter(CHAMP_PASS);
 		
-		if (username.equals("admin") && pass.equals("admin")) {
-			req.getSession().setAttribute("username", username);
-			req.getSession().setAttribute("pass", pass);
-		}
+		Personne personne = personneHibernateDAO.find(id);
+		
+		req.getSession().setAttribute("username", personne.getUsername());
 		
 		req.setAttribute("valUsername", username);
 		

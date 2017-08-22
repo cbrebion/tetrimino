@@ -76,7 +76,8 @@ public class SignInServlet extends HttpServlet {
 		
 		
 		if (erreurs.isEmpty()) {
-			joueurHibernateDAO.save(joueur);
+			joueur = joueurHibernateDAO.save(joueur);
+			req.getSession().setAttribute("joueur", joueur);
 			resp.sendRedirect(VUE_POST);
 		} else {
 			req.setAttribute(ATT_ERREUR, erreurs);

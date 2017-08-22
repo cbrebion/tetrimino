@@ -22,7 +22,7 @@ public class PersonneHibernateDAO implements IPersonneDAO {
 	}
 
 	@Override
-	public Personne find(Personne id) {
+	public Personne find(int id) {
 		return em.find(Personne.class, id);
 	}
 

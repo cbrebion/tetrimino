@@ -23,7 +23,7 @@ public class PartieHibernateDAO implements IPartieDAO {
 	}
 
 	@Override
-	public Partie find(Partie id) {
+	public Partie find(int id) {
 	return em.find(Partie.class, id);
 	}
 

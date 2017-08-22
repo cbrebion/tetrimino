@@ -19,7 +19,7 @@ public class AdminHibernateDAO implements IAdminDAO {
 	}
 
 	@Override
-	public Admin find(Admin id) {
+	public Admin find(int id) {
 		return em.find(Admin.class, id);
 	}
 

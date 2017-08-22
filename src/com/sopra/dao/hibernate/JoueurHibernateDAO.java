@@ -21,7 +21,7 @@ public class JoueurHibernateDAO implements IJoueurDAO {
 	}
 
 	@Override
-	public Joueur find(Joueur id) {
+	public Joueur find(int id) {
 		return em.find(Joueur.class, id);
 	}
 
