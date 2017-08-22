@@ -2,12 +2,14 @@ package com.sopra.dao.hibernate;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.sopra.dao.IAdminDAO;
 import com.sopra.model.Admin;
 
+@Stateless
 public class AdminHibernateDAO implements IAdminDAO {
 
 	@PersistenceContext
