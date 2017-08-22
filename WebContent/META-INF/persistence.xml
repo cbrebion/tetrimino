@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="adsportPU" transaction-type="JTA">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<jta-data-source>java:tomee/Resource/tetriminoDS</jta-data-source>
+		<class>com.sopra.model.Admin</class>
+		<class>com.sopra.model.Joueur</class>
+		<class>com.sopra.model.Partie</class>
+		<class>com.sopra.model.Personne</class>
+		<class>com.sopra.model.Tetrimino</class>
+		
+		<properties>
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+			
+			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.format_sql" value="true"/>
+			
+			<property name="tomee.jpa.factory.lazy" value="true"/>
+		</properties>
+	</persistence-unit>
+</persistence>

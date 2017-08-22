@@ -2,12 +2,11 @@ package com.sopra.dao;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 
-public interface IDAO <T> {
-	public void enregistrer(HttpServletRequest req, T obj);
-	public List<T> rechercher(HttpServletRequest req);
-	public T rechercher(HttpServletRequest req, int id);
-	public T modifier(HttpServletRequest req, T obj);
-	public void supprimer(HttpServletRequest req, int id);
+public interface IDAO<T>
+{
+	public List<T> findAll();
+	public T find(T id);
+	public T save(T obj);
+	public void delete(T obj);
 }
