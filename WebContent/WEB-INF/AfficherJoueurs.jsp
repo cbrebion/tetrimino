@@ -35,7 +35,7 @@
 		<div class="collection">
 			<c:forEach items="${joueurs}" var="item">
 			    <li class="collection-item avatar">
-					<c:out value="${item.id}" /> : <c:out value="${item.nom}" /> : <c:out value="${item.username}" />
+					<c:out value="${item.id}" /> : <c:out value="${item.nom}" /> :
 					<a href="#!" class="secondary-content posRelative"><i class="material-icons">edit</i></a> 
 					<a href="#!" class="secondary-content posRelative"><i class="material-icons">cancel</i></a> 
 				</li>
