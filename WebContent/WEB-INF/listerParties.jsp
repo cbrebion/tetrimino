@@ -33,19 +33,13 @@
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 	<div class="container">
 		<div class="collection">
-			<c:forEach items="${tetriminos}" var="item">
+			<c:forEach items="${parties}" var="item">
 			    <li class="collection-item avatar">
-					<c:out value="${item.id}" /> : <c:out value="${item.nom}" /> : <c:out value="${item.couleur}" />
-					<a href="supprimerPiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Supprimer"><i class="material-icons">cancel</i></a>
-					<a href="modifPiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Editer"><i class="material-icons">edit</i></a>
+					<c:out value="${item.id}" /> : <c:out value="${item.score}" /> : <c:out value="${item.finie}" /> : <c:out value="${item.joueur1.username}" /> : <c:out value="${item.joueur2.username}" />
 				</li>
 			</c:forEach>
 		</div>
 		<p>
-			<a class="btn-floating btn-small waves-effect waves-light red lighten-1"  href="ajoutTetrimino">
-				<i class="material-icons">add</i>
-			</a>
-			<a href="ajoutTetrimino"><span class="red-text lighten-1"> Ajouter Tetrimino</span></a>
 		</p>
 	</div>
 </body>

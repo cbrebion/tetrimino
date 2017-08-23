@@ -14,7 +14,12 @@
 	<ul id="nav-mobile" class="side-nav">
 		<li><a href="listeJoueurs">Liste Joueurs</a></li>
 	</ul>
-
+		<ul class="right hide-on-med-and-down">
+		<li><a href="listeParties">Liste Parties</a></li>
+	</ul>
+	<ul id="nav-mobile" class="side-nav">
+		<li><a href="#">Liste Parties</a></li>
+	</ul>
 
 	<a href="#" data-activates="nav-mobile" class="button-collapse"><i
 		class="material-icons">menu</i></a>
