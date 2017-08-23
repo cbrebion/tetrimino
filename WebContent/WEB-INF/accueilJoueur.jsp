@@ -31,6 +31,16 @@
 		</p>
 	</div>
 	
+		<div class="container">
+		<div class="collection">
+			<c:forEach items="${parties}" var="item">
+			    <li class="collection-item avatar">
+					<c:out value="${item.score}" /> : <c:out value="${item.joueur1.username}" /> : <c:out value="${item.joueur2.username}" /> : <c:out value="${item.finie}" /> 
+				</li>
+			</c:forEach>
+		</div>
+	</div>
+	
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
