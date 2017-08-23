@@ -31,14 +31,31 @@
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
+
 	<div class="container">
 		<div class="collection">
 			<c:forEach items="${parties}" var="item">
-			    <li class="collection-item avatar">
-					<c:out value="${item.id}" /> : <c:out value="${item.score}" /> : <c:out value="${item.finie}" /> : <c:out value="${item.joueur1.username}" /> : <c:out value="${item.joueur2.username}" />
-				</li>
+
+				<c:set var="etatPartie">
+					<c:choose>
+						<c:when test="${item.finie}">Partie finie</c:when>
+						<c:otherwise>Partie en cours</c:otherwise>
+					</c:choose>
+				</c:set>
+
+				<div class="collection-item avatar">
+					<c:out value="${item.score}" />
+					<br>
+					<c:out value="${item.joueur1.username}" />
+					<br>
+					<c:out value="${item.joueur2.username}" />
+					<br>
+					<c:out value="${etatPartie}" />
+				</div>
 			</c:forEach>
 		</div>
 	</div>
+
+
 </body>
 </html>
