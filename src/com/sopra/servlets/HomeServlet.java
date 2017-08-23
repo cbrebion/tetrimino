@@ -79,12 +79,14 @@ public class HomeServlet extends HttpServlet {
 						Admin admin = (Admin) personne;
 						req.getSession().setAttribute("admin", admin);
 						resp.sendRedirect(VUE_ADMIN);
+						return;
 					}
 					// JOUEUR
 					else {
 						Joueur joueur = (Joueur) personne;
 						req.getSession().setAttribute("joueur", joueur);
 						resp.sendRedirect(VUE_JOUEUR);
+						return;
 					}
 				} else {
 					setErreurs("connexion", "Mot de passe incorrect");
