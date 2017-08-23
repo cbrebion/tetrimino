@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sopra.dao.IPartieDAO;
+import com.sopra.dao.IScoreDAO;
 import com.sopra.model.Partie;
+import com.sopra.model.Score;
 
 @WebServlet("/admin/listeParties")
 public class ListPartiesServlet extends HttpServlet {
@@ -20,12 +22,17 @@ public class ListPartiesServlet extends HttpServlet {
 	
 	@EJB(name="partieHibernateDAO")
 	private IPartieDAO partieHibernateDAO;
+	
+	@EJB(name="scoreHibernateDAO")
+	private IScoreDAO scoreHibernateDAO;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<Partie> parties = partieHibernateDAO.findAll();
+		List<Score> scores = scoreHibernateDAO.findAll();
 		
 		req.setAttribute("parties", parties);
+		req.setAttribute("scores", scores);
 		
 		this.getServletContext().getRequestDispatcher(VUE_LISTE).forward(req, resp);
 	}

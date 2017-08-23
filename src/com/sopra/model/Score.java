@@ -21,6 +21,9 @@ public class Score implements Serializable {
 	@Column(name="sco_id")
 	private int id;
 	
+	@Column(name="sco_points")
+	private int points;
+	
 	@Column(name="sco_lines")
 	private int lines;
 	

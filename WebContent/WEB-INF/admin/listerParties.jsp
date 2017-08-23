@@ -40,12 +40,8 @@
 				</c:set>
 
 				<div class="collection-item avatar">
-					<c:out value="${item.score}" />
-					<br>
-					<c:out value="${item.joueur1.username}" />
-					<br>
-					<c:out value="${item.joueur2.username}" />
-					<br>
+					Score <c:out value="${item.joueur1.username}" /> : <c:out value="${item.joueur1.score.points}" /><br>
+					Score <c:out value="${item.joueur2.username}" /> : <c:out value="${item.joueur2.score.points}" /><br>
 					<c:out value="${etatPartie}" />
 				</div>
 			</c:forEach>
