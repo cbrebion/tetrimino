@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/accueilAdmin")
+@WebServlet("/admin/accueilAdmin")
 public class AdminHomeServlet extends HttpServlet {
-	public static final String VUE_GET		= "/WEB-INF/AccueilAdmin.jsp";
+	public static final String VUE_GET		= "/WEB-INF/admin/AccueilAdmin.jsp";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sopra.dao.ITetriminoDAO;
 import com.sopra.model.Tetrimino;
 
-@WebServlet("/supprimerPiece")
+@WebServlet("/admin/supprimerPiece")
 public class DeleteTetriminoServlet extends HttpServlet {
 	private static final String ATT_ID				= "id";
 	private static final String VUE_POST			= "/tetrimino/listeTetriminos";

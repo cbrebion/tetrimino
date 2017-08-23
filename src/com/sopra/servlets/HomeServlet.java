@@ -79,7 +79,7 @@ public class HomeServlet extends HttpServlet {
 						Admin admin = (Admin) personne;
 						req.getSession().setAttribute("admin", admin);
 						//resp.sendRedirect(VUE_ADMIN);
-						req.getServletContext().getRequestDispatcher(VUE_ADMIN).forward(req, resp);
+						this.getServletContext().getRequestDispatcher(VUE_ADMIN).forward(req, resp);
 						return;
 					}
 					// JOUEUR
@@ -87,7 +87,7 @@ public class HomeServlet extends HttpServlet {
 						Joueur joueur = (Joueur) personne;
 						req.getSession().setAttribute("joueur", joueur);
 						//resp.sendRedirect(VUE_JOUEUR);
-						req.getServletContext().getRequestDispatcher(VUE_JOUEUR).forward(req, resp);
+						this.getServletContext().getRequestDispatcher(VUE_JOUEUR).forward(req, resp);
 						return;
 					}
 				} else {

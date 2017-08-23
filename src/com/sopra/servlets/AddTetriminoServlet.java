@@ -16,9 +16,9 @@ import com.sopra.dao.server.TetriminoServerDAO;
 import com.sopra.exception.FormValidationException;
 import com.sopra.model.Tetrimino;
 
-@WebServlet("/ajoutTetrimino")
+@WebServlet("/admin/ajoutTetrimino")
 public class AddTetriminoServlet extends HttpServlet {
-	private static final String VUE_GET					= "/WEB-INF/AjouterTetrimino.jsp";
+	private static final String VUE_GET					= "/WEB-INF/admin/AjouterTetrimino.jsp";
 	private static final String VUE_POST				= "/tetrimino/listeTetriminos";
 	
 	private static final String ATT_NOM					= "nom";

@@ -16,12 +16,12 @@ import com.sopra.dao.server.TetriminoServerDAO;
 import com.sopra.exception.FormValidationException;
 import com.sopra.model.Tetrimino;
 
-@WebServlet("/modifPiece")
+@WebServlet("/admin/modifPiece")
 public class ModifyTetriminoServlet extends HttpServlet {
 	@EJB(name="tetriminoHibernateDAO")
 	private ITetriminoDAO tetriminoHibernateDAO;
 	
-	public static final String VUE_GET			= "/WEB-INF/modifierTetrimino.jsp";
+	public static final String VUE_GET			= "/WEB-INF/admin/modifierTetrimino.jsp";
 	public static final String VUE_POST			= "/tetrimino/listeTetriminos";
 	
 	private static final String PARAM_ID		= "id";
