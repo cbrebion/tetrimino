@@ -25,6 +25,9 @@ public class Joueur extends Personne {
 	@OneToMany(mappedBy="joueur2")
 	private List<Partie> partiesJ2;
 	
+	@OneToMany(mappedBy="joueur")
+	private List<Score> scores;
+	
 	
 	public Joueur() {
 		super();
@@ -58,6 +61,16 @@ public class Joueur extends Personne {
 	
 	public void setPartiesJ2(List<Partie> parties) {
 		this.partiesJ2 = parties;
+	}
+
+
+	public List<Score> getScores() {
+		return scores;
+	}
+
+
+	public void setScores(List<Score> scores) {
+		this.scores = scores;
 	}
 
 }

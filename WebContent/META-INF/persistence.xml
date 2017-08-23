@@ -11,6 +11,7 @@
 		<class>com.sopra.model.Partie</class>
 		<class>com.sopra.model.Personne</class>
 		<class>com.sopra.model.Tetrimino</class>
+		<class>com.sopra.model.Score</class>
 		
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update"/>
