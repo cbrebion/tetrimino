@@ -20,13 +20,27 @@
 
 <body>
 	<c:import url="/inc/menu.jsp" />
+	
+	<c:set var="placeholderUsername">
+		<c:choose>
+			<c:when test="${ empty erreurs['username'] }">Nom d'utilisateur</c:when>
+			<c:otherwise>${ erreurs['username'] }</c:otherwise>
+		</c:choose>
+	</c:set>
+	<c:set var="placeholderPassword">
+		<c:choose>
+			<c:when test="${ empty erreurs['password'] }">Mot de passe</c:when>
+			<c:otherwise>${ erreurs['password'] }</c:otherwise>
+		</c:choose>
+	</c:set>
 
 	<div class="container">
 		<form method="POST" class="row center">
+			<span class="erreur">${ erreurs['connexion'] }</span>
 			<h5>Nom utilisateur</h5>
-			<input type="text" name="username" value="<c:out value="${ valUsername }"/>" class="row center" placeholder="Entrez nom"></input><br>
+			<input type="text" name="username" value="<c:out value="${ valUsername }"/>" class="row center" placeholder="${ placeholderUsername }"></input><br>
 			<h5>Mot de passe</h5>
-			<input type="password" name="password" class="row center" placeholder="Entrez mot de passe"></input>
+			<input type="password" name="password" class="row center" placeholder="${ placeholderPassword }"></input>
 
 			<button class="btn waves-effect waves-light red lighten-1" type="submit" name="action">
 				Se connecter <i class="material-icons right">send</i>
