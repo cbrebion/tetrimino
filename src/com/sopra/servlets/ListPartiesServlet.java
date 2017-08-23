@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.sopra.dao.IPartieDAO;
 import com.sopra.model.Partie;
 
-@WebServlet("/listeParties")
+@WebServlet("/admin/listeParties")
 public class ListPartiesServlet extends HttpServlet {
 	
-	private static final String VUE_LISTE	= "admin/listerParties.jsp";
+	private static final String VUE_LISTE	= "/WEB-INF/admin/listerParties.jsp";
 	
 	@EJB(name="partieHibernateDAO")
 	private IPartieDAO partieHibernateDAO;

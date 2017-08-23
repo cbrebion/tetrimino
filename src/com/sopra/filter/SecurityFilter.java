@@ -25,7 +25,7 @@ public class SecurityFilter implements Filter {
 		
 		/* Non-filtrage des ressources statiques */
         String chemin = request.getRequestURI().substring( request.getContextPath().length() );
-        if ( chemin.startsWith( "/inc" ) || chemin.startsWith("/css") || chemin.startsWith("/img") || chemin.startsWith("/fonts") || chemin.startsWith("/js") ) {
+        if ( chemin.startsWith( "inc" ) || chemin.startsWith("css") || chemin.startsWith("img") || chemin.startsWith("fonts") || chemin.startsWith("js") ) {
             chain.doFilter( request, response );
             return;
         }
@@ -37,11 +37,11 @@ public class SecurityFilter implements Filter {
 		}
 		// Demande d'accès à une autre page
 		else {
-			if (request.getSession().getAttribute("joueur") == null || request.getSession().getAttribute("admin") == null) {
-				response.sendRedirect(VUE_LOGIN);
-			} else {
+			if (request.getSession().getAttribute("joueur") != null || request.getSession().getAttribute("admin") != null) {
 				chain.doFilter(request, response);
 				return;
+			} else {
+				response.sendRedirect(VUE_LOGIN);
 			}
 		}
 	}

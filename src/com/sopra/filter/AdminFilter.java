@@ -25,8 +25,8 @@ public class AdminFilter implements Filter {
 		
 		/* Non-filtrage des ressources statiques */
         String chemin = request.getRequestURI().substring( request.getContextPath().length() );
-        if ( chemin.startsWith( "/inc" ) || chemin.startsWith("/css") || chemin.startsWith("/img") || chemin.startsWith("/fonts") || chemin.startsWith("/js") ) {
-            chain.doFilter( request, response );
+        if ( chemin.startsWith( "/admin/inc" ) || chemin.startsWith("/admin/css") || chemin.startsWith("/admin/img") || chemin.startsWith("/admin/fonts") || chemin.startsWith("/admin/js") ) {
+        	chain.doFilter( request, response );
             return;
         }
 

@@ -11,7 +11,7 @@
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-<link href="css/materialize.min.css" type="text/css" rel="stylesheet"
+<link href="/tetrimino/css/materialize.min.css" type="text/css" rel="stylesheet"
 	media="screen,projection" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -39,7 +39,7 @@
 	
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script type="text/javascript" src="/tetrimino/js/materialize.min.js"></script>
 
 </body>
 
