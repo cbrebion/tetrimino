@@ -19,7 +19,7 @@ import com.sopra.model.Partie;
 import com.sopra.model.Tetrimino;
 
 
-@WebServlet("/")
+@WebServlet("/gen")
 public class GenerateServlet extends HttpServlet {
 
 	@EJB(name="adminHibernateDAO")
