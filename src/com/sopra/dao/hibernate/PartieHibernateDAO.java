@@ -37,7 +37,7 @@ public class PartieHibernateDAO implements IPartieDAO {
 	
 	public List<Partie> findAllDesc() {
 		try {
-			return (List<Partie>) em.createQuery("FROM Partie p ORDER BY p.score DESC");
+			return (List<Partie>) em.createQuery("FROM Partie p ORDER BY p.score DESC").getResultList();
 		} catch (NoResultException e) {
 			return null;
 		}
