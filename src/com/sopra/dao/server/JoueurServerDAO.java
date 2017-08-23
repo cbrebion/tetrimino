@@ -11,9 +11,10 @@ import com.sopra.model.Tetrimino;
 
 public class JoueurServerDAO implements IJoueurDAO{
 	public static final String ATT_LIST_JOUEURS	= "joueurs";
+	public static final String ATT_JOUEUR	   	= "joueur";
+	
 
-	@Override
-	public List<Joueur> rechercher(HttpServletRequest req) {
+	public List<Joueur> findAll(HttpServletRequest req) {
 		List<Joueur> joueurs = new ArrayList<Joueur>();
 		
 		joueurs = (List<Joueur>) req.getServletContext().getAttribute(ATT_LIST_JOUEURS);
@@ -21,28 +22,51 @@ public class JoueurServerDAO implements IJoueurDAO{
 		return joueurs;
 	}
 
-	@Override
-	public Joueur rechercher(HttpServletRequest req, int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Joueur modifier(HttpServletRequest req, Joueur obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void supprimer(HttpServletRequest req, int id) {
-		// TODO Auto-generated method stub
+	public Joueur find(HttpServletRequest req, int id) {
+		List<Joueur> joueurs = findAll(req);
+		Joueur joueur = null;
 		
+		for (Joueur joue : joueurs) {
+			if (joue.getId() == id) {
+				joueur = joue;
+			}
+		}
+		
+		return joueur;
 	}
 
-	@Override
-	public void enregistrer(HttpServletRequest req, Joueur obj) {
-		// TODO Auto-generated method stub
+	public Joueur modifier(HttpServletRequest req, Joueur newJoueur) {
+		List<Joueur> joueurs = new ArrayList<Joueur>();
+		Joueur joueur;
 		
+		joueurs = findAll(req);
+		joueur = find(req, newJoueur.getId());
+		
+		joueur.setUsername(newJoueur.getUsername());
+		joueur.setNom(newJoueur.getNom());
+		joueur.setPrenom(newJoueur.getPrenom());
+		
+		return joueur;
+	}
+
+	public void delete(HttpServletRequest req, int id) {
+		List<Joueur> joueurs = findAll(req);
+		Joueur joueur = null;
+		
+		for (Joueur joue : joueurs) {
+			if (joue.getId() == id) {
+				joueur = joue;
+			}
+		}
+		joueurs.remove(joueur);
+	}
+
+	public void save(HttpServletRequest req, Joueur joue) {
+		List<Joueur> joueurs = findAll(req);
+		
+		joueurs.add(joue);
+		
+		req.getServletContext().setAttribute(ATT_LIST_JOUEURS, joueurs);
 	}
 
 }

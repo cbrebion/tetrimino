@@ -12,8 +12,8 @@ public class TetriminoServerDAO implements ITetriminoDAO {
 	public static final String ATT_LIST_TETRIMINOS		= "tetriminos";
 	public static final String ATT_TETRIMINO			= "tetrimino";
 
-	@Override
-	public List<Tetrimino> rechercher(HttpServletRequest req) {
+
+	public List<Tetrimino> findAll(HttpServletRequest req) {
 		List<Tetrimino> tetriminos = new ArrayList<Tetrimino>();
 		
 		tetriminos = (List<Tetrimino>) req.getServletContext().getAttribute(ATT_LIST_TETRIMINOS);
@@ -21,9 +21,8 @@ public class TetriminoServerDAO implements ITetriminoDAO {
 		return tetriminos;
 	}
 
-	@Override
-	public Tetrimino rechercher(HttpServletRequest req, int id) {
-		List<Tetrimino> tetriminos = rechercher(req);
+	public Tetrimino find(HttpServletRequest req, int id) {
+		List<Tetrimino> tetriminos = findAll(req);
 		Tetrimino tetrimino = null;
 		
 		for (Tetrimino tetri : tetriminos) {
@@ -35,13 +34,12 @@ public class TetriminoServerDAO implements ITetriminoDAO {
 		return tetrimino;
 	}
 
-	@Override
 	public Tetrimino modifier(HttpServletRequest req, Tetrimino newTetrimino) {		
 		List<Tetrimino> tetriminos = new ArrayList<Tetrimino>();
 		Tetrimino tetrimino;
 		
-		tetriminos = rechercher(req);
-		tetrimino = rechercher(req, newTetrimino.getId());
+		tetriminos = findAll(req);
+		tetrimino = find(req, newTetrimino.getId());
 		
 		tetrimino.setNom(newTetrimino.getNom());
 		tetrimino.setCouleur(newTetrimino.getCouleur());
@@ -49,9 +47,8 @@ public class TetriminoServerDAO implements ITetriminoDAO {
 		return tetrimino;
 	}
 
-	@Override
-	public void supprimer(HttpServletRequest req, int id) {
-		List<Tetrimino> tetriminos = rechercher(req);
+	public void delete(HttpServletRequest req, int id) {
+		List<Tetrimino> tetriminos = findAll(req);
 		Tetrimino tetrimino = null;
 		
 		for (Tetrimino tetri : tetriminos) {
@@ -62,9 +59,8 @@ public class TetriminoServerDAO implements ITetriminoDAO {
 		tetriminos.remove(tetrimino);
 	}
 
-	@Override
-	public void enregistrer(HttpServletRequest req, Tetrimino tetri) {
-		List<Tetrimino> tetriminos = rechercher(req);
+	public void save(HttpServletRequest req, Tetrimino tetri) {
+		List<Tetrimino> tetriminos = findAll(req);
 		
 		tetriminos.add(tetri);
 		
