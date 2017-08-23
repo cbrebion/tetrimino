@@ -42,7 +42,7 @@ public class TetriminoHibernateDAO implements ITetriminoDAO {
 
 	@Override
 	public void delete(Tetrimino tetrimino) {
-		em.remove(tetrimino);
+		em.remove(em.merge(tetrimino));
 
 	}
 
