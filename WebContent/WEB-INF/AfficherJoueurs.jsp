@@ -31,18 +31,16 @@
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
-
 	<div class="container">
 		<div class="collection">
-			<c:forEach items="${parties}" var="item">
+			<c:forEach items="${joueurs}" var="item">
 			    <li class="collection-item avatar">
-					<c:out value="${item.score}" /> : <c:out value="${item.joueur1.username}" /> : <c:out value="${item.joueur2.username}" /> : <c:out value="${item.finie}" />
+					<c:out value="${item.id}" /> : <c:out value="${item.nom}" /> : <c:out value="${item.couleur}" />
+					<a href="#!" class="secondary-content posRelative"><i class="material-icons">edit</i></a> 
+					<a href="#!" class="secondary-content posRelative"><i class="material-icons">cancel</i></a> 
 				</li>
 			</c:forEach>
 		</div>
-		<p>
-		</p>
 	</div>
-
 </body>
 </html>
