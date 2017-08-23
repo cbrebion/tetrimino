@@ -3,6 +3,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import com.sopra.dao.IJoueurDAO;
@@ -13,16 +14,24 @@ import com.sopra.model.Joueur;
 public class JoueurHibernateDAO implements IJoueurDAO {
 
 	@PersistenceContext
-	EntityManager em;
+	private EntityManager em;
 
 	@Override
 	public List<Joueur> findAll() {
-		return (List<Joueur>) em.createQuery("FROM Joueur").getResultList();
+		try {
+			return (List<Joueur>) em.createQuery("FROM Joueur").getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override
 	public Joueur find(int id) {
-		return em.find(Joueur.class, id);
+		try {
+			return em.find(Joueur.class, id);
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override
