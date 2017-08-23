@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.sopra.dao.IAdminDAO;
 import com.sopra.dao.IJoueurDAO;
 import com.sopra.dao.IPartieDAO;
+import com.sopra.dao.IScoreDAO;
 import com.sopra.dao.ITetriminoDAO;
 import com.sopra.model.Admin;
 import com.sopra.model.Joueur;
 import com.sopra.model.Partie;
+import com.sopra.model.Score;
 import com.sopra.model.Tetrimino;
 
 
@@ -34,6 +36,9 @@ public class GenerateServlet extends HttpServlet {
 	
 	@EJB(name="partieHibernateDAO")
 	private IPartieDAO partieHibernateDAO;
+	
+	@EJB(name="scoreHibernateDAO")
+	private IScoreDAO scoreHibernateDAO;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -79,13 +84,23 @@ public class GenerateServlet extends HttpServlet {
 		Joueur joueur1 = joueurHibernateDAO.find(8);
 		Joueur joueur2 = joueurHibernateDAO.find(9);
 		
-		Partie partie = new Partie();
-		partie.setFinie(true);
-		partie.setJoueur1(joueur1);
-		partie.setJoueur2(joueur2);
-		partie.setScore(210);
+		Partie partie5 = partieHibernateDAO.find(5);
+		Partie partie4 = partieHibernateDAO.find(4);
 		
-		partie = partieHibernateDAO.save(partie);
+		
+		Score score1 = new Score();
+		score1.setId(1);
+		score1.setJoueur(joueur1);
+		score1.setLevel(15);
+		score1.setLines(1);
+		score1.setPartie(partie5);
+		
+		Joueur joueur3 = new Joueur();
+		joueur3.setNom("Carlos");
+		joueur3.setPrenom("Roberto");
+		joueur3.setPassword("frappeenforce");
+		joueur3.setUsername("joueur2");
+		
 		
 	}
 
