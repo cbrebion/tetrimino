@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,9 @@ import com.sopra.model.Tetrimino;
 
 @WebServlet("/modifPiece")
 public class ModifyTetriminoServlet extends HttpServlet {
+	@EJB(name="tetriminoHibernateDAO")
+	private ITetriminoDAO tetriminoHibernateDAO;
+	
 	public static final String VUE_GET			= "/WEB-INF/modifierTetrimino.jsp";
 	public static final String VUE_POST			= "/tetrimino/listeTetriminos";
 	
@@ -34,13 +38,12 @@ public class ModifyTetriminoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int id = Integer.parseInt(req.getParameter(PARAM_ID));
 		
-		ITetriminoDAO tetriminoServerDAO = new TetriminoServerDAO();
+		Tetrimino tetrimino = tetriminoHibernateDAO.find(id);
 		
-		Tetrimino tetri = tetriminoServerDAO.rechercher(req, id);
+		req.setAttribute(ATT_TETRI, tetrimino);
 		
-		req.setAttribute(ATT_TETRI, tetri);
-		
-		this.getServletContext().getRequestDispatcher(VUE_GET + "?id=" + id).forward(req, resp);
+		//this.getServletContext().getRequestDispatcher(VUE_GET + "?id=" + id).forward(req, resp);
+		this.getServletContext().getRequestDispatcher(VUE_GET).forward(req, resp);
 	}
 
 	@Override
@@ -51,31 +54,29 @@ public class ModifyTetriminoServlet extends HttpServlet {
 		String couleur = getValeurChamp(req, CHAMP_COULEUR);
 		int id = Integer.parseInt(req.getParameter(CHAMP_ID));
 		
-		ITetriminoDAO tetriminoServerDAO = new TetriminoServerDAO();
+		Tetrimino tetrimino = new Tetrimino();
 		
-		Tetrimino tetri = new Tetrimino();
-		
-		tetri.setId(id);
+		tetrimino.setId(id);
 		
 		try {
 			validationNom(nom);
 		} catch (FormValidationException e) {
 			setErreurs(CHAMP_NOM, e.getMessage());
 		}
-		tetri.setNom(nom);
+		tetrimino.setNom(nom);
 		
 		try {
 			validationCouleur(couleur);
 		} catch (FormValidationException e) {
 			setErreurs(CHAMP_COULEUR, e.getMessage());
 		}
-		tetri.setCouleur(couleur);
+		tetrimino.setCouleur(couleur);
 		
 		if (erreurs.isEmpty()) {
-			tetriminoServerDAO.modifier(req, tetri);
+			tetriminoHibernateDAO.save(tetrimino);
 			resp.sendRedirect(VUE_POST);
 		} else {
-			req.setAttribute(ATT_TETRI, tetri);
+			req.setAttribute(ATT_TETRI, tetrimino);
 			req.setAttribute(ATT_ERREUR, erreurs);
 			this.getServletContext().getRequestDispatcher(VUE_GET).forward(req, resp);
 		}

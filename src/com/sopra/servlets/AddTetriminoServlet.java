@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,6 +26,9 @@ public class AddTetriminoServlet extends HttpServlet {
 	private static final String ATT_ERREUR				= "erreurs";
 	
 	private Map<String, String> erreurs	= new HashMap<String, String>();
+	
+	@EJB(name="tetriminoHibernateDAO")
+	private ITetriminoDAO tetriminoHibernateDAO;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,16 +44,8 @@ public class AddTetriminoServlet extends HttpServlet {
 		String couleur = getValeurChamp(req, ATT_COULEUR);
 		int id;
 		
-		ITetriminoDAO tetriminoServerDAO = new TetriminoServerDAO();
-		
 		// Création du tetrimino
 		Tetrimino tetrimino = new Tetrimino();
-		
-		// Ajout d'un id aléatoire (A MODIFIER UNE FOIS EN BDD)
-		do {
-			id = (int)(Math.random() * 1000);
-		} while (tetriminoServerDAO.rechercher(req, id) != null); // Teste si l'id n'existe pas déjà
-		tetrimino.setId(id);
 		
 		try {
 			validationNom(nom);
@@ -66,7 +62,7 @@ public class AddTetriminoServlet extends HttpServlet {
 		tetrimino.setCouleur(couleur);
 		
 		if (erreurs.isEmpty()) {
-			tetriminoServerDAO.enregistrer(req, tetrimino);
+			tetriminoHibernateDAO.save(tetrimino);
 			resp.sendRedirect(VUE_POST);
 		} else {
 			req.setAttribute(ATT_ERREUR, erreurs);

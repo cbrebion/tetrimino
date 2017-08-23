@@ -3,6 +3,7 @@ package com.sopra.servlets;
 import java.io.IOException;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,11 +18,12 @@ import com.sopra.model.Tetrimino;
 public class DisplayTetriminoServlet extends HttpServlet {
 	public static final String VUE_GET		= "/WEB-INF/AfficherTetriminos.jsp";
 	
+	@EJB(name="tetriminoHibernateDAO")
+	private ITetriminoDAO tetriminoHibernateDAO;
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ITetriminoDAO tetriminoServerDAO = new TetriminoServerDAO();
-		
-		List<Tetrimino> tetriminos = tetriminoServerDAO.rechercher(req);
+		List<Tetrimino> tetriminos = tetriminoHibernateDAO.findAll();
 		
 		req.setAttribute("tetriminos", tetriminos);
 		
