@@ -12,10 +12,10 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//@WebFilter("/*")
-public class SecurityFilter implements Filter {
+//@WebFilter("/admin/*")
+public class AdminFilter implements Filter {
 
-	private static final String VUE_LOGIN	= "accueil";
+	private static final String VUE_ERREUR	= "/tetrimino/accesNonAutorise";
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
@@ -23,17 +23,13 @@ public class SecurityFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 
-		// Demande d'accès à l'accueil
-		if (request.getRequestURI().equals("accueil")) {
+		// L'utilisateur est ADMIN
+		if (request.getSession().getAttribute("admin") != null) {
 			chain.doFilter(request, response);
 		}
-		// Demande d'accès à une autre page
+		// L'utilisateur n'est pas ADMIN
 		else {
-			if (request.getSession().getAttribute("joueur") == null || request.getSession().getAttribute("admin") == null) {
-				response.sendRedirect(VUE_LOGIN);
-			} else {
-				chain.doFilter(request, response);
-			}
+			response.sendRedirect(VUE_ERREUR);
 		}
 	}
 
