@@ -38,8 +38,7 @@
 					<c:out value="${item.id}" /> 
 					<br>
 					 <c:out value="${item.nom}" /> 
-					<a href="#!" class="secondary-content posRelative"><i class="material-icons">edit</i></a> 
-					<a href="#!" class="secondary-content posRelative"><i class="material-icons">cancel</i></a> 
+					<a href="admin/bannir?id=<c:out value="${ item.id }"/>"  class="secondary-content posRelative" title="Bannir"><i class="material-icons">gavel</i></a> 
 				</li>
 			</c:forEach>
 		</div>
