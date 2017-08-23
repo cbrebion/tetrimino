@@ -34,6 +34,14 @@ public class PartieHibernateDAO implements IPartieDAO {
 			return null;
 		}
 	}
+	
+	public List<Partie> findAllDesc() {
+		try {
+			return (List<Partie>) em.createQuery("FROM Partie p ORDER BY p.score DESC");
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
 
 	@Override
 	public Partie save(Partie partie) {
