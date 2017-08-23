@@ -41,7 +41,7 @@ public class JoueurHibernateDAO implements IJoueurDAO {
 
 	@Override
 	public void delete(Joueur joueur) {
-		em.remove(joueur);
+		em.remove(em.merge(joueur));
 
 	}
 

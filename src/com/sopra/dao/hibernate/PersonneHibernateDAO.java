@@ -50,8 +50,7 @@ public class PersonneHibernateDAO implements IPersonneDAO {
 
 	@Override
 	public void delete(Personne personne) {
-		em.remove(personne);
-
+		em.remove(em.merge(personne));
 	}
 
 }

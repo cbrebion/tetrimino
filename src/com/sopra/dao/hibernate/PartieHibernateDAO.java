@@ -50,7 +50,7 @@ public class PartieHibernateDAO implements IPartieDAO {
 
 	@Override
 	public void delete(Partie partie) {
-		em.remove(partie);
+		em.remove(em.merge(partie));
 	}
 
 }

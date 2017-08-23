@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import com.sopra.dao.IScoreDAO;
@@ -17,26 +18,30 @@ public class ScoreHibernateDAO implements IScoreDAO {
 	
 	@Override
 	public List<Score> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return (List<Score>)em.createQuery("FROM Score").getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override
 	public Score find(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return em.find(Score.class, id);
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override
-	public Score save(Score obj) {
-		// TODO Auto-generated method stub
-		return null;
+	public Score save(Score score) {
+		return em.merge(score);
 	}
 
 	@Override
-	public void delete(Score obj) {
-		// TODO Auto-generated method stub
-
+	public void delete(Score score) {
+		em.remove(em.merge(score));
 	}
 
 }

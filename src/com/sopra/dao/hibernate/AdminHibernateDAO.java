@@ -41,7 +41,7 @@ public class AdminHibernateDAO implements IAdminDAO {
 
 	@Override
 	public void delete(Admin admin) {
-		em.remove(admin);
+		em.remove(em.merge(admin));
 
 	}
 
