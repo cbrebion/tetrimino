@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebFilter("/admin/*")
+@WebFilter("/*")
 public class SecurityFilter implements Filter {
 
 	private static final String VUE_LOGIN	= "/tetrimino/accueil";
@@ -23,11 +23,13 @@ public class SecurityFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 
-		if (request.getRequestURI().contains("home")) {
+		// Demande d'accès à l'accueil
+		if (request.getRequestURI().equals("accueil")) {
 			chain.doFilter(request, response);
 		}
+		// Demande d'accès à une autre page
 		else {
-			if (request.getSession().getAttribute("username") == null) {
+			if (request.getSession().getAttribute("joueur") == null || request.getSession().getAttribute("admin") == null) {
 				response.sendRedirect(VUE_LOGIN);
 			} else {
 				chain.doFilter(request, response);
