@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import com.sopra.dao.ITetriminoDAO;
@@ -14,16 +15,24 @@ import com.sopra.model.Tetrimino;
 public class TetriminoHibernateDAO implements ITetriminoDAO {
 
 	@PersistenceContext
-	EntityManager em;
+	private EntityManager em;
 
 	@Override
 	public List<Tetrimino> findAll() {
-		return (List<Tetrimino>)em.createQuery("FROM Tetrimino").getResultList();
+		try {
+			return (List<Tetrimino>)em.createQuery("FROM Tetrimino").getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override
 	public Tetrimino find(int id) {
-		return em.find(Tetrimino.class, id);
+		try {
+			return em.find(Tetrimino.class, id);
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

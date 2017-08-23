@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import com.sopra.dao.IAdminDAO;
@@ -13,16 +14,24 @@ import com.sopra.model.Admin;
 public class AdminHibernateDAO implements IAdminDAO {
 
 	@PersistenceContext
-	EntityManager em;
+	private EntityManager em;
 	
 	@Override
 	public List<Admin> findAll() {
-		return (List<Admin>)em.createQuery("FROM Admin").getResultList();
+		try {
+			return (List<Admin>)em.createQuery("FROM Admin").getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override
 	public Admin find(int id) {
-		return em.find(Admin.class, id);
+		try {
+			return em.find(Admin.class, id);
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

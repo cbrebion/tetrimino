@@ -38,7 +38,7 @@ public class GenerateServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		Admin admin = new Admin();
+		/*Admin admin = new Admin();
 		admin.setNom("test");
 		admin.setPrenom("test");
 		admin.setPassword("test");
@@ -74,7 +74,10 @@ public class GenerateServlet extends HttpServlet {
 		tetrimino.setNom("tetrimino");
 		tetrimino.setCouleur("tetrimino");
 		
-		tetrimino = tetriminoHibernateDAO.save(tetrimino);
+		tetrimino = tetriminoHibernateDAO.save(tetrimino);*/
+		
+		Joueur joueur1 = joueurHibernateDAO.find(8);
+		Joueur joueur2 = joueurHibernateDAO.find(9);
 		
 		Partie partie = new Partie();
 		partie.setFinie(true);
