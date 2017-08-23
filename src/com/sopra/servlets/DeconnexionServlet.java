@@ -8,12 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/accesNonAutorise")
-public class RestrictAccessServlet extends HttpServlet {
-
+@WebServlet("/deconnexion")
+public class DeconnexionServlet extends HttpServlet {
+	private static final String VUE_DECONNEXION	= "/WEB-INF/Accueil.jsp";
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendError(HttpServletResponse.SC_FORBIDDEN);
+		req.getSession().invalidate();
+		this.getServletContext().getRequestDispatcher(VUE_DECONNEXION).forward(req, resp);
 	}
 
 }

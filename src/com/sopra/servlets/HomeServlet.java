@@ -22,8 +22,8 @@ import com.sopra.model.Personne;
 @WebServlet("/accueil")
 public class HomeServlet extends HttpServlet {
 	private static final String VUE_GET		= "/WEB-INF/Accueil.jsp";
-	private static final String VUE_ADMIN	= "accueilAdmin";
-	private static final String VUE_JOUEUR	= "accueilJoueur";
+	private static final String VUE_ADMIN	= "/WEB-INF/AccueilAdmin.jsp";
+	private static final String VUE_JOUEUR	= "/WEB-INF/accueilJoueur.jsp";
 	
 	private static final String CHAMP_USER	= "username";
 	private static final String CHAMP_PASS	= "password";
@@ -78,14 +78,16 @@ public class HomeServlet extends HttpServlet {
 					if (personne.getType() == 1) {
 						Admin admin = (Admin) personne;
 						req.getSession().setAttribute("admin", admin);
-						resp.sendRedirect(VUE_ADMIN);
+						//resp.sendRedirect(VUE_ADMIN);
+						req.getServletContext().getRequestDispatcher(VUE_ADMIN).forward(req, resp);
 						return;
 					}
 					// JOUEUR
 					else {
 						Joueur joueur = (Joueur) personne;
 						req.getSession().setAttribute("joueur", joueur);
-						resp.sendRedirect(VUE_JOUEUR);
+						//resp.sendRedirect(VUE_JOUEUR);
+						req.getServletContext().getRequestDispatcher(VUE_JOUEUR).forward(req, resp);
 						return;
 					}
 				} else {

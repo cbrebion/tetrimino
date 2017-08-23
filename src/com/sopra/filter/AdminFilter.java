@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//@WebFilter("/admin/*")
+@WebFilter("/admin/*")
 public class AdminFilter implements Filter {
 
 	private static final String VUE_ERREUR	= "/tetrimino/accesNonAutorise";
@@ -22,10 +22,18 @@ public class AdminFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
+		
+		/* Non-filtrage des ressources statiques */
+        String chemin = request.getRequestURI().substring( request.getContextPath().length() );
+        if ( chemin.startsWith( "/inc" ) || chemin.startsWith("/css") || chemin.startsWith("/img") || chemin.startsWith("/fonts") || chemin.startsWith("/js") ) {
+            chain.doFilter( request, response );
+            return;
+        }
 
 		// L'utilisateur est ADMIN
 		if (request.getSession().getAttribute("admin") != null) {
 			chain.doFilter(request, response);
+			return;
 		}
 		// L'utilisateur n'est pas ADMIN
 		else {
@@ -35,12 +43,12 @@ public class AdminFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		Filter.super.destroy();
+		//Filter.super.destroy();
 	}
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		Filter.super.init(filterConfig);
+		//Filter.super.init(filterConfig);
 	}
 
 }

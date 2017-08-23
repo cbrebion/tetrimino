@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//@WebFilter("/*")
+@WebFilter("/*")
 public class SecurityFilter implements Filter {
 
 	private static final String VUE_LOGIN	= "accueil";
@@ -22,10 +22,18 @@ public class SecurityFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
+		
+		/* Non-filtrage des ressources statiques */
+        String chemin = request.getRequestURI().substring( request.getContextPath().length() );
+        if ( chemin.startsWith( "/inc" ) || chemin.startsWith("/css") || chemin.startsWith("/img") || chemin.startsWith("/fonts") || chemin.startsWith("/js") ) {
+            chain.doFilter( request, response );
+            return;
+        }
 
 		// Demande d'accès à l'accueil
-		if (request.getRequestURI().equals("accueil")) {
+		if (request.getRequestURI().equals("/tetrimino/accueil")) {
 			chain.doFilter(request, response);
+			return;
 		}
 		// Demande d'accès à une autre page
 		else {
@@ -33,18 +41,19 @@ public class SecurityFilter implements Filter {
 				response.sendRedirect(VUE_LOGIN);
 			} else {
 				chain.doFilter(request, response);
+				return;
 			}
 		}
 	}
 
 	@Override
 	public void destroy() {
-		Filter.super.destroy();
+		//Filter.super.destroy();
 	}
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		Filter.super.init(filterConfig);
+		//Filter.super.init(filterConfig);
 	}
 
 }
