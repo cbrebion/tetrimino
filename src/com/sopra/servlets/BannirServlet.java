@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sopra.dao.IJoueurDAO;
 import com.sopra.model.Joueur;
 
-@WebServlet("admin/bannir")
+@WebServlet("/admin/bannir")
 public class BannirServlet extends HttpServlet {
 	
 	private static final String VUE_LISTE_JOUEUR	= "/tetrimino/listeJoueurs";
