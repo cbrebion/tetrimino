@@ -16,7 +16,7 @@ import com.sopra.model.Partie;
 import com.sopra.model.Score;
 
 @WebServlet("/admin/listeParties")
-public class ListPartiesServlet extends HttpServlet {
+public class PartiesServlet extends HttpServlet {
 	
 	private static final String VUE_LISTE	= "/WEB-INF/admin/listerParties.jsp";
 	

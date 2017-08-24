@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/accesNonAutorise")
-public class RestrictAccessServlet extends HttpServlet {
+@WebServlet("/admin/accueilAdmin")
+public class HomeAdminServlet extends HttpServlet {
+	public static final String VUE_GET		= "/WEB-INF/admin/accueilAdmin.jsp";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendError(HttpServletResponse.SC_FORBIDDEN);
+		this.getServletContext().getRequestDispatcher(VUE_GET).forward(req, resp);
 	}
 
 }

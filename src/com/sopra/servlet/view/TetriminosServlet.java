@@ -15,7 +15,7 @@ import com.sopra.dao.server.TetriminoServerDAO;
 import com.sopra.model.Tetrimino;
 
 @WebServlet("/listeTetriminos")
-public class DisplayTetriminoServlet extends HttpServlet {
+public class TetriminosServlet extends HttpServlet {
 	public static final String VUE_GET		= "/WEB-INF/afficherTetriminos.jsp";
 	
 	@EJB(name="tetriminoHibernateDAO")

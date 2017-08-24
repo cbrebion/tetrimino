@@ -15,7 +15,7 @@ import com.sopra.dao.server.JoueurServerDAO;
 import com.sopra.model.Joueur;
 
 @WebServlet("/listeJoueurs")
-public class DisplayPlayerServlet extends HttpServlet {
+public class JoueursServlet extends HttpServlet {
 	public static final String VUE_GET		= "/WEB-INF/afficherJoueurs.jsp";
 	
 	@EJB(name="joueurHibernateDAO")

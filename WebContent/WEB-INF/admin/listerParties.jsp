@@ -52,7 +52,7 @@
 				</c:forEach>
 
 				<div class="collection-item avatar">
-					Partie <c:out value="${item.id}" /><br>
+					<b>Partie <c:out value="${item.id}" /></b><br>
 					Score <c:out value="${item.joueur1.username}" /> : <c:out value="${ scoreJoueur1 }" /><br>
 					Score <c:out value="${item.joueur2.username}" /> : <c:out value="${ scoreJoueur2 }" /><br>
 					<c:out value="${etatPartie}" />
