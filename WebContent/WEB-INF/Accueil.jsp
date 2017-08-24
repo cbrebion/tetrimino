@@ -16,6 +16,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>Bienvenue sur Tetrimino</title>
+
+<script type="text/css">
+	.erreur {
+		text-color: red;
+	}
+</script>
 </head>
 
 <body>
