@@ -33,9 +33,7 @@
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 
 	<div class="container">
-		<div class="collection">
-
-
+		<ul class="collection">
 
 			<c:forEach items="${joueurs}" var="item">
 			
@@ -46,16 +44,26 @@
 				</c:choose>
 			</c:set>
 			
-				<li class="collection-item avatar"><c:out value="${item.id}" /> |
+			
+			    <li class="collection-item avatar">
+			      <span class="title"><b><c:out value="${item.username}" /></b></span>
+			      <p><c:out value="${item.nom}" /><br>
+			         <c:out value="${item.prenom}" /><br>
+			         <c:out value="${etatJoueur}" />
+			         <a href="admin/bannir?id=<c:out value="${ item.id }"/>" class="secondary-content" title="Bannir" onclick="Materialize.toast('Effectué !', 4000, 'rounded')"><i class="material-icons">gavel</i></a>
+			      </p>
+			    </li>
+			
+				<%-- <li class="collection-item avatar"><c:out value="${item.id}" /> |
 					 <c:out value="${item.username}" /> |
 					<c:out value="${etatJoueur}" /> 
 					<c:if test="${ !empty sessionScope.admin }">
 						<a href="admin/bannir?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Bannir"><i	class="material-icons">gavel</i></a>
 					</c:if>
-				</li>
+				</li> --%>
 			</c:forEach>
-
-		</div>
+		
+		</ul>
 	</div>
 
 

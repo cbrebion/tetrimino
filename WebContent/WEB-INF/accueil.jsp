@@ -17,11 +17,6 @@
 
 <title>Bienvenue sur Tetrimino</title>
 
-<script type="text/css">
-	.erreur {
-		text-color: red;
-	}
-</script>
 </head>
 
 <body>
@@ -42,7 +37,7 @@
 
 	<div class="container">
 		<form method="POST" class="row center">
-			<span class="erreur">${ erreurs['connexion'] }</span>
+			<span class="erreur" style="color: red;">${ erreurs['connexion'] }</span>
 			<h5>Nom utilisateur</h5>
 			<input type="text" name="username" value="<c:out value="${ valUsername }"/>" class="row center" placeholder="${ placeholderUsername }"></input><br>
 			<h5>Mot de passe</h5>

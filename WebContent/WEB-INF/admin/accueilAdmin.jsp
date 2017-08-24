@@ -24,10 +24,16 @@
 	<br>
 	<div class="container">
 		<p>
-			<a class="btn-floating btn-small waves-effect waves-light red lighten-1"  href="ajoutTetrimino">
-				<i class="material-icons">add</i>
-			</a>
-			<a href="ajoutTetrimino"><span class="red-text lighten-1"> Ajouter Tetrimino</span></a>
+			<a class="waves-effect waves-light btn-large red lighten-1" href="ajoutTetrimino"><i class="material-icons left">add</i>Ajouter Tetrimino</a>
+		</p>
+		<p>
+			<a class="waves-effect waves-light btn-large red lighten-1" href="listeParties"><i class="material-icons left">list</i>Liste des parties</a>
+		</p>
+		<p>
+			<a class="waves-effect waves-light btn-large red lighten-1" href="/tetrimino/listeTetriminos"><i class="material-icons left">view_list</i>Liste des tetriminos</a>
+		</p>
+		<p>
+			<a class="waves-effect waves-light btn-large red lighten-1" href="/tetrimino/listeJoueurs"><i class="material-icons left">list</i>Liste des joueurs</a>
 		</p>
 	</div>
 	

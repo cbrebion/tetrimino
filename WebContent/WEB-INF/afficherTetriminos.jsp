@@ -46,10 +46,7 @@
 			</c:forEach>
 		</div>
 		<p>
-			<a class="btn-floating btn-small waves-effect waves-light red lighten-1"  href="admin/ajoutTetrimino">
-				<i class="material-icons">add</i>
-			</a>
-			<a href="admin/ajoutTetrimino"><span class="red-text lighten-1"> Ajouter Tetrimino</span></a>
+			<a class="waves-effect waves-light btn-large red lighten-1" href="ajoutTetrimino"><i class="material-icons left">add</i>Ajouter Tetrimino</a>
 		</p>
 	</div>
 </body>
