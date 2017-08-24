@@ -60,13 +60,37 @@ public class JoueurServerDAO implements IJoueurDAO{
 		}
 		joueurs.remove(joueur);
 	}
-
+	
 	public void save(HttpServletRequest req, Joueur joue) {
 		List<Joueur> joueurs = findAll(req);
 		
 		joueurs.add(joue);
 		
 		req.getServletContext().setAttribute(ATT_LIST_JOUEURS, joueurs);
+	}
+
+	@Override
+	public List<Joueur> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Joueur find(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Joueur save(Joueur obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Joueur obj) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

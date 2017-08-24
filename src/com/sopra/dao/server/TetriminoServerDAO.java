@@ -67,4 +67,28 @@ public class TetriminoServerDAO implements ITetriminoDAO {
 		req.getServletContext().setAttribute(ATT_LIST_TETRIMINOS, tetriminos);
 	}
 
+	@Override
+	public List<Tetrimino> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Tetrimino find(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Tetrimino save(Tetrimino obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Tetrimino obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

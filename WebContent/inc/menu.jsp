@@ -10,7 +10,7 @@
 
 <nav class="light-red lighten-1" role="navigation">
 <div class="nav-wrapper container">
-	<a id="logo-container" href="${ accueil }" class="brand-logo">TETRIMINO</a>
+	<a id="logo-container" href="${ accueil }" class="brand-logo">Tetrimino</a>
 
 	<c:if test="${ !empty sessionScope.joueur or !empty sessionScope.admin }">
 	
