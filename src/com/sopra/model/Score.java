@@ -57,6 +57,10 @@ public class Score implements Serializable {
 	public Partie getPartie() {
 		return partie;
 	}
+	
+	public int getPoints() {
+		return points;
+	}
 
 	public void setId(int id) {
 		this.id = id;
@@ -76,5 +80,9 @@ public class Score implements Serializable {
 
 	public void setPartie(Partie partie) {
 		this.partie = partie;
+	}
+	
+	public void setPoints(int points) {
+		this.points = points;
 	}
 }

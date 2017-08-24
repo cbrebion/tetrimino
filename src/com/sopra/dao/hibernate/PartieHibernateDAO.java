@@ -25,6 +25,11 @@ public class PartieHibernateDAO implements IPartieDAO {
 			return null;
 		}
 	}
+	
+	@Override
+	public List<Partie> findAllWithScores() {
+		return (List<Partie>) em.createQuery("select distinct p from Partie p left join fetch p.scores").getResultList();
+	}
 
 	@Override
 	public Partie find(int id) {

@@ -28,11 +28,9 @@ public class ListPartiesServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<Partie> parties = partieHibernateDAO.findAll();
-		List<Score> scores = scoreHibernateDAO.findAll();
+		List<Partie> parties = partieHibernateDAO.findAllWithScores();
 		
 		req.setAttribute("parties", parties);
-		req.setAttribute("scores", scores);
 		
 		this.getServletContext().getRequestDispatcher(VUE_LISTE).forward(req, resp);
 	}

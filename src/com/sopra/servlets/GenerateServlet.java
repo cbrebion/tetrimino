@@ -95,6 +95,8 @@ public class GenerateServlet extends HttpServlet {
 		score1.setLines(1);
 		score1.setPartie(partie5);
 		
+		scoreHibernateDAO.save(score1);
+		
 		Joueur joueur3 = new Joueur();
 		joueur3.setNom("Carlos");
 		joueur3.setPrenom("Roberto");

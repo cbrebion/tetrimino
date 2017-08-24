@@ -36,7 +36,6 @@
 
 	<div class="container">
 		<form method="POST" class="row center">
-		<h1>${ sessionScope.admin.nom }</h1>
 			<span class="erreur">${ erreurs['connexion'] }</span>
 			<h5>Nom utilisateur</h5>
 			<input type="text" name="username" value="<c:out value="${ valUsername }"/>" class="row center" placeholder="${ placeholderUsername }"></input><br>
