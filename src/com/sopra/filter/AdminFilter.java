@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebFilter("/admin/*")
 public class AdminFilter implements Filter {
 
-	private static final String VUE_ERREUR	= "/tetrimino/accesNonAutorise";
-
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
@@ -37,7 +35,7 @@ public class AdminFilter implements Filter {
 		}
 		// L'utilisateur n'est pas ADMIN
 		else {
-			response.sendRedirect(VUE_ERREUR);
+			response.sendError(HttpServletResponse.SC_FORBIDDEN);
 		}
 	}
 

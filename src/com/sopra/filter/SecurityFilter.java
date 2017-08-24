@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebFilter("/*")
 public class SecurityFilter implements Filter {
 
-	private static final String VUE_LOGIN	= "accueil";
+	private static final String VUE_LOGIN	= "/tetrimino/accueil";
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
@@ -25,13 +25,13 @@ public class SecurityFilter implements Filter {
 		
 		/* Non-filtrage des ressources statiques */
         String chemin = request.getRequestURI().substring( request.getContextPath().length() );
-        if ( chemin.startsWith( "inc" ) || chemin.startsWith("css") || chemin.startsWith("img") || chemin.startsWith("fonts") || chemin.startsWith("js") ) {
+        if ( chemin.startsWith( "/inc" ) || chemin.startsWith("/css") || chemin.startsWith("/img") || chemin.startsWith("/fonts") || chemin.startsWith("/js") ) {
             chain.doFilter( request, response );
             return;
         }
 
 		// Demande d'accès à l'accueil
-		if (request.getRequestURI().equals("/tetrimino/accueil") || request.getRequestURI().equals("/tetrimino/signin")) {
+		if (request.getRequestURI().equals("/tetrimino/accueil") || request.getRequestURI().equals("/tetrimino/signin") || request.getRequestURI().equals("/tetrimino/accesNonAutorise")) {
 			chain.doFilter(request, response);
 			return;
 		}
