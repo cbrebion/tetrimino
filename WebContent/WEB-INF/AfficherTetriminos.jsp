@@ -39,7 +39,7 @@
 				     	<c:when test="${ item.nom eq 'J' || item.nom eq 'Z' || item.nom eq 'T' || item.nom eq 'L' || item.nom eq 'S' || item.nom eq 'carre' || item.nom eq 'ligne' }"><img src="img/<c:out value="${ item.nom }" />.png" alt="" class="circle"></c:when>
 				     	<c:otherwise><img src="img/tetris.jpg" alt="" class="circle"></c:otherwise>
 			     	</c:choose>
-					<c:out value="${item.id}" /> : <c:out value="${item.nom}" /> : <c:out value="${item.couleur}" />
+					<c:out value="${item.id}" /> | <c:out value="${item.nom}" /> | <c:out value="${item.couleur}" />
 					<a href="admin/supprimerPiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Supprimer"><i class="material-icons">cancel</i></a>
 					<a href="admin/modifPiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Editer"><i class="material-icons">edit</i></a>
 				</li>

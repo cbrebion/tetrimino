@@ -26,11 +26,13 @@ public class BannirServlet extends HttpServlet {
 		
 		Joueur joueur = joueurHibernateDAO.find(id);
 		
-		joueur.setBanni(true);
+		joueur.setBanni(!joueur.getBanni());
 		
 		joueur = joueurHibernateDAO.save(joueur);
 		
 		resp.sendRedirect(VUE_LISTE_JOUEUR);
+		
+		
 	}
 	
 }

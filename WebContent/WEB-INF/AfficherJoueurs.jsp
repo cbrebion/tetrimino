@@ -18,7 +18,7 @@
 
 <style>
 .posRelative {
-	position : relative !important;
+	position: relative !important;
 }
 </style>
 
@@ -31,17 +31,33 @@
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
+
 	<div class="container">
 		<div class="collection">
+
+
+
 			<c:forEach items="${joueurs}" var="item">
-			    <li class="collection-item avatar">
-					<c:out value="${item.id}" /> 
-					<br>
-					 <c:out value="${item.nom}" /> 
-					<a href="admin/bannir?id=<c:out value="${ item.id }"/>"  class="secondary-content posRelative" title="Bannir"><i class="material-icons">gavel</i></a> 
-				</li>
+			
+						<c:set var="etatJoueur">
+				<c:choose>
+					<c:when test="${item.banni}">Joueur banni</c:when>
+					<c:otherwise>Joueur actif</c:otherwise>
+				</c:choose>
+			</c:set>
+			
+				<li class="collection-item avatar"><c:out value="${item.id}" /> |
+					 <c:out value="${item.nom}" /> |
+					<c:out value="${etatJoueur}" /> 
+					<a href="admin/bannir?id=<c:out value="${ item.id }"/>"
+					class="secondary-content posRelative" title="Bannir"><i
+						class="material-icons">gavel</i></a></li>
+
 			</c:forEach>
+
 		</div>
 	</div>
+
+
 </body>
 </html>
