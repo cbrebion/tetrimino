@@ -1,4 +1,4 @@
-package com.sopra.servlets;
+package com.sopra.servlet;
 
 import java.io.IOException;
 import java.util.List;

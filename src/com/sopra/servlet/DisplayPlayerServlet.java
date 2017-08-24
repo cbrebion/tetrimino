@@ -1,4 +1,4 @@
-package com.sopra.servlets;
+package com.sopra.servlet;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,7 +16,7 @@ import com.sopra.model.Joueur;
 
 @WebServlet("/listeJoueurs")
 public class DisplayPlayerServlet extends HttpServlet {
-	public static final String VUE_GET		= "/WEB-INF/AfficherJoueurs.jsp";
+	public static final String VUE_GET		= "/WEB-INF/afficherJoueurs.jsp";
 	
 	@EJB(name="joueurHibernateDAO")
 	private IJoueurDAO joueurHibernateDAO;

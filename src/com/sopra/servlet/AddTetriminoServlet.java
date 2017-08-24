@@ -1,4 +1,4 @@
-package com.sopra.servlets;
+package com.sopra.servlet;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ import com.sopra.model.Tetrimino;
 
 @WebServlet("/admin/ajoutTetrimino")
 public class AddTetriminoServlet extends HttpServlet {
-	private static final String VUE_GET					= "/WEB-INF/admin/AjouterTetrimino.jsp";
+	private static final String VUE_GET					= "/WEB-INF/admin/ajouterTetrimino.jsp";
 	private static final String VUE_POST				= "/tetrimino/listeTetriminos";
 	
 	private static final String ATT_NOM					= "nom";

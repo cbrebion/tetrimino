@@ -1,4 +1,4 @@
-package com.sopra.servlets;
+package com.sopra.servlet;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -12,18 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sopra.dao.IAdminDAO;
-import com.sopra.dao.IJoueurDAO;
 import com.sopra.dao.IPersonneDAO;
 import com.sopra.exception.FormValidationException;
 import com.sopra.model.Admin;
-import com.sopra.model.Joueur;
 import com.sopra.model.Personne;
 
 @WebServlet("/accueil")
 public class HomeServlet extends HttpServlet {
-	private static final String VUE_GET		= "/WEB-INF/Accueil.jsp";
+	private static final long serialVersionUID = 1L;
+	private static final String VUE_GET		= "/WEB-INF/accueil.jsp";
 	private static final String VUE_ADMIN	= "admin/accueilAdmin";
-	private static final String VUE_JOUEUR	= "accueilJoueur";
+//	private static final String VUE_JOUEUR	= "accueilJoueur";
 	
 	private static final String CHAMP_USER	= "username";
 	private static final String CHAMP_PASS	= "password";
@@ -36,8 +35,8 @@ public class HomeServlet extends HttpServlet {
 	@EJB(name="adminHibernateDAO")
 	private IAdminDAO adminHibernateDAO;
 	
-	@EJB(name="joueurHibernateDAO")
-	private IJoueurDAO joueurHibernateDAO;
+//	@EJB(name="joueurHibernateDAO")
+//	private IJoueurDAO joueurHibernateDAO;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -85,11 +84,12 @@ public class HomeServlet extends HttpServlet {
 					}
 					// JOUEUR
 					else {
-						Joueur joueur = (Joueur) personne;
-						req.getSession().setAttribute("joueur", joueur);
-						resp.sendRedirect(VUE_JOUEUR);
-						//this.getServletContext().getRequestDispatcher(VUE_JOUEUR).forward(req, resp);
-						return;
+						setErreurs("connexion", "Vous n'êtes pas administrateur");
+//						Joueur joueur = (Joueur) personne;
+//						req.getSession().setAttribute("joueur", joueur);
+//						resp.sendRedirect(VUE_JOUEUR);
+//						//this.getServletContext().getRequestDispatcher(VUE_JOUEUR).forward(req, resp);
+//						return;
 					}
 				} else {
 					setErreurs("connexion", "Mot de passe incorrect");

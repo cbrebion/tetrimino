@@ -1,4 +1,4 @@
-package com.sopra.servlets;
+package com.sopra.servlet;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/admin/accueilAdmin")
 public class AdminHomeServlet extends HttpServlet {
-	public static final String VUE_GET		= "/WEB-INF/admin/AccueilAdmin.jsp";
+	public static final String VUE_GET		= "/WEB-INF/admin/accueilAdmin.jsp";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

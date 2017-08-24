@@ -1,4 +1,4 @@
-package com.sopra.servlets;
+package com.sopra.servlet;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,7 +16,7 @@ import com.sopra.model.Tetrimino;
 
 @WebServlet("/listeTetriminos")
 public class DisplayTetriminoServlet extends HttpServlet {
-	public static final String VUE_GET		= "/WEB-INF/AfficherTetriminos.jsp";
+	public static final String VUE_GET		= "/WEB-INF/afficherTetriminos.jsp";
 	
 	@EJB(name="tetriminoHibernateDAO")
 	private ITetriminoDAO tetriminoHibernateDAO;
