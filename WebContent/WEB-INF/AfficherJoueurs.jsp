@@ -47,12 +47,12 @@
 			</c:set>
 			
 				<li class="collection-item avatar"><c:out value="${item.id}" /> |
-					 <c:out value="${item.nom}" /> |
+					 <c:out value="${item.username}" /> |
 					<c:out value="${etatJoueur}" /> 
-					<a href="admin/bannir?id=<c:out value="${ item.id }"/>"
-					class="secondary-content posRelative" title="Bannir"><i
-						class="material-icons">gavel</i></a></li>
-
+					<c:if test="${ !empty sessionScope.admin }">
+						<a href="admin/bannir?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Bannir"><i	class="material-icons">gavel</i></a>
+					</c:if>
+				</li>
 			</c:forEach>
 
 		</div>

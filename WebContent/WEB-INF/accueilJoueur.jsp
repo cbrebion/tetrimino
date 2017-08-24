@@ -31,14 +31,8 @@
 		</p>
 	</div>
 	
-		<div class="container">
-		<div class="collection">
-			<c:forEach items="${parties}" var="item">
-			    <li class="collection-item avatar">
-					<c:out value="${item.score}" /> : <c:out value="${item.joueur1.username}" /> : <c:out value="${item.joueur2.username}" /> : <c:out value="${item.finie}" /> 
-				</li>
-			</c:forEach>
-		</div>
+	<div class="container">
+		<p>Vous n'avez aucun droit... OUST!
 	</div>
 	
 	<script type="text/javascript"
