@@ -1,4 +1,4 @@
-package com.sopra.servlet;
+package com.sopra.servlet.action;
 
 import java.io.IOException;
 
@@ -8,12 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/accesNonAutorise")
-public class RestrictAccessServlet extends HttpServlet {
-
+@WebServlet("/deconnexion")
+public class DeconnexionServlet extends HttpServlet {
+	private static final String VUE_DECONNEXION	= "accueil";
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendError(HttpServletResponse.SC_FORBIDDEN);
+		req.getSession().invalidate();
+		resp.sendRedirect(VUE_DECONNEXION);
 	}
 
 }

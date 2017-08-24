@@ -1,6 +1,7 @@
-package com.sopra.servlet;
+package com.sopra.servlet.view;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -10,26 +11,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sopra.dao.ITetriminoDAO;
+import com.sopra.dao.server.TetriminoServerDAO;
 import com.sopra.model.Tetrimino;
 
-@WebServlet("/admin/supprimerPiece")
-public class DeleteTetriminoServlet extends HttpServlet {
-	private static final String ATT_ID				= "id";
-	private static final String VUE_POST			= "/tetrimino/listeTetriminos";
+@WebServlet("/listeTetriminos")
+public class DisplayTetriminoServlet extends HttpServlet {
+	public static final String VUE_GET		= "/WEB-INF/afficherTetriminos.jsp";
 	
 	@EJB(name="tetriminoHibernateDAO")
 	private ITetriminoDAO tetriminoHibernateDAO;
-
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		List<Tetrimino> tetriminos = tetriminoHibernateDAO.findAll();
 		
-		int id = Integer.parseInt(req.getParameter(ATT_ID));
+		req.setAttribute("tetriminos", tetriminos);
 		
-		Tetrimino tetrimino = tetriminoHibernateDAO.find(id);
-		
-		tetriminoHibernateDAO.delete(tetrimino);
-		
-		resp.sendRedirect(VUE_POST);
+		this.getServletContext().getRequestDispatcher(VUE_GET).forward(req, resp);
 	}
 
 }

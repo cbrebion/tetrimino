@@ -1,4 +1,4 @@
-package com.sopra.servlet;
+package com.sopra.servlet.view;
 
 import java.io.IOException;
 
