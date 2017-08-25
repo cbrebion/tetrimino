@@ -1,0 +1,23 @@
+div.figure {
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+}
+
+
+div.bloc {
+	position: relative;
+	float: left;
+	
+	width: 25px;
+	height: 25px;
+	background: red;
+	
+	border: solid 1px black;
+}
+
+div.bloc a {
+	display: block;
+	width: 100%;
+	height: 100%;
+}

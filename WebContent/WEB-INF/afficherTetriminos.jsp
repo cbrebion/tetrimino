@@ -43,6 +43,7 @@
 					<a href="admin/supprimerPiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Supprimer"><i class="material-icons">cancel</i></a>
 					<a href="admin/modifPiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Editer"><i class="material-icons">edit</i></a>
 					<a href="admin/ajoutFigure?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Ajouter figure"><i class="material-icons">add_circle</i></a>
+					<a href="/tetrimino/tetrimino?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Afficher tetrimino"><i class="material-icons">visibility</i></a>
 				</li>
 			</c:forEach>
 		</div>

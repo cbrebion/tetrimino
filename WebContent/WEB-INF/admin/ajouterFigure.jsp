@@ -13,6 +13,9 @@
 	rel="stylesheet">
 <link href="/tetrimino/css/materialize.min.css" type="text/css" rel="stylesheet"
 	media="screen,projection" />
+	
+<link href="/tetrimino/css/style.css" type="text/css" rel="stylesheet"
+	media="screen,projection" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -31,7 +34,7 @@
 			</c:choose>
 		</c:set>
 		
-		<table class="centered bordered">
+		<table class="centered bordered figure">
 		<c:forEach var="x" begin="0" end="${ tailleMatrice }">
 			<tr>
 			<c:forEach var="y" begin="0" end="${ tailleMatrice }">
@@ -43,7 +46,7 @@
 						</c:choose>
 					</c:forEach>
 				</c:set>
-				<td style="border: 1px solid black;${ selectionne }">
+				<td class="bloc" style="border: 1px solid black;${ selectionne }">
 					<!-- TO DO Si la case a été selectionnée, on change son fond -->
 					<a style="display: block;" href="ajoutFigure?id=${ tetrimino.id }&x=${ x }&y=${ y }">&nbsp;</a>
 				</td>
