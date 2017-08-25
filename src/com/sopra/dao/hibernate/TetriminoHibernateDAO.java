@@ -2,16 +2,19 @@ package com.sopra.dao.hibernate;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sopra.dao.ITetriminoDAO;
 import com.sopra.model.Tetrimino;
 
 
-@Stateless
+@Repository
+@Transactional
 public class TetriminoHibernateDAO implements ITetriminoDAO {
 
 	@PersistenceContext

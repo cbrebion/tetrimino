@@ -3,12 +3,15 @@ package com.sopra.servlet.view;
 import java.io.IOException;
 import java.util.List;
 
-import javax.ejb.EJB;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.sopra.dao.ITetriminoDAO;
 import com.sopra.model.Tetrimino;
@@ -19,7 +22,7 @@ public class TetriminosServlet extends HttpServlet {
 
 	public static final String VUE_GET		= "/WEB-INF/afficherTetriminos.jsp";
 	
-	@EJB(name="tetriminoHibernateDAO")
+	@Autowired
 	private ITetriminoDAO tetriminoHibernateDAO;
 	
 	@Override
@@ -29,6 +32,17 @@ public class TetriminosServlet extends HttpServlet {
 		req.setAttribute("tetriminos", tetriminos);
 		
 		this.getServletContext().getRequestDispatcher(VUE_GET).forward(req, resp);
+	}
+	
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		try {
+			super.init(config);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
+		
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
 	}
 
 }

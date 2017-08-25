@@ -4,14 +4,16 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.ejb.EJB;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sopra.dao.IAdminDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
 import com.sopra.dao.IPersonneDAO;
 import com.sopra.exception.FormValidationException;
 import com.sopra.model.Admin;
@@ -29,23 +31,12 @@ public class HomeServlet extends HttpServlet {
 	
 	private Map<String, String> erreurs		= new HashMap<String, String>();
 	
-	@EJB(name="personneHibernateDAO")
+	@Autowired
 	private IPersonneDAO personneHibernateDAO;
-	
-	@EJB(name="adminHibernateDAO")
-	private IAdminDAO adminHibernateDAO;
-	
-//	@EJB(name="joueurHibernateDAO")
-//	private IJoueurDAO joueurHibernateDAO;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		//if (req.getSession().getAttribute(CHAMP_USER) == null) {
 		this.getServletContext().getRequestDispatcher(VUE_GET).forward(req, resp);
-		/*} else {
-			resp.sendRedirect(VUE_ADMIN);
-		}*/
 	}
 
 	@Override
@@ -79,17 +70,11 @@ public class HomeServlet extends HttpServlet {
 						Admin admin = (Admin) personne;
 						req.getSession().setAttribute("admin", admin);
 						resp.sendRedirect(VUE_ADMIN);
-						//this.getServletContext().getRequestDispatcher(VUE_ADMIN).forward(req, resp);
 						return;
 					}
 					// JOUEUR
 					else {
 						setErreurs("connexion", "Vous n'êtes pas administrateur");
-//						Joueur joueur = (Joueur) personne;
-//						req.getSession().setAttribute("joueur", joueur);
-//						resp.sendRedirect(VUE_JOUEUR);
-//						//this.getServletContext().getRequestDispatcher(VUE_JOUEUR).forward(req, resp);
-//						return;
 					}
 				} else {
 					setErreurs("connexion", "Mot de passe incorrect");
@@ -136,5 +121,16 @@ public class HomeServlet extends HttpServlet {
 		if (password == null) {
 			throw new FormValidationException("Merci de renseigner un mot de passe");
 		}
+	}
+	
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		try {
+			super.init(config);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
+		
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
 	}
 }

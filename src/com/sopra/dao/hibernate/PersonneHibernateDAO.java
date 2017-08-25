@@ -2,16 +2,19 @@ package com.sopra.dao.hibernate;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sopra.dao.IPersonneDAO;
 import com.sopra.model.Personne;
 
 
-@Stateless
+@Repository
+@Transactional
 public class PersonneHibernateDAO implements IPersonneDAO {
 	
 	@PersistenceContext

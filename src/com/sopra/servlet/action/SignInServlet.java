@@ -4,12 +4,15 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.ejb.EJB;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.sopra.dao.IJoueurDAO;
 import com.sopra.exception.FormValidationException;
@@ -19,7 +22,7 @@ import com.sopra.model.Joueur;
 public class SignInServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	@EJB(name="joueurHibernateDAO")
+	@Autowired
 	private IJoueurDAO joueurHibernateDAO;
 	
 	private static final String VUE_SIGNIN		= "/WEB-INF/signin.jsp";
@@ -125,5 +128,16 @@ public class SignInServlet extends HttpServlet {
 		if (password == null) {
 			throw new FormValidationException("Merci de renseigner un mot de passe");
 		}
+	}
+	
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		try {
+			super.init(config);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
+		
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
 	}
 }
