@@ -67,5 +67,9 @@ public class Figure implements Serializable {
 	public void setBlocs(List<Bloc> blocs) {
 		this.blocs = blocs;
 	}
+	
+	public void addBloc(Bloc bloc) {
+		this.blocs.add(bloc);
+	}
 
 }

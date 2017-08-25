@@ -35,6 +35,10 @@ public class Tetrimino implements Serializable
 	@Size(max=30)
 	private String couleur;
 	
+	@Column(name="tet_coeff")
+	@NotNull
+	private double coeff;
+	
 	@OneToMany(mappedBy="tetrimino")
 	private List<Figure> figures;
 	
@@ -77,5 +81,13 @@ public class Tetrimino implements Serializable
 
 	public void setFigures(List<Figure> figures) {
 		this.figures = figures;
+	}
+
+	public double getCoeff() {
+		return coeff;
+	}
+
+	public void setCoeff(double coeff) {
+		this.coeff = coeff;
 	}
 }

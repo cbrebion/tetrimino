@@ -8,7 +8,7 @@
 	</c:choose>
 </c:set>
 
-<nav class="light-red lighten-1" role="navigation">
+<nav class="red darken-4" role="navigation">
 <div class="nav-wrapper container">
 	<a id="logo-container" href="${ accueil }" class="brand-logo">Tetrimino</a>
 

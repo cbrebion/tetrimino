@@ -42,7 +42,7 @@
 			<h5>Couleur</h5>
 			<input type="text" name="couleur" class="row center" value="${ tetri.couleur }" placeholder="<c:out value="${ placeholderCouleur }" />" />
 
-			<button class="btn waves-effect waves-light red lighten-1" type="submit" name="action">
+			<button class="btn waves-effect waves-light red darken-4" type="submit" name="action">
 				Modifier <i class="material-icons right">send</i>
 			</button>
 		</form>

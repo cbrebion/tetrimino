@@ -43,10 +43,10 @@
 			<h5>Mot de passe</h5>
 			<input type="password" name="password" class="row center" placeholder="${ placeholderPassword }"></input>
 
-			<button class="btn waves-effect waves-light red lighten-1" type="submit" name="action">
+			<button class="btn waves-effect waves-light red darken-4" type="submit" name="action">
 				Se connecter <i class="material-icons right">send</i>
 			</button>
-			<a href="signin" class="waves-effect waves-light btn"><i class="material-icons right">edit</i>S'inscrire</a>
+			<a href="signin" class="waves-effect waves-light btn blue darken-4"><i class="material-icons right">edit</i>S'inscrire</a>
 		</form>
 	</div>
 

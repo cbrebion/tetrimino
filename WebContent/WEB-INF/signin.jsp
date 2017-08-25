@@ -49,7 +49,7 @@
 				<label for="password">Votre mot de passe</label>
 			</div>
 			
-			<button class="btn waves-effect waves-light" type="submit">
+			<button class="btn waves-effect waves-light red darken-4" type="submit">
 				OK <i class="material-icons right">send</i>
 			</button>
 		</form>

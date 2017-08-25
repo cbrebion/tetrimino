@@ -42,11 +42,12 @@
 					<c:out value="${item.id}" /> | <c:out value="${item.nom}" /> | <c:out value="${item.couleur}" />
 					<a href="admin/supprimerPiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Supprimer"><i class="material-icons">cancel</i></a>
 					<a href="admin/modifPiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Editer"><i class="material-icons">edit</i></a>
+					<a href="admin/ajoutFigure?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Ajouter figure"><i class="material-icons">add_circle</i></a>
 				</li>
 			</c:forEach>
 		</div>
 		<p>
-			<a class="waves-effect waves-light btn-large red lighten-1" href="admin/ajoutTetrimino"><i class="material-icons left">add</i>Ajouter Tetrimino</a>
+			<a class="waves-effect waves-light btn-large red darken-4" href="admin/ajoutTetrimino"><i class="material-icons left">add</i>Ajouter Tetrimino</a>
 		</p>
 	</div>
 </body>

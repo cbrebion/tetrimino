@@ -43,7 +43,7 @@
 			<h5>Couleur</h5>
 			<input type="text" name="couleur" class="row center" placeholder="<c:out value="${ placeholderCouleur }" />" />
 
-			<button class="btn waves-effect waves-light red lighten-1" type="submit" name="action">
+			<button class="btn waves-effect waves-light red darken-4" type="submit" name="action">
 				Ajouter <i class="material-icons right">send</i>
 			</button>
 		</form>
