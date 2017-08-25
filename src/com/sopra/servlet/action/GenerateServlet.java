@@ -14,15 +14,12 @@ import com.sopra.dao.IJoueurDAO;
 import com.sopra.dao.IPartieDAO;
 import com.sopra.dao.IScoreDAO;
 import com.sopra.dao.ITetriminoDAO;
-import com.sopra.model.Admin;
-import com.sopra.model.Joueur;
-import com.sopra.model.Partie;
-import com.sopra.model.Score;
-import com.sopra.model.Tetrimino;
 
 
 @WebServlet("/gen")
 public class GenerateServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
 
 	@EJB(name="adminHibernateDAO")
 	private IAdminDAO adminHibernateDAO;
@@ -79,7 +76,7 @@ public class GenerateServlet extends HttpServlet {
 		tetrimino.setNom("tetrimino");
 		tetrimino.setCouleur("tetrimino");
 		
-		tetrimino = tetriminoHibernateDAO.save(tetrimino);*/
+		tetrimino = tetriminoHibernateDAO.save(tetrimino);
 		
 		Joueur joueur1 = joueurHibernateDAO.find(8);
 		Joueur joueur2 = joueurHibernateDAO.find(9);
@@ -101,7 +98,7 @@ public class GenerateServlet extends HttpServlet {
 		joueur3.setNom("Carlos");
 		joueur3.setPrenom("Roberto");
 		joueur3.setPassword("frappeenforce");
-		joueur3.setUsername("joueur2");
+		joueur3.setUsername("joueur2");*/
 		
 		
 	}

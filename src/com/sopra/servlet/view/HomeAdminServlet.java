@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/admin/accueilAdmin")
 public class HomeAdminServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
 	public static final String VUE_GET		= "/WEB-INF/admin/accueilAdmin.jsp";
 
 	@Override

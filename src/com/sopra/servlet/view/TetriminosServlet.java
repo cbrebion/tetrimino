@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sopra.dao.ITetriminoDAO;
-import com.sopra.dao.server.TetriminoServerDAO;
 import com.sopra.model.Tetrimino;
 
 @WebServlet("/listeTetriminos")
 public class TetriminosServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
 	public static final String VUE_GET		= "/WEB-INF/afficherTetriminos.jsp";
 	
 	@EJB(name="tetriminoHibernateDAO")

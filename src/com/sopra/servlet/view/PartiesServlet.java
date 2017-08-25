@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.sopra.dao.IPartieDAO;
 import com.sopra.dao.IScoreDAO;
 import com.sopra.model.Partie;
-import com.sopra.model.Score;
 
 @WebServlet("/admin/listeParties")
 public class PartiesServlet extends HttpServlet {
-	
+	private static final long serialVersionUID = 1L;
+
 	private static final String VUE_LISTE	= "/WEB-INF/admin/listerParties.jsp";
 	
 	@EJB(name="partieHibernateDAO")

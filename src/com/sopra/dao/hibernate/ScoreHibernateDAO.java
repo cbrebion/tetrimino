@@ -16,6 +16,7 @@ public class ScoreHibernateDAO implements IScoreDAO {
 	@PersistenceContext
 	private EntityManager em;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Score> findAll() {
 		try {

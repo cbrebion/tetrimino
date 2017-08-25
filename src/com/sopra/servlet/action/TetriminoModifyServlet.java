@@ -12,26 +12,38 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sopra.dao.ITetriminoDAO;
-import com.sopra.dao.server.TetriminoServerDAO;
 import com.sopra.exception.FormValidationException;
 import com.sopra.model.Tetrimino;
 
-@WebServlet("/admin/ajoutTetrimino")
-public class AddTetriminoServlet extends HttpServlet {
-	private static final String VUE_GET					= "/WEB-INF/admin/ajouterTetrimino.jsp";
-	private static final String VUE_POST				= "/tetrimino/listeTetriminos";
-	
-	private static final String ATT_NOM					= "nom";
-	private static final String ATT_COULEUR				= "couleur";
-	private static final String ATT_ERREUR				= "erreurs";
-	
-	private Map<String, String> erreurs	= new HashMap<String, String>();
-	
+@WebServlet("/admin/modifPiece")
+public class TetriminoModifyServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
 	@EJB(name="tetriminoHibernateDAO")
 	private ITetriminoDAO tetriminoHibernateDAO;
-
+	
+	public static final String VUE_GET			= "/WEB-INF/admin/modifierTetrimino.jsp";
+	public static final String VUE_POST			= "/tetrimino/listeTetriminos";
+	
+	private static final String PARAM_ID		= "id";
+	
+	private static final String CHAMP_ID		= "id";
+	private static final String CHAMP_NOM		= "nom";
+	private static final String CHAMP_COULEUR	= "couleur";
+	private static final String ATT_TETRI		= "tetri";
+	private static final String ATT_ERREUR		= "erreurs";
+	
+	private Map<String, String> erreurs		= new HashMap<String, String>();
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		int id = Integer.parseInt(req.getParameter(PARAM_ID));
+		
+		Tetrimino tetrimino = tetriminoHibernateDAO.find(id);
+		
+		req.setAttribute(ATT_TETRI, tetrimino);
+		
+		//this.getServletContext().getRequestDispatcher(VUE_GET + "?id=" + id).forward(req, resp);
 		this.getServletContext().getRequestDispatcher(VUE_GET).forward(req, resp);
 	}
 
@@ -39,25 +51,25 @@ public class AddTetriminoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		erreurs.clear();
 		
-		// Récupération des valeurs
-		String nom = getValeurChamp(req, ATT_NOM);
-		String couleur = getValeurChamp(req, ATT_COULEUR);
-		int id;
+		String nom = getValeurChamp(req, CHAMP_NOM);
+		String couleur = getValeurChamp(req, CHAMP_COULEUR);
+		int id = Integer.parseInt(req.getParameter(CHAMP_ID));
 		
-		// Création du tetrimino
 		Tetrimino tetrimino = new Tetrimino();
+		
+		tetrimino.setId(id);
 		
 		try {
 			validationNom(nom);
 		} catch (FormValidationException e) {
-			setErreurs(ATT_NOM, e.getMessage());
+			setErreurs(CHAMP_NOM, e.getMessage());
 		}
 		tetrimino.setNom(nom);
 		
 		try {
 			validationCouleur(couleur);
 		} catch (FormValidationException e) {
-			setErreurs(ATT_COULEUR, e.getMessage());
+			setErreurs(CHAMP_COULEUR, e.getMessage());
 		}
 		tetrimino.setCouleur(couleur);
 		
@@ -65,6 +77,7 @@ public class AddTetriminoServlet extends HttpServlet {
 			tetriminoHibernateDAO.save(tetrimino);
 			resp.sendRedirect(VUE_POST);
 		} else {
+			req.setAttribute(ATT_TETRI, tetrimino);
 			req.setAttribute(ATT_ERREUR, erreurs);
 			this.getServletContext().getRequestDispatcher(VUE_GET).forward(req, resp);
 		}
@@ -78,7 +91,6 @@ public class AddTetriminoServlet extends HttpServlet {
 	private void setErreurs(String champ, String message) {
 		erreurs.put(champ, message);
 	}
-
 	
 	// Méthode récupérant les valeurs des champs en faisant des petits tests dessus
 	private static String getValeurChamp(HttpServletRequest request, String nomChamp) {

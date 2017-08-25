@@ -17,6 +17,7 @@ public class PartieHibernateDAO implements IPartieDAO {
 	@PersistenceContext
 	private EntityManager em;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Partie> findAll() {
 		try {
@@ -26,6 +27,7 @@ public class PartieHibernateDAO implements IPartieDAO {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Partie> findAllWithScores() {
 		return (List<Partie>) em.createQuery("select distinct p from Partie p left join fetch p.scores").getResultList();
@@ -40,6 +42,7 @@ public class PartieHibernateDAO implements IPartieDAO {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Partie> findAllDesc() {
 		try {
 			return (List<Partie>) em.createQuery("FROM Partie p ORDER BY p.score DESC").getResultList();

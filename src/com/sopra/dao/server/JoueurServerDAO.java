@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.sopra.dao.IJoueurDAO;
 import com.sopra.model.Joueur;
-import com.sopra.model.Tetrimino;
 
 public class JoueurServerDAO implements IJoueurDAO{
 	public static final String ATT_LIST_JOUEURS	= "joueurs";
@@ -36,10 +35,8 @@ public class JoueurServerDAO implements IJoueurDAO{
 	}
 
 	public Joueur modifier(HttpServletRequest req, Joueur newJoueur) {
-		List<Joueur> joueurs = new ArrayList<Joueur>();
 		Joueur joueur;
 		
-		joueurs = findAll(req);
 		joueur = find(req, newJoueur.getId());
 		
 		joueur.setUsername(newJoueur.getUsername());

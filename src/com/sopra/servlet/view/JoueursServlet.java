@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sopra.dao.IJoueurDAO;
-import com.sopra.dao.server.JoueurServerDAO;
 import com.sopra.model.Joueur;
 
 @WebServlet("/listeJoueurs")
 public class JoueursServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
 	public static final String VUE_GET		= "/WEB-INF/afficherJoueurs.jsp";
 	
 	@EJB(name="joueurHibernateDAO")

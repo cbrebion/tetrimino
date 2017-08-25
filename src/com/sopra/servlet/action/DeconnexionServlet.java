@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/deconnexion")
 public class DeconnexionServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
 	private static final String VUE_DECONNEXION	= "accueil";
 	
 	@Override

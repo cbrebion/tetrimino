@@ -17,6 +17,7 @@ public class PersonneHibernateDAO implements IPersonneDAO {
 	@PersistenceContext
 	private EntityManager em;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Personne> findAll() {
 		try {

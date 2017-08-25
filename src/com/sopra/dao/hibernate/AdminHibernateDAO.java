@@ -16,6 +16,7 @@ public class AdminHibernateDAO implements IAdminDAO {
 	@PersistenceContext
 	private EntityManager em;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Admin> findAll() {
 		try {

@@ -13,7 +13,9 @@ import com.sopra.dao.ITetriminoDAO;
 import com.sopra.model.Tetrimino;
 
 @WebServlet("/admin/supprimerPiece")
-public class DeleteTetriminoServlet extends HttpServlet {
+public class TetriminoDeleteServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
 	private static final String ATT_ID				= "id";
 	private static final String VUE_POST			= "/tetrimino/listeTetriminos";
 	

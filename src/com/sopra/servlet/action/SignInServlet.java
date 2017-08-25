@@ -17,7 +17,8 @@ import com.sopra.model.Joueur;
 
 @WebServlet("/signin")
 public class SignInServlet extends HttpServlet {
-	
+	private static final long serialVersionUID = 1L;
+
 	@EJB(name="joueurHibernateDAO")
 	private IJoueurDAO joueurHibernateDAO;
 	

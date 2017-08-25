@@ -17,6 +17,7 @@ public class TetriminoHibernateDAO implements ITetriminoDAO {
 	@PersistenceContext
 	private EntityManager em;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Tetrimino> findAll() {
 		try {

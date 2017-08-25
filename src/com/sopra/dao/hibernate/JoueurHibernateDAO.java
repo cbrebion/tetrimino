@@ -16,6 +16,7 @@ public class JoueurHibernateDAO implements IJoueurDAO {
 	@PersistenceContext
 	private EntityManager em;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Joueur> findAll() {
 		try {

@@ -14,7 +14,8 @@ import com.sopra.model.Joueur;
 
 @WebServlet("/admin/bannir")
 public class BannirServlet extends HttpServlet {
-	
+	private static final long serialVersionUID = 1L;
+
 	private static final String VUE_LISTE_JOUEUR	= "/tetrimino/listeJoueurs";
 
 	@EJB(name="joueurHibernateDAO")
