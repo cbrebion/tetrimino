@@ -13,6 +13,7 @@ public class TetriminoServerDAO implements ITetriminoDAO {
 	public static final String ATT_TETRIMINO			= "tetrimino";
 
 
+	@SuppressWarnings("unchecked")
 	public List<Tetrimino> findAll(HttpServletRequest req) {
 		List<Tetrimino> tetriminos = new ArrayList<Tetrimino>();
 		
@@ -34,11 +35,9 @@ public class TetriminoServerDAO implements ITetriminoDAO {
 		return tetrimino;
 	}
 
-	public Tetrimino modifier(HttpServletRequest req, Tetrimino newTetrimino) {		
-		List<Tetrimino> tetriminos = new ArrayList<Tetrimino>();
+	public Tetrimino modifier(HttpServletRequest req, Tetrimino newTetrimino) {
 		Tetrimino tetrimino;
 		
-		tetriminos = findAll(req);
 		tetrimino = find(req, newTetrimino.getId());
 		
 		tetrimino.setNom(newTetrimino.getNom());

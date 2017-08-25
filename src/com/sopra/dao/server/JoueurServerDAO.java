@@ -13,6 +13,7 @@ public class JoueurServerDAO implements IJoueurDAO{
 	public static final String ATT_JOUEUR	   	= "joueur";
 	
 
+	@SuppressWarnings("unchecked")
 	public List<Joueur> findAll(HttpServletRequest req) {
 		List<Joueur> joueurs = new ArrayList<Joueur>();
 		
