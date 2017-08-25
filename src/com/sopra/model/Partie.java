@@ -33,11 +33,11 @@ public class Partie implements Serializable {
 	private boolean finie;
 	
 	@ManyToOne
-	@JoinColumn(name="par_joueur1")
+	@JoinColumn(name="par_joueur1_id")
 	private Joueur joueur1;
 	
 	@ManyToOne
-	@JoinColumn(name="par_joueur2")
+	@JoinColumn(name="par_joueur2_id")
 	private Joueur joueur2;
 	
 	@OneToMany(mappedBy="partie")
