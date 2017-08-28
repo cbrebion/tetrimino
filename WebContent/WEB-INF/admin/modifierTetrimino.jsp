@@ -16,6 +16,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>Modification de tetrimino</title>
+
+<link href="/tetrimino/css/style.css" type="text/css" rel="stylesheet"
+	media="screen,projection" />
 </head>
 
 <body>
@@ -27,12 +30,6 @@
 			<c:otherwise>${ erreurs['nom'] }</c:otherwise>
 		</c:choose>
 	</c:set>
-	<c:set var="placeholderCouleur">
-		<c:choose>
-			<c:when test="${ empty erreurs['couleur'] }">Couleur</c:when>
-			<c:otherwise>${ erreurs['couleur'] }</c:otherwise>
-		</c:choose>
-	</c:set>
 
 	<div class="container">
 		<form method="POST" class="row center">
@@ -40,7 +37,7 @@
 			<h5>Nom Tetrimino</h5>
 			<input type="text" name="nom" class="row center" value="${ tetri.nom }" placeholder="<c:out value="${ placeholderNom }" />" />
 			<h5>Couleur</h5>
-			<input type="text" name="couleur" class="row center" value="${ tetri.couleur }" placeholder="<c:out value="${ placeholderCouleur }" />" />
+			<input type="color" name="couleur" class="row center" value="${ tetri.couleur }" />
 
 			<button class="btn waves-effect waves-light red darken-4" type="submit" name="action">
 				Modifier <i class="material-icons right">send</i>
