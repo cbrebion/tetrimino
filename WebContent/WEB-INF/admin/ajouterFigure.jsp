@@ -24,6 +24,14 @@
 
 <body>
 	<c:import url="/inc/menu.jsp" />
+	
+	<c:set var="placeholderOrdre">
+		<c:choose>
+			<c:when test="${ empty erreurs['ordre'] }">Ordre de rotation</c:when>
+			<c:otherwise>${ erreurs['ordre'] }</c:otherwise>
+		</c:choose>
+	</c:set>
+	
 	<br>
 	<div class="container">
 		<!-- Définition de la taille (temporaire tant qu'on n'a pas implémenté la sélection de la taille -->
@@ -34,26 +42,26 @@
 			</c:choose>
 		</c:set>
 		
-		<table class="centered bordered figure">
+		<p><b>Ajouter une figure au tetrimino</b></p>
+		<hr>
+		<div class="figure">
 		<c:forEach var="x" begin="0" end="${ tailleMatrice }">
-			<tr>
 			<c:forEach var="y" begin="0" end="${ tailleMatrice }">
 				<c:set var="selectionne">
 					<c:forEach items="${ blocs }" var="item">
 						<c:choose>
-							<c:when test="${ item.x eq x and item.y eq y }">background-color: #b71c1c;</c:when>
+							<c:when test="${ item.x eq x and item.y eq y }">style="background-color: #b71c1c;"</c:when>
 							<c:otherwise></c:otherwise>
 						</c:choose>
 					</c:forEach>
 				</c:set>
-				<td class="bloc" style="border: 1px solid black;${ selectionne }">
+				<div class="bloc" ${ selectionne }>
 					<!-- TO DO Si la case a été selectionnée, on change son fond -->
 					<a style="display: block;" href="ajoutFigure?id=${ tetrimino.id }&x=${ x }&y=${ y }">&nbsp;</a>
-				</td>
+				</div>
 			</c:forEach>
-			</tr>
 		</c:forEach>
-		</table>
+		</div>
 		
 		<p>
 		<c:forEach items="${ blocs }" var="item">
@@ -62,7 +70,7 @@
 		</p>
 		
 		<form method="post">
-			<input type="text" name="ordre" placeholder="Ordre de rotation" />
+			<input type="number" id="ordre" name="ordre" placeholder="${ placeholderOrdre }" />
 			<button class="btn waves-effect waves-light red darken-4" type="submit" name="action">
 				Envoyer <i class="material-icons right">send</i>
 			</button>

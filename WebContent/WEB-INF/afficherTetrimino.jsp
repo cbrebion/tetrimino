@@ -22,6 +22,9 @@
 }
 </style>
 
+<link href="/tetrimino/css/style.css" type="text/css" rel="stylesheet"
+	media="screen,projection" />
+
 <title>Tetrimino ${ tetrimino.nom }</title>
 </head>
 
@@ -38,14 +41,19 @@
 		</c:set>
 
 	<div class="container">
-		<p>Nom du tetrimino : ${ tetrimino.nom }</p>
+		<p><b>Nom du tetrimino : ${ tetrimino.nom }</b></p>
 		<p>Couleur : ${ tetrimino.couleur }</p>
 		
 		<!-- Affichage des figures correspondantes -->
-		<table class="centered bordered">
+		<div class="figures">
 		<c:forEach items="${ tetrimino.figures }" var="figure">
+			<p>
+				<b>Figure ordre ${ figure.ordreRotation }</b>
+				<a href="admin/modifFigure?id=<c:out value="${ figure.id }"/>" title="Editer"><i class="tiny material-icons">edit</i></a>
+				<a href="admin/supprimerFigure?id=<c:out value="${ figure.id }"/>" title="Supprimer"><i class="tiny material-icons">cancel</i></a>
+			</p>
+			<div class="figure">
 			<c:forEach var="x" begin="0" end="${ tailleMatrice }">
-				<tr>
 				<c:forEach var="y" begin="0" end="${ tailleMatrice }">
 				
 					<c:set var="selectionne">
@@ -57,13 +65,13 @@
 						</c:forEach>
 					</c:set>
 					
-					<td style="border: 1px solid black;${ selectionne }">
-					</td>
+					<div class="bloc" style="${ selectionne }">
+					</div>
 				</c:forEach>
-				</tr>
 			</c:forEach>
+			</div><br>
 		</c:forEach>
-		</table>
+		</div>
 	</div>
 	
 	<script type="text/javascript"

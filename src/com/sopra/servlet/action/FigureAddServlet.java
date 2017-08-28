@@ -2,7 +2,9 @@ package com.sopra.servlet.action;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -17,6 +19,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import com.sopra.dao.IBlocDAO;
 import com.sopra.dao.IFigureDAO;
 import com.sopra.dao.ITetriminoDAO;
+import com.sopra.exception.FormValidationException;
 import com.sopra.model.Bloc;
 import com.sopra.model.Figure;
 import com.sopra.model.Tetrimino;
@@ -39,6 +42,8 @@ public class FigureAddServlet extends HttpServlet {
 	private static final String ATT_BLOCS			= "blocs";
 	
 	private List<Bloc> blocs						= new ArrayList<Bloc>();
+	
+	private Map<String, String> erreurs				= new HashMap<String, String>();
 	
 	@Autowired
 	private ITetriminoDAO tetriminoHibernateDAO;
@@ -64,13 +69,30 @@ public class FigureAddServlet extends HttpServlet {
 			int x = Integer.parseInt(request.getParameter(PARAM_X));
 			int y = Integer.parseInt(request.getParameter(PARAM_Y));
 			
+			
+			
 			Bloc bloc = new Bloc();
 			bloc.setX(x);
 			bloc.setY(y);
 			
-//			bloc = blocHibernateDAO.save(bloc); // A DECOMMENTER !!!!
-			
-			blocs.add(bloc);
+			// Vérifie si le bloc n'a pas déjà été sélectionné
+			int i = 0;
+			int indexExiste = -1;
+			for (Bloc blocCurrent : blocs) {
+				if ((blocCurrent.getX() == bloc.getX()) && (blocCurrent.getY() == bloc.getY())) {
+					indexExiste = i;
+				}
+				i++;
+			}
+
+			// Retire le bloc de la liste s'il a été désélectionné
+			if (indexExiste != -1) {
+				blocs.remove(blocs.get(indexExiste));
+			}
+			// Le rajoute sinon
+			else {
+				blocs.add(bloc);
+			}
 		}
 		
 		request.setAttribute(ATT_BLOCS, blocs);
@@ -83,30 +105,54 @@ public class FigureAddServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		erreurs.clear();
+		
 		if (request.getAttribute(ATT_BLOCS) != null)
 			blocs = (List<Bloc>) request.getAttribute(ATT_BLOCS);
 		
 		int id = Integer.parseInt(request.getParameter(PARAM_ID));
 		
-		int ordre = Integer.parseInt(request.getParameter(PARAM_ORDRE));
-		
-		Tetrimino tetrimino = tetriminoHibernateDAO.find(id);
-		
-		Figure figure = new Figure();
-		figure.setTetrimino(tetrimino);
-		figure.setOrdreRotation(ordre);
-		figure.setBlocs(blocs);
-		
-		figure = figureHibernateDAO.save(figure);
-		
-		for (Bloc bloc : blocs) {
-			bloc.setFigure(figure);
-			bloc = blocHibernateDAO.save(bloc);
+		int ordre;
+		try {
+			ordre = Integer.parseInt(request.getParameter(PARAM_ORDRE));
+			validationOrdre(ordre);
+		} catch (NumberFormatException nfe) {
+			setErreurs("ordre", "Merci de rentrer un ordre");
+			ordre = -1;
+		} catch (FormValidationException fve) {
+			setErreurs("ordre", fve.getMessage());
+			ordre = -1;
 		}
 		
-		blocs.clear();
+		if (erreurs.isEmpty()) {
 		
-		response.sendRedirect(VUE_POST);
+			Tetrimino tetrimino = tetriminoHibernateDAO.find(id);
+			
+			Figure figure = new Figure();
+			figure.setTetrimino(tetrimino);
+			figure.setOrdreRotation(ordre);
+			figure.setBlocs(blocs);
+			
+			figure = figureHibernateDAO.save(figure);
+			
+			for (Bloc bloc : blocs) {
+				bloc.setFigure(figure);
+				bloc = blocHibernateDAO.save(bloc);
+			}
+			
+			blocs.clear();
+		
+			response.sendRedirect(VUE_POST);
+		}
+		else {
+			Tetrimino tetrimino = tetriminoHibernateDAO.find(id);
+			
+			request.setAttribute("erreurs", erreurs);
+			request.setAttribute(ATT_BLOCS, blocs);
+			request.setAttribute(ATT_TETRI, tetrimino);
+			
+			this.getServletContext().getRequestDispatcher(VUE_AJOUT_FIGURE).forward(request, response);
+		}
 	}
 	
 	@Override
@@ -118,6 +164,20 @@ public class FigureAddServlet extends HttpServlet {
 		}
 		
 		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+	}
+	
+	private void validationOrdre(int ordre) throws FormValidationException {
+		if (ordre < 0) {
+			throw new FormValidationException("L'ordre doit être supérieur ou égal à 0");
+		}
+	}
+	
+	public Map<String, String> getErreurs() {
+		return erreurs;
+	}
+	
+	public void setErreurs(String champ, String message) {
+		erreurs.put(champ, message);
 	}
 
 }

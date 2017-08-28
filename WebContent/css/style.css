@@ -11,7 +11,7 @@ div.bloc {
 	
 	width: 25px;
 	height: 25px;
-	background: red;
+	background: #eeeeee;
 	
 	border: solid 1px black;
 }
