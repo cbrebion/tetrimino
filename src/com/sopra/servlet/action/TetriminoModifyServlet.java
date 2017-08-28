@@ -29,8 +29,7 @@ public class TetriminoModifyServlet extends HttpServlet {
 	public static final String VUE_POST			= "/tetrimino/listeTetriminos";
 	
 	private static final String PARAM_ID		= "id";
-	
-	private static final String CHAMP_ID		= "id";
+
 	private static final String CHAMP_NOM		= "nom";
 	private static final String CHAMP_COULEUR	= "couleur";
 	private static final String ATT_TETRI		= "tetri";
@@ -56,7 +55,7 @@ public class TetriminoModifyServlet extends HttpServlet {
 		
 		String nom = getValeurChamp(req, CHAMP_NOM);
 		String couleur = getValeurChamp(req, CHAMP_COULEUR);
-		int id = Integer.parseInt(req.getParameter(CHAMP_ID));
+		int id = Integer.parseInt(req.getParameter(PARAM_ID));
 		
 		Tetrimino tetrimino = new Tetrimino();
 		

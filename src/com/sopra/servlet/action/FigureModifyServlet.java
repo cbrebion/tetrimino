@@ -1,7 +1,6 @@
 package com.sopra.servlet.action;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,54 +17,50 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.sopra.dao.IBlocDAO;
 import com.sopra.dao.IFigureDAO;
-import com.sopra.dao.ITetriminoDAO;
 import com.sopra.exception.FormValidationException;
 import com.sopra.model.Bloc;
 import com.sopra.model.Figure;
-import com.sopra.model.Tetrimino;
 
 /**
- * Servlet implementation class FigureAddServlet
+ * Servlet implementation class FigureModifyServlet
  */
-@WebServlet("/admin/ajoutFigure")
-public class FigureAddServlet extends HttpServlet {
+@WebServlet("/admin/modifFigure")
+public class FigureModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static final String VUE_AJOUT_FIGURE	= "/WEB-INF/admin/ajouterFigure.jsp";
-	private static final String VUE_POST			= "/tetrimino/listeTetriminos";
-	
-	private static final String PARAM_ID			= "id";
-	private static final String PARAM_X				= "x";
-	private static final String PARAM_Y				= "y";
-	private static final String CHAMP_ORDRE			= "ordre";
-	private static final String ATT_TETRI			= "tetrimino";
-	private static final String SESSION_BLOCS		= "blocs";
-	
-	private List<Bloc> blocs						= new ArrayList<Bloc>();
-	
-	private Map<String, String> erreurs				= new HashMap<String, String>();
-	
 	@Autowired
-	private ITetriminoDAO tetriminoHibernateDAO;
+	private IFigureDAO figureHibernateDAO;
 	
 	@Autowired
 	private IBlocDAO blocHibernateDAO;
 	
-	@Autowired
-	private IFigureDAO figureHibernateDAO;
+	public static final String VUE_GET				= "/WEB-INF/admin/modifierFigure.jsp";
+	public static final String VUE_POST				= "/tetrimino/tetrimino";
+	
+	private static final String PARAM_ID_TETRIMINO	= "idTetrimino";
+	private static final String PARAM_ID_FIGURE		= "idFigure";
+	private static final String PARAM_X				= "x";
+	private static final String PARAM_Y				= "y";
+	private static final String CHAMP_ORDRE			= "ordre";
+	
+	private static final String CHAMP_ID_FIGURE		= "idFigure";
+	private static final String CHAMP_ID_TETRIMINO	= "idTetrimino";
+	
+	private static final String ATT_TETRI_ID		= "idTetrimino";
+	private static final String ATT_FIGURE			= "figure";
+	private static final String ATT_ERREUR			= "erreurs";
+	
+	private Map<String, String> erreurs		= new HashMap<String, String>();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter(PARAM_ID));
+		int idTetrimino = Integer.parseInt(request.getParameter(PARAM_ID_TETRIMINO));
+		int idFigure = Integer.parseInt(request.getParameter(PARAM_ID_FIGURE));
+		Bloc blocToDelete;
 		
-		if (request.getSession().getAttribute(SESSION_BLOCS) != null)
-			blocs = (List<Bloc>) request.getSession().getAttribute(SESSION_BLOCS);
-		else
-			blocs = new ArrayList<Bloc>();
-		
-		Tetrimino tetrimino = tetriminoHibernateDAO.find(id);
+		Figure figure = figureHibernateDAO.find(idFigure);
 		
 		if (request.getParameter(PARAM_X) != null) {
 			int x = Integer.parseInt(request.getParameter(PARAM_X));
@@ -74,31 +69,44 @@ public class FigureAddServlet extends HttpServlet {
 			Bloc bloc = new Bloc();
 			bloc.setX(x);
 			bloc.setY(y);
+			bloc.setFigure(figure);
+			
+			List<Bloc> blocs = figure.getBlocs();
 			
 			// Vérifie si le bloc n'a pas déjà été sélectionné
 			int i = 0;
 			int indexExiste = -1;
 			for (Bloc blocCurrent : blocs) {
+				// Désélection
 				if ((blocCurrent.getX() == bloc.getX()) && (blocCurrent.getY() == bloc.getY())) {
 					indexExiste = i;
+					blocToDelete = blocHibernateDAO.find(blocCurrent.getId());
+					blocHibernateDAO.delete(blocToDelete);
 				}
 				i++;
 			}
 
-			// Retire le bloc de la liste s'il a été désélectionné
+			// Si le bloc existe déjà, on le modifie et on retire l'ancien bloc de la liste
 			if (indexExiste != -1) {
+				// Modifier le bloc présent dans la liste de blocs de la figure
 				blocs.remove(blocs.get(indexExiste));
 			}
-			// Le rajoute sinon
+			// Sinon on le rajoute
 			else {
+				bloc = blocHibernateDAO.save(bloc);
 				blocs.add(bloc);
 			}
+			
+			// On met à jour la liste des blocs de la figure
+			figure.setBlocs(blocs);
+			figure = figureHibernateDAO.save(figure);
 		}
 		
-		request.getSession().setAttribute(SESSION_BLOCS, blocs);
-		request.setAttribute(ATT_TETRI, tetrimino);
+		request.setAttribute(ATT_TETRI_ID, idTetrimino);
+		request.setAttribute(ATT_FIGURE, figure);
 		
-		this.getServletContext().getRequestDispatcher(VUE_AJOUT_FIGURE).forward(request, response);
+		//this.getServletContext().getRequestDispatcher(VUE_GET + "?id=" + id).forward(req, resp);
+		this.getServletContext().getRequestDispatcher(VUE_GET).forward(request, response);
 	}
 
 	/**
@@ -107,16 +115,10 @@ public class FigureAddServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		erreurs.clear();
 		
-		if (request.getSession().getAttribute(SESSION_BLOCS) != null) {
-			blocs = (List<Bloc>) request.getSession().getAttribute(SESSION_BLOCS);
-		}
+		int idFigure = Integer.parseInt(request.getParameter(CHAMP_ID_FIGURE));
+		int idTetrimino = Integer.parseInt(request.getParameter(CHAMP_ID_TETRIMINO));
 		
-		if (blocs.size() == 0) {
-			setErreurs("bloc", "Veuillez créer au moins une figure");
-		}
-		
-		
-		int id = Integer.parseInt(request.getParameter(PARAM_ID));
+		Figure figure = figureHibernateDAO.find(idFigure);
 		
 		int ordre;
 		try {
@@ -130,37 +132,23 @@ public class FigureAddServlet extends HttpServlet {
 			ordre = -1;
 		}
 		
+		// Si tout est correct
 		if (erreurs.isEmpty()) {
-		
-			Tetrimino tetrimino = tetriminoHibernateDAO.find(id);
-			
-			Figure figure = new Figure();
-			figure.setTetrimino(tetrimino);
 			figure.setOrdreRotation(ordre);
-			figure.setBlocs(blocs);
-			
 			figure = figureHibernateDAO.save(figure);
 			
-			for (Bloc bloc : blocs) {
-				bloc.setFigure(figure);
-				bloc = blocHibernateDAO.save(bloc);
-			}
-			
-			blocs.clear();
-			request.getSession().removeAttribute(SESSION_BLOCS);
-		
-			response.sendRedirect(VUE_POST);
+			response.sendRedirect(VUE_POST + "?id=" + idTetrimino);
 		}
+		// Sinon
 		else {
-			Tetrimino tetrimino = tetriminoHibernateDAO.find(id);
-			
 			request.setAttribute("erreurs", erreurs);
-			request.getSession().setAttribute(SESSION_BLOCS, blocs);
-			request.setAttribute(ATT_TETRI, tetrimino);
+			request.setAttribute(ATT_TETRI_ID, idTetrimino);
+			request.setAttribute(ATT_FIGURE, figure);
 			
-			this.getServletContext().getRequestDispatcher(VUE_AJOUT_FIGURE).forward(request, response);
+			this.getServletContext().getRequestDispatcher(VUE_GET).forward(request, response);
 		}
 	}
+	
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -172,6 +160,7 @@ public class FigureAddServlet extends HttpServlet {
 		
 		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
 	}
+	
 	
 	private void validationOrdre(int ordre) throws FormValidationException {
 		if (ordre < 0) {

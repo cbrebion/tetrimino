@@ -49,8 +49,8 @@
 		<c:forEach items="${ tetrimino.figures }" var="figure">
 			<p>
 				<b>Figure ordre ${ figure.ordreRotation }</b>
-				<a href="admin/modifFigure?id=<c:out value="${ figure.id }"/>" title="Editer"><i class="tiny material-icons">edit</i></a>
-				<a href="admin/supprimerFigure?id=<c:out value="${ figure.id }"/>" title="Supprimer"><i class="tiny material-icons">cancel</i></a>
+				<a href="admin/modifFigure?idTetrimino=<c:out value="${ tetrimino.id }"/>&idFigure=<c:out value="${ figure.id }"/>" title="Editer"><i class="tiny material-icons">edit</i></a>
+				<a href="admin/supprimerFigure?idTetrimino=<c:out value="${ tetrimino.id }"/>&idFigure=<c:out value="${ figure.id }"/>" title="Supprimer"><i class="tiny material-icons">cancel</i></a>
 			</p>
 			<div class="figure">
 			<c:forEach var="x" begin="0" end="${ tailleMatrice }">

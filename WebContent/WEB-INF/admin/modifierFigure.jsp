@@ -19,16 +19,16 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Ajout d'une figure</title>
+<title>Modification d'une figure</title>
 </head>
 
 <body>
 	<c:import url="/inc/menu.jsp" />
 	
-	<c:set var="placeholderOrdre">
+	<c:set var="valeurOrdre">
 		<c:choose>
-			<c:when test="${ empty erreurs['ordre'] }">Ordre de rotation</c:when>
-			<c:otherwise>${ erreurs['ordre'] }</c:otherwise>
+			<c:when test="${ empty erreurs['ordre'] }">value="${ figure.ordreRotation }"</c:when>
+			<c:otherwise>placeholder="${ erreurs['ordre'] }"</c:otherwise>
 		</c:choose>
 	</c:set>
 	
@@ -42,14 +42,14 @@
 			</c:choose>
 		</c:set>
 		
-		<p><b>Ajouter une figure au tetrimino</b></p>
+		<p><b>Modification d'une figure</b></p>
 		<hr>
 		<span class="erreur" style="color: red;">${ erreurs['bloc'] }</span>
 		<div class="figure">
 		<c:forEach var="x" begin="0" end="${ tailleMatrice }">
 			<c:forEach var="y" begin="0" end="${ tailleMatrice }">
 				<c:set var="selectionne">
-					<c:forEach items="${ sessionScope.blocs }" var="item">
+					<c:forEach items="${ figure.blocs }" var="item">
 						<c:choose>
 							<c:when test="${ item.x eq x and item.y eq y }">style="background-color: #b71c1c;"</c:when>
 							<c:otherwise></c:otherwise>
@@ -58,22 +58,24 @@
 				</c:set>
 				<div class="bloc" ${ selectionne }>
 					<!-- TO DO Si la case a été selectionnée, on change son fond -->
-					<a style="display: block;" href="ajoutFigure?id=${ tetrimino.id }&x=${ x }&y=${ y }">&nbsp;</a>
+					<a style="display: block;" href="modifFigure?idTetrimino=<c:out value="${ idTetrimino }"/>&idFigure=${ figure.id }&x=${ x }&y=${ y }">&nbsp;</a>
 				</div>
 			</c:forEach>
 		</c:forEach>
 		</div>
 		
 		<p>
-		<c:forEach items="${ sessionScope.blocs }" var="item">
+		<c:forEach items="${ figure.blocs }" var="item">
 			(${ item.x }, ${ item.y }) 
 		</c:forEach>
 		</p>
 		
 		<form method="post">
-			<input type="number" id="ordre" name="ordre" placeholder="${ placeholderOrdre }" />
+			<input type="hidden" name="idFigure" value="${ figure.id }" />
+			<input type="hidden" name="idTetrimino" value="${ idTetrimino }" />
+			<input type="number" id="ordre" name="ordre" ${ valeurOrdre } />
 			<button class="btn waves-effect waves-light red darken-4" type="submit" name="action">
-				Envoyer <i class="material-icons right">send</i>
+				Modifier <i class="material-icons right">send</i>
 			</button>
 		</form>
 		
