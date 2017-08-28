@@ -17,9 +17,11 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.sopra.dao.IBlocDAO;
 import com.sopra.dao.IFigureDAO;
+import com.sopra.dao.ITetriminoDAO;
 import com.sopra.exception.FormValidationException;
 import com.sopra.model.Bloc;
 import com.sopra.model.Figure;
+import com.sopra.model.Tetrimino;
 
 /**
  * Servlet implementation class FigureModifyServlet
@@ -27,6 +29,9 @@ import com.sopra.model.Figure;
 @WebServlet("/admin/modifFigure")
 public class FigureModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	@Autowired
+	private ITetriminoDAO tetriminoHibernateDAO;
 	
 	@Autowired
 	private IFigureDAO figureHibernateDAO;
@@ -46,7 +51,7 @@ public class FigureModifyServlet extends HttpServlet {
 	private static final String CHAMP_ID_FIGURE		= "idFigure";
 	private static final String CHAMP_ID_TETRIMINO	= "idTetrimino";
 	
-	private static final String ATT_TETRI_ID		= "idTetrimino";
+	private static final String ATT_TETRI			= "tetrimino";
 	private static final String ATT_FIGURE			= "figure";
 	private static final String ATT_ERREUR			= "erreurs";
 	
@@ -60,6 +65,7 @@ public class FigureModifyServlet extends HttpServlet {
 		int idFigure = Integer.parseInt(request.getParameter(PARAM_ID_FIGURE));
 		Bloc blocToDelete;
 		
+		Tetrimino tetrimino = tetriminoHibernateDAO.find(idTetrimino);
 		Figure figure = figureHibernateDAO.find(idFigure);
 		
 		if (request.getParameter(PARAM_X) != null) {
@@ -102,7 +108,7 @@ public class FigureModifyServlet extends HttpServlet {
 			figure = figureHibernateDAO.save(figure);
 		}
 		
-		request.setAttribute(ATT_TETRI_ID, idTetrimino);
+		request.setAttribute(ATT_TETRI, tetrimino);
 		request.setAttribute(ATT_FIGURE, figure);
 		
 		//this.getServletContext().getRequestDispatcher(VUE_GET + "?id=" + id).forward(req, resp);
@@ -142,7 +148,7 @@ public class FigureModifyServlet extends HttpServlet {
 		// Sinon
 		else {
 			request.setAttribute("erreurs", erreurs);
-			request.setAttribute(ATT_TETRI_ID, idTetrimino);
+			request.setAttribute(ATT_TETRI, idTetrimino);
 			request.setAttribute(ATT_FIGURE, figure);
 			
 			this.getServletContext().getRequestDispatcher(VUE_GET).forward(request, response);

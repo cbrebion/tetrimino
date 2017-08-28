@@ -51,7 +51,7 @@
 				<c:set var="selectionne">
 					<c:forEach items="${ sessionScope.blocs }" var="item">
 						<c:choose>
-							<c:when test="${ item.x eq x and item.y eq y }">style="background-color: #b71c1c;"</c:when>
+							<c:when test="${ item.x eq x and item.y eq y }">style="background-color: ${ tetrimino.couleur };"</c:when>
 							<c:otherwise></c:otherwise>
 						</c:choose>
 					</c:forEach>

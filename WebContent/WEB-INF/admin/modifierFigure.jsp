@@ -51,14 +51,14 @@
 				<c:set var="selectionne">
 					<c:forEach items="${ figure.blocs }" var="item">
 						<c:choose>
-							<c:when test="${ item.x eq x and item.y eq y }">style="background-color: #b71c1c;"</c:when>
+							<c:when test="${ item.x eq x and item.y eq y }">style="background-color: ${ tetrimino.couleur };"</c:when>
 							<c:otherwise></c:otherwise>
 						</c:choose>
 					</c:forEach>
 				</c:set>
 				<div class="bloc" ${ selectionne }>
 					<!-- TO DO Si la case a été selectionnée, on change son fond -->
-					<a style="display: block;" href="modifFigure?idTetrimino=<c:out value="${ idTetrimino }"/>&idFigure=${ figure.id }&x=${ x }&y=${ y }">&nbsp;</a>
+					<a style="display: block;" href="modifFigure?idTetrimino=<c:out value="${ tetrimino.id }"/>&idFigure=${ figure.id }&x=${ x }&y=${ y }">&nbsp;</a>
 				</div>
 			</c:forEach>
 		</c:forEach>
@@ -72,7 +72,7 @@
 		
 		<form method="post">
 			<input type="hidden" name="idFigure" value="${ figure.id }" />
-			<input type="hidden" name="idTetrimino" value="${ idTetrimino }" />
+			<input type="hidden" name="idTetrimino" value="${ tetrimino.id }" />
 			<input type="number" id="ordre" name="ordre" ${ valeurOrdre } />
 			<button class="btn waves-effect waves-light red darken-4" type="submit" name="action">
 				Modifier <i class="material-icons right">send</i>

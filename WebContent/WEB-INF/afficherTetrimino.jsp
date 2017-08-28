@@ -59,7 +59,7 @@
 					<c:set var="selectionne">
 						<c:forEach items="${ figure.blocs }" var="bloc">
 							<c:choose>
-								<c:when test="${ bloc.x eq x and bloc.y eq y }">background-color: #b71c1c;</c:when>
+								<c:when test="${ bloc.x eq x and bloc.y eq y }">background-color: ${ tetrimino.couleur };</c:when>
 								<c:otherwise></c:otherwise>
 							</c:choose>
 						</c:forEach>
