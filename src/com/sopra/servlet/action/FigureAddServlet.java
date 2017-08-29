@@ -32,7 +32,7 @@ public class FigureAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private static final String VUE_AJOUT_FIGURE	= "/WEB-INF/ajouterFigure.jsp";
-	private static final String VUE_POST			= "/tetrimino/listeTetriminos";
+	private static final String VUE_POST			= "tetrimino";
 	
 	private static final String PARAM_ID			= "id";
 	private static final String PARAM_X				= "x";
@@ -167,7 +167,7 @@ public class FigureAddServlet extends HttpServlet {
 			blocs.clear();
 			request.getSession().removeAttribute(SESSION_BLOCS);
 		
-			response.sendRedirect(VUE_POST);
+			response.sendRedirect(VUE_POST + "?id=" + id);
 		}
 		// Si une erreur est survenue au POST
 		else {

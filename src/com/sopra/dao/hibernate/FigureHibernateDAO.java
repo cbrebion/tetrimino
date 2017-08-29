@@ -22,7 +22,7 @@ public class FigureHibernateDAO implements IFigureDAO {
 	@Override
 	public List<Figure> findAll() {
 		try {
-			return (List<Figure>)em.createQuery("FROM Figure").getResultList();
+			return (List<Figure>)em.createQuery("FROM Figure f ORDER BY f.ordreRotation").getResultList();
 		} catch (NoResultException e) {
 			return null;
 		}

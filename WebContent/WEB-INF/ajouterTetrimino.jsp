@@ -31,14 +31,22 @@
 			<c:otherwise>${ erreurs['nom'] }</c:otherwise>
 		</c:choose>
 	</c:set>
+	<c:set var="valueCoeff">
+		<c:choose>
+			<c:when test="${ empty coeff }">0</c:when>
+			<c:otherwise>${ coeff }</c:otherwise>
+		</c:choose>
+	</c:set>
 	
 	<div class="container">
 		<form method="POST" class="row center">
-		<p><c:out value ="${ placholderNom }"/></p>
+			<p><c:out value ="${ placholderNom }"/></p>
 			<h5>Nom Tetrimino</h5>
 			<input type="text" name="nom" class="row center" placeholder="<c:out value="${ placeholderNom }" />" />
 			<h5>Couleur</h5>
 			<input type="color" name="couleur" class="row center" />
+			<h5>Coefficient</h5>
+			<input type="number" value="${ valueCoeff }" min="0" step="0.01" name="coeff" class="row center" />
 
 			<button class="btn waves-effect waves-light red darken-4" type="submit" name="action">
 				Ajouter <i class="material-icons right">send</i>

@@ -27,6 +27,7 @@ public class TetriminoAddServlet extends HttpServlet {
 	
 	private static final String ATT_NOM					= "nom";
 	private static final String ATT_COULEUR				= "couleur";
+	private static final String ATT_COEFF				= "coeff";
 	private static final String ATT_ERREUR				= "erreurs";
 	
 	private Map<String, String> erreurs	= new HashMap<String, String>();
@@ -46,6 +47,7 @@ public class TetriminoAddServlet extends HttpServlet {
 		// Récupération des valeurs
 		String nom = getValeurChamp(req, ATT_NOM);
 		String couleur = getValeurChamp(req, ATT_COULEUR);
+		double coeff = 0;
 		
 		// Création du tetrimino
 		Tetrimino tetrimino = new Tetrimino();
@@ -63,6 +65,13 @@ public class TetriminoAddServlet extends HttpServlet {
 			setErreurs(ATT_COULEUR, e.getMessage());
 		}
 		tetrimino.setCouleur(couleur);
+		
+		try {
+			coeff = Double.parseDouble(req.getParameter(ATT_COEFF));
+		} catch (NumberFormatException nfe) {
+			setErreurs(ATT_COEFF, "Le coeff doit être un nombre");
+		}
+		tetrimino.setCoeff(coeff);
 		
 		if (erreurs.isEmpty()) {
 			tetriminoHibernateDAO.save(tetrimino);

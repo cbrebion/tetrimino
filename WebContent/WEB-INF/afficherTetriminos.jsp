@@ -54,7 +54,7 @@
 					</c:forEach>
 				</c:forEach>
 				</div>
-				<input type="color" value="<c:out value="${item.couleur}" />" disabled /> <span class="nomTetrimino"><c:out value="${item.nom}" /></span>
+				<input type="color" value="<c:out value="${item.couleur}" />" disabled />&nbsp;<span class="nomTetrimino"><c:out value="${item.nom}" />&nbsp;</span> <span class="nomTetrimino">coeff : <c:out value="${item.coeff}" /></span>
 				<div style="float: right;">
 					<a href="supprimerPiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Supprimer"><i class="material-icons">cancel</i></a>
 					<a href="modifPiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Editer"><i class="material-icons">edit</i></a>
@@ -65,7 +65,7 @@
 			</c:forEach>
 		</ul>
 		<p>
-			<a class="waves-effect waves-light btn-large red darken-4" href="admin/ajoutTetrimino"><i class="material-icons left">add</i>Ajouter Tetrimino</a>
+			<a class="waves-effect waves-light btn-large red darken-4" href="ajoutTetrimino"><i class="material-icons left">add</i>Ajouter Tetrimino</a>
 		</p>
 	</div>
 </body>

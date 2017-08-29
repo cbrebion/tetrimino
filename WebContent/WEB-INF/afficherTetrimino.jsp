@@ -44,13 +44,17 @@
 		<p><b>Nom du tetrimino : ${ tetrimino.nom }</b></p>
 		<p>Couleur : <input type="color" value="<c:out value="${tetrimino.couleur}" />" disabled /></p>
 		
+		<p>
+			<a class="waves-effect waves-light btn red darken-4" href="ajoutFigure?id=<c:out value="${ tetrimino.id }"/>"><i class="material-icons left">add</i>Ajouter une figure</a>
+		</p>
+		
 		<!-- Affichage des figures correspondantes -->
 		<div class="figures">
 		<c:forEach items="${ tetrimino.figures }" var="figure">
 			<p>
 				<b>Figure ordre ${ figure.ordreRotation }</b>
-				<a href="admin/modifFigure?idTetrimino=<c:out value="${ tetrimino.id }"/>&idFigure=<c:out value="${ figure.id }"/>" title="Editer"><i class="tiny material-icons">edit</i></a>
-				<a href="admin/supprimerFigure?idTetrimino=<c:out value="${ tetrimino.id }"/>&idFigure=<c:out value="${ figure.id }"/>" title="Supprimer"><i class="tiny material-icons">cancel</i></a>
+				<a href="modifFigure?idTetrimino=<c:out value="${ tetrimino.id }"/>&idFigure=<c:out value="${ figure.id }"/>" title="Editer"><i class="tiny material-icons">edit</i></a>
+				<a href="supprimerFigure?idTetrimino=<c:out value="${ tetrimino.id }"/>&idFigure=<c:out value="${ figure.id }"/>" title="Supprimer"><i class="tiny material-icons">cancel</i></a>
 			</p>
 			<div class="figure">
 			<c:forEach var="x" begin="0" end="${ tailleMatrice }">
