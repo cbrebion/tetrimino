@@ -27,11 +27,11 @@ import com.sopra.model.Tetrimino;
 /**
  * Servlet implementation class FigureAddServlet
  */
-@WebServlet("/admin/ajoutFigure")
+@WebServlet("/ajoutFigure")
 public class FigureAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static final String VUE_AJOUT_FIGURE	= "/WEB-INF/admin/ajouterFigure.jsp";
+	private static final String VUE_AJOUT_FIGURE	= "/WEB-INF/ajouterFigure.jsp";
 	private static final String VUE_POST			= "/tetrimino/listeTetriminos";
 	
 	private static final String PARAM_ID			= "id";
@@ -57,20 +57,26 @@ public class FigureAddServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Récupération de l'id du tetrimino
 		int id = Integer.parseInt(request.getParameter(PARAM_ID));
 		
+		// Récupération de la liste des blocs déjà sélectionné
 		if (request.getSession().getAttribute(SESSION_BLOCS) != null)
 			blocs = (List<Bloc>) request.getSession().getAttribute(SESSION_BLOCS);
 		else
 			blocs = new ArrayList<Bloc>();
 		
+		// Récupération du tetrimino
 		Tetrimino tetrimino = tetriminoHibernateDAO.find(id);
 		
+		// S'il y a bien un paramètre x dans la reqûete
 		if (request.getParameter(PARAM_X) != null) {
 			int x = Integer.parseInt(request.getParameter(PARAM_X));
 			int y = Integer.parseInt(request.getParameter(PARAM_Y));
 			
+			// Assignation des valeurs au bloc
 			Bloc bloc = new Bloc();
 			bloc.setX(x);
 			bloc.setY(y);
@@ -95,6 +101,7 @@ public class FigureAddServlet extends HttpServlet {
 			}
 		}
 		
+		// Envoi de la liste des blocs en cours et du tetrimino
 		request.getSession().setAttribute(SESSION_BLOCS, blocs);
 		request.setAttribute(ATT_TETRI, tetrimino);
 		
@@ -104,20 +111,26 @@ public class FigureAddServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Réinitialisation des erreurs
 		erreurs.clear();
 		
+		// Récupération de la liste des blocs
 		if (request.getSession().getAttribute(SESSION_BLOCS) != null) {
 			blocs = (List<Bloc>) request.getSession().getAttribute(SESSION_BLOCS);
 		}
 		
+		// Si on tente de valider sans avoir cliqué sur un seul bloc
 		if (blocs.size() == 0) {
 			setErreurs("bloc", "Veuillez créer au moins une figure");
 		}
 		
 		
+		// Récupération de l'id du tetrimino
 		int id = Integer.parseInt(request.getParameter(PARAM_ID));
 		
+		// Récupération de l'ordre de rotation (avec validation)
 		int ordre;
 		try {
 			ordre = Integer.parseInt(request.getParameter(CHAMP_ORDRE));
@@ -130,10 +143,13 @@ public class FigureAddServlet extends HttpServlet {
 			ordre = -1;
 		}
 		
+		// Si tout roule
 		if (erreurs.isEmpty()) {
 		
+			// Récupération du tetrimino
 			Tetrimino tetrimino = tetriminoHibernateDAO.find(id);
 			
+			// Création et initialisation de la figure
 			Figure figure = new Figure();
 			figure.setTetrimino(tetrimino);
 			figure.setOrdreRotation(ordre);
@@ -141,19 +157,23 @@ public class FigureAddServlet extends HttpServlet {
 			
 			figure = figureHibernateDAO.save(figure);
 			
+			// Affectation de chaque bloc à la figure + enregistrement des blocs
 			for (Bloc bloc : blocs) {
 				bloc.setFigure(figure);
 				bloc = blocHibernateDAO.save(bloc);
 			}
 			
+			// Reset de la liste de blocs
 			blocs.clear();
 			request.getSession().removeAttribute(SESSION_BLOCS);
 		
 			response.sendRedirect(VUE_POST);
 		}
+		// Si une erreur est survenue au POST
 		else {
 			Tetrimino tetrimino = tetriminoHibernateDAO.find(id);
 			
+			// Envoi des erreurs et des variables utiles
 			request.setAttribute("erreurs", erreurs);
 			request.getSession().setAttribute(SESSION_BLOCS, blocs);
 			request.setAttribute(ATT_TETRI, tetrimino);

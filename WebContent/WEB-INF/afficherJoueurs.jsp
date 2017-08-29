@@ -50,7 +50,7 @@
 			      <p><c:out value="${item.nom}" /><br>
 			         <c:out value="${item.prenom}" /><br>
 			         <c:out value="${etatJoueur}" />
-			         <a href="admin/bannir?id=<c:out value="${ item.id }"/>" class="secondary-content" title="Bannir" onclick="Materialize.toast('Effectué !', 4000, 'rounded')"><i class="material-icons">gavel</i></a>
+			         <a href="bannir?id=<c:out value="${ item.id }"/>" class="secondary-content" title="Bannir" onclick="Materialize.toast('Effectué !', 4000, 'rounded')"><i class="material-icons">gavel</i></a>
 			      </p>
 			    </li>
 			

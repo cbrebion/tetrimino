@@ -12,14 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import com.sopra.dao.IBlocDAO;
 import com.sopra.dao.IFigureDAO;
 import com.sopra.model.Figure;
 
 /**
  * Servlet implementation class FigureDeleteServlet
  */
-@WebServlet("/admin/supprimerFigure")
+@WebServlet("/supprimerFigure")
 public class FigureDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -28,22 +27,22 @@ public class FigureDeleteServlet extends HttpServlet {
 	private static final String VUE_POST			= "/tetrimino/tetrimino";
 	
 	@Autowired
-	private IBlocDAO blocHibernateDAO;
-	
-	@Autowired
 	private IFigureDAO figureHibernateDAO;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Récupération des id de tetrimino et figure
 		int idTetrimino = Integer.parseInt(request.getParameter(ATT_ID_TETRIMINO));
 		int idFigure = Integer.parseInt(request.getParameter(ATT_ID_FIGURE));
 		
 		Figure figure = figureHibernateDAO.find(idFigure);
 		
+		// Suppression de la figure
 		figureHibernateDAO.delete(figure);
 		
+		// Redirection vers la vue du tetrimino
 		response.sendRedirect(VUE_POST + "?id=" + idTetrimino);
 	}
 

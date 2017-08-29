@@ -31,15 +31,17 @@ public class SecurityFilter implements Filter {
         }
 
 		// Demande d'accès à l'accueil
-		if (request.getRequestURI().equals("/tetrimino/accueil") || request.getRequestURI().equals("/tetrimino/signin") || request.getRequestURI().equals("/tetrimino/accesNonAutorise")) {
+		if (request.getRequestURI().equals("/tetrimino/accueil") || request.getRequestURI().equals("/tetrimino/signin")) {
 			chain.doFilter(request, response);
 			return;
 		}
 		// Demande d'accès à une autre page
 		else {
-			if (request.getSession().getAttribute("joueur") != null || request.getSession().getAttribute("admin") != null) {
+			if (request.getSession().getAttribute("admin") != null) {
 				chain.doFilter(request, response);
 				return;
+			} else if (request.getSession().getAttribute("joueur") != null) {
+				response.sendError(HttpServletResponse.SC_FORBIDDEN);
 			} else {
 				response.sendRedirect(VUE_LOGIN);
 			}

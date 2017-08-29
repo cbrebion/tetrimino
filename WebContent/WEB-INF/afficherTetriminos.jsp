@@ -23,6 +23,9 @@
 </style>
 
 <title>Bienvenue sur Tetrimino</title>
+
+<link href="/tetrimino/css/style.css" type="text/css" rel="stylesheet"
+	media="screen,projection" />
 </head>
 
 <body>
@@ -32,21 +35,35 @@
 		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 	<div class="container">
-		<div class="collection">
+		<ul class="collection">
 			<c:forEach items="${tetriminos}" var="item">
-			    <li class="collection-item avatar">
-			     	<c:choose>
-				     	<c:when test="${ item.nom eq 'J' || item.nom eq 'Z' || item.nom eq 'T' || item.nom eq 'L' || item.nom eq 'S' || item.nom eq 'carre' || item.nom eq 'ligne' }"><img src="img/<c:out value="${ item.nom }" />.png" alt="" class="circle"></c:when>
-				     	<c:otherwise><img src="img/tetris.jpg" alt="" class="circle"></c:otherwise>
-			     	</c:choose>
-					<c:out value="${item.id}" /> | <c:out value="${item.nom}" /> | <c:out value="${item.couleur}" />
-					<a href="admin/supprimerPiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Supprimer"><i class="material-icons">cancel</i></a>
-					<a href="admin/modifPiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Editer"><i class="material-icons">edit</i></a>
-					<a href="admin/ajoutFigure?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Ajouter figure"><i class="material-icons">add_circle</i></a>
-					<a href="/tetrimino/tetrimino?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Afficher tetrimino"><i class="material-icons">visibility</i></a>
+			<li class="collection-item avatar">
+				<div class="figureMini">
+				<c:forEach var="x" begin="0" end="3">
+					<c:forEach var="y" begin="0" end="3">
+						<c:set var="selectionne">
+							<c:forEach items="${ item.figures[0].blocs }" var="bloc">
+								<c:choose>
+									<c:when test="${ bloc.x eq x and bloc.y eq y }">style="background-color: ${ item.couleur };"</c:when>
+									<c:otherwise></c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</c:set>
+						<div class="blocMini" ${ selectionne }>
+						</div>
+					</c:forEach>
+				</c:forEach>
+				</div>
+				<input type="color" value="<c:out value="${item.couleur}" />" disabled /> <span class="nomTetrimino"><c:out value="${item.nom}" /></span>
+				<div style="float: right;">
+					<a href="supprimerPiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Supprimer"><i class="material-icons">cancel</i></a>
+					<a href="modifPiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Editer"><i class="material-icons">edit</i></a>
+					<a href="ajoutFigure?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Ajouter figure"><i class="material-icons">add_circle</i></a>
+					<a href="tetrimino?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Afficher tetrimino"><i class="material-icons">visibility</i></a>
+				</div>
 				</li>
 			</c:forEach>
-		</div>
+		</ul>
 		<p>
 			<a class="waves-effect waves-light btn-large red darken-4" href="admin/ajoutTetrimino"><i class="material-icons left">add</i>Ajouter Tetrimino</a>
 		</p>

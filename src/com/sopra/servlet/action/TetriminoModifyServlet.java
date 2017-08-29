@@ -18,14 +18,14 @@ import com.sopra.dao.ITetriminoDAO;
 import com.sopra.exception.FormValidationException;
 import com.sopra.model.Tetrimino;
 
-@WebServlet("/admin/modifPiece")
+@WebServlet("/modifPiece")
 public class TetriminoModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private ITetriminoDAO tetriminoHibernateDAO;
 	
-	public static final String VUE_GET			= "/WEB-INF/admin/modifierTetrimino.jsp";
+	public static final String VUE_GET			= "/WEB-INF/modifierTetrimino.jsp";
 	public static final String VUE_POST			= "/tetrimino/listeTetriminos";
 	
 	private static final String PARAM_ID		= "id";

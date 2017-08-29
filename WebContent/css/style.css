@@ -4,6 +4,29 @@ div.figure {
 	margin: 10px;
 }
 
+div.figureMini {
+	width: 30px;
+	height: 30px;
+	margin: 2px;
+	float: left;
+}
+
+li input {
+	float : left;
+	width: 35px !important;
+	height: 35px !important;
+}
+
+p input {
+	width: 35px !important;
+	height: 35px !important;
+}
+
+.nomTetrimino {
+	float: left;
+	line-height: 35px;
+}
+
 
 div.bloc {
 	position: relative;
@@ -16,7 +39,22 @@ div.bloc {
 	border: solid 1px black;
 }
 
+div.blocMini {
+	position: relative;
+	float: left;
+	
+	width: 7.5px;
+	height: 7.5px;
+	background: #eeeeee;
+}
+
 div.bloc a {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.lienTetri {
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -25,7 +63,6 @@ div.bloc a {
 input[type=color]:not(.browser-default) {
 	background-color : transparent;
 	border : none;
-	border-bottom : 1px solid #9e9e9e;
 	border-radius : 0;
 	outline : none;
 	height: 3rem;

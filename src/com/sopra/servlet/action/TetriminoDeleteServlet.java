@@ -15,7 +15,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import com.sopra.dao.ITetriminoDAO;
 import com.sopra.model.Tetrimino;
 
-@WebServlet("/admin/supprimerPiece")
+@WebServlet("/supprimerPiece")
 public class TetriminoDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

@@ -42,7 +42,7 @@
 
 	<div class="container">
 		<p><b>Nom du tetrimino : ${ tetrimino.nom }</b></p>
-		<p>Couleur : ${ tetrimino.couleur }</p>
+		<p>Couleur : <input type="color" value="<c:out value="${tetrimino.couleur}" />" disabled /></p>
 		
 		<!-- Affichage des figures correspondantes -->
 		<div class="figures">

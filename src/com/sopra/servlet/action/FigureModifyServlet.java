@@ -26,7 +26,7 @@ import com.sopra.model.Tetrimino;
 /**
  * Servlet implementation class FigureModifyServlet
  */
-@WebServlet("/admin/modifFigure")
+@WebServlet("/modifFigure")
 public class FigureModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -39,7 +39,7 @@ public class FigureModifyServlet extends HttpServlet {
 	@Autowired
 	private IBlocDAO blocHibernateDAO;
 	
-	public static final String VUE_GET				= "/WEB-INF/admin/modifierFigure.jsp";
+	public static final String VUE_GET				= "/WEB-INF/modifierFigure.jsp";
 	public static final String VUE_POST				= "/tetrimino/tetrimino";
 	
 	private static final String PARAM_ID_TETRIMINO	= "idTetrimino";
@@ -61,10 +61,13 @@ public class FigureModifyServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Récupération des id tetrimino et figure
 		int idTetrimino = Integer.parseInt(request.getParameter(PARAM_ID_TETRIMINO));
 		int idFigure = Integer.parseInt(request.getParameter(PARAM_ID_FIGURE));
+		
 		Bloc blocToDelete;
 		
+		// Récupération du tetrimino et de la figure à modifier
 		Tetrimino tetrimino = tetriminoHibernateDAO.find(idTetrimino);
 		Figure figure = figureHibernateDAO.find(idFigure);
 		
@@ -77,6 +80,7 @@ public class FigureModifyServlet extends HttpServlet {
 			bloc.setY(y);
 			bloc.setFigure(figure);
 			
+			// Récupération de la liste des blocs liés à la figure
 			List<Bloc> blocs = figure.getBlocs();
 			
 			// Vérifie si le bloc n'a pas déjà été sélectionné
@@ -86,19 +90,21 @@ public class FigureModifyServlet extends HttpServlet {
 				// Désélection
 				if ((blocCurrent.getX() == bloc.getX()) && (blocCurrent.getY() == bloc.getY())) {
 					indexExiste = i;
+					// Supprime le bloc de la DB
 					blocToDelete = blocHibernateDAO.find(blocCurrent.getId());
 					blocHibernateDAO.delete(blocToDelete);
 				}
 				i++;
 			}
 
-			// Si le bloc existe déjà, on le modifie et on retire l'ancien bloc de la liste
+			// Si le bloc existe déjà (désélection)
 			if (indexExiste != -1) {
-				// Modifier le bloc présent dans la liste de blocs de la figure
+				// Suppression du bloc présent dans la liste de blocs de la figure
 				blocs.remove(blocs.get(indexExiste));
 			}
-			// Sinon on le rajoute
+			// Sinon on le rajoute (sélection)
 			else {
+				// Ajout en DB + dans la liste des blocs de la figure
 				bloc = blocHibernateDAO.save(bloc);
 				blocs.add(bloc);
 			}
@@ -126,6 +132,7 @@ public class FigureModifyServlet extends HttpServlet {
 		
 		Figure figure = figureHibernateDAO.find(idFigure);
 		
+		// Récupération et validation de l'ordre de rotation
 		int ordre;
 		try {
 			ordre = Integer.parseInt(request.getParameter(CHAMP_ORDRE));
@@ -147,7 +154,7 @@ public class FigureModifyServlet extends HttpServlet {
 		}
 		// Sinon
 		else {
-			request.setAttribute("erreurs", erreurs);
+			request.setAttribute(ATT_ERREUR, erreurs);
 			request.setAttribute(ATT_TETRI, idTetrimino);
 			request.setAttribute(ATT_FIGURE, figure);
 			
