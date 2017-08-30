@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -50,7 +50,7 @@
 			      <p><c:out value="${item.nom}" /><br>
 			         <c:out value="${item.prenom}" /><br>
 			         <c:out value="${etatJoueur}" />
-			         <a href="bannir?id=<c:out value="${ item.id }"/>" class="secondary-content" title="Bannir" onclick="Materialize.toast('Effectué !', 4000, 'rounded')"><i class="material-icons">gavel</i></a>
+			         <a href="bannir?id=<c:out value="${ item.id }"/>" class="secondary-content" title="Bannir" onclick="Materialize.toast('EffectuÃ© !', 4000, 'rounded')"><i class="material-icons">gavel</i></a>
 			      </p>
 			    </li>
 			

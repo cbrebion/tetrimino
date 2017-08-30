@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8-1"
+	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -32,7 +32,7 @@
 	<c:import url="/inc/menu.jsp" />
 	
 	
-	<!-- Définition de la taille (temporaire tant qu'on n'a pas implémenté la sélection de la taille -->
+	<!-- DÃ©finition de la taille (temporaire tant qu'on n'a pas implÃ©mentÃ© la sÃ©lection de la taille -->
 		<c:set var="tailleMatrice">
 			<c:choose>
 				<c:when test="${ empty taille }">3</c:when>

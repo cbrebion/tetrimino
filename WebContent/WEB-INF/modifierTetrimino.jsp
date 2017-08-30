@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -30,6 +30,12 @@
 			<c:otherwise>${ erreurs['nom'] }</c:otherwise>
 		</c:choose>
 	</c:set>
+	<c:set var="valueCoeff">
+		<c:choose>
+			<c:when test="${ empty coeff }">0</c:when>
+			<c:otherwise>${ coeff }</c:otherwise>
+		</c:choose>
+	</c:set>
 
 	<div class="container">
 		<form method="POST" class="row center">
@@ -38,6 +44,8 @@
 			<input type="text" name="nom" class="row center" value="${ tetri.nom }" placeholder="<c:out value="${ placeholderNom }" />" />
 			<h5>Couleur</h5>
 			<input type="color" name="couleur" class="row center" value="${ tetri.couleur }" />
+			<h5>Coefficient</h5>
+			<input type="number" value="${ valueCoeff }" min="0" step="0.01" name="coeff" class="row center" />
 
 			<button class="btn waves-effect waves-light red darken-4" type="submit" name="action">
 				Modifier <i class="material-icons right">send</i>

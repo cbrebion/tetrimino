@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -34,7 +34,7 @@
 	
 	<br>
 	<div class="container">
-		<!-- Définition de la taille (temporaire tant qu'on n'a pas implémenté la sélection de la taille -->
+		<!-- DÃ©finition de la taille (temporaire tant qu'on n'a pas implÃ©mentÃ© la sÃ©lection de la taille -->
 		<c:set var="tailleMatrice">
 			<c:choose>
 				<c:when test="${ empty taille }">3</c:when>
@@ -57,7 +57,7 @@
 					</c:forEach>
 				</c:set>
 				<div class="bloc" ${ selectionne }>
-					<!-- TO DO Si la case a été selectionnée, on change son fond -->
+					<!-- TO DO Si la case a Ã©tÃ© selectionnÃ©e, on change son fond -->
 					<a style="display: block;" href="modifFigure?idTetrimino=<c:out value="${ tetrimino.id }"/>&idFigure=${ figure.id }&x=${ x }&y=${ y }">&nbsp;</a>
 				</div>
 			</c:forEach>

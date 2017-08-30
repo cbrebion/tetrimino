@@ -32,6 +32,7 @@ public class TetriminoModifyServlet extends HttpServlet {
 
 	private static final String CHAMP_NOM		= "nom";
 	private static final String CHAMP_COULEUR	= "couleur";
+	private static final String ATT_COEFF		= "coeff";
 	private static final String ATT_TETRI		= "tetri";
 	private static final String ATT_ERREUR		= "erreurs";
 	
@@ -56,6 +57,7 @@ public class TetriminoModifyServlet extends HttpServlet {
 		String nom = getValeurChamp(req, CHAMP_NOM);
 		String couleur = getValeurChamp(req, CHAMP_COULEUR);
 		int id = Integer.parseInt(req.getParameter(PARAM_ID));
+		double coeff = 0;
 		
 		Tetrimino tetrimino = new Tetrimino();
 		
@@ -74,6 +76,13 @@ public class TetriminoModifyServlet extends HttpServlet {
 			setErreurs(CHAMP_COULEUR, e.getMessage());
 		}
 		tetrimino.setCouleur(couleur);
+		
+		try {
+			coeff = Double.parseDouble(req.getParameter(ATT_COEFF));
+		} catch (NumberFormatException nfe) {
+			setErreurs(ATT_COEFF, "Le coeff doit être un nombre");
+		}
+		tetrimino.setCoeff(coeff);
 		
 		if (erreurs.isEmpty()) {
 			tetriminoHibernateDAO.save(tetrimino);
