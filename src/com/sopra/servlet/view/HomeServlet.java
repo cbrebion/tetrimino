@@ -24,7 +24,6 @@ public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VUE_GET		= "/WEB-INF/accueil.jsp";
 	private static final String VUE_ADMIN	= "accueilAdmin";
-//	private static final String VUE_JOUEUR	= "accueilJoueur";
 	
 	private static final String CHAMP_USER	= "username";
 	private static final String CHAMP_PASS	= "password";

@@ -28,10 +28,12 @@ public class SignInServlet extends HttpServlet {
 	private static final String VUE_SIGNIN		= "/WEB-INF/signin.jsp";
 	private static final String VUE_POST		= "accueil";
 	
-	private static final String ATT_NOM			= "nom";
-	private static final String ATT_PRENOM		= "prenom";
-	private static final String ATT_PASSWORD	= "password";
-	private static final String ATT_USERNAME	= "username";
+	private static final String CHAMP_NOM		= "nom";
+	private static final String CHAMP_PRENOM	= "prenom";
+	private static final String CHAMP_PASSWORD	= "password";
+	private static final String CHAMP_USERNAME	= "username";
+	
+	private static final String ATT_JOUEUR		= "joueur";
 	private static final String ATT_ERREUR		= "erreurs";
 	
 	private Map<String, String> erreurs			= new HashMap<String, String>();
@@ -45,43 +47,43 @@ public class SignInServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Joueur joueur = new Joueur();
 		
-		String username = getValeurChamp(req, "username");
-		String nom = getValeurChamp(req, "nom");
-		String prenom = getValeurChamp(req, "prenom");
-		String password = getValeurChamp(req, "password");
+		String username = getValeurChamp(req, CHAMP_USERNAME);
+		String nom = getValeurChamp(req, CHAMP_NOM);
+		String prenom = getValeurChamp(req, CHAMP_PRENOM);
+		String password = getValeurChamp(req, CHAMP_PASSWORD);
 		
 		try {
 			validationNom(nom);
 		} catch (FormValidationException e) {
-			setErreurs(ATT_NOM, e.getMessage());
+			setErreurs(CHAMP_NOM, e.getMessage());
 		}
 		joueur.setNom(nom);
 		
 		try {
 			validationPrenom(prenom);
 		} catch (FormValidationException e) {
-			setErreurs(ATT_PRENOM, e.getMessage());
+			setErreurs(CHAMP_PRENOM, e.getMessage());
 		}
 		joueur.setPrenom(prenom);
 		
 		try {
 			validationPassword(password);
 		} catch (FormValidationException e) {
-			setErreurs(ATT_PASSWORD, e.getMessage());
+			setErreurs(CHAMP_PASSWORD, e.getMessage());
 		}
 		joueur.setPassword(password);
 		
 		try {
 			validationUsername(username);
 		} catch (FormValidationException e) {
-			setErreurs(ATT_USERNAME, e.getMessage());
+			setErreurs(CHAMP_USERNAME, e.getMessage());
 		}
 		joueur.setUsername(username);
 		
 		
 		if (erreurs.isEmpty()) {
 			joueur = joueurHibernateDAO.save(joueur);
-			req.getSession().setAttribute("joueur", joueur);
+			req.getSession().setAttribute(ATT_JOUEUR, joueur);
 			resp.sendRedirect(VUE_POST);
 		} else {
 			req.setAttribute(ATT_ERREUR, erreurs);

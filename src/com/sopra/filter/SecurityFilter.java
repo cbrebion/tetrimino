@@ -31,7 +31,7 @@ public class SecurityFilter implements Filter {
         }
 
 		// Demande d'accès à l'accueil
-		if (request.getRequestURI().equals("/tetrimino/accueil") || request.getRequestURI().equals("/tetrimino/signin")) {
+		if (request.getRequestURI().equals("/tetrimino/accueil") || request.getRequestURI().equals("/tetrimino/signin") || request.getRequestURI().equals("/tetrimino/deconnexion")) {
 			chain.doFilter(request, response);
 			return;
 		}
