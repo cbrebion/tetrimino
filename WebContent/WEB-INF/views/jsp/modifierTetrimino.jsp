@@ -3,12 +3,18 @@
 
 <div class="container">
 	<form:form method="POST" class="row center" modelAttribute="tetrimino">
-		<h5>Nom Tetrimino</h5>
-		<form:input path="nom" type="text" name="nom" class="row center" />
-		<h5>Couleur</h5>
-		<form:input path="couleur" type="color" name="couleur" class="row center" />
-		<h5>Coefficient</h5>
-		<form:input path="coeff" type="number" min="0" step="0.01" name="coeff" class="row center" />
+		<div class="input-field">
+			<form:label path="nom">Nom</form:label>
+			<form:input path="nom" type="text" name="nom" />
+		</div>
+		<div>
+			<form:label path="couleur">Couleur</form:label>
+			<form:input path="couleur" type="color" name="couleur" />
+		</div>
+		<div class="input-field">
+			<form:label path="coeff">Coefficient</form:label>
+			<form:input path="coeff" type="number" min="0" step="0.01" name="coeff" />
+		</div>
 		
 		<button class="btn waves-effect waves-light red darken-4" type="submit" name="action">
 			Modifier <i class="material-icons right">send</i>

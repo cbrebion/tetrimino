@@ -37,8 +37,11 @@
 	</c:forEach>
 	</p>
 	
-	<form:form method="post" class="row center" modelAttribute="figure">
-		<form:input type="number" path="ordreRotation" id="ordreRotation" name="ordreRotation" placeholder="Ordre de rotation" />
+	<form:form method="post" modelAttribute="figure">
+		<div class="input-field">
+			<form:label path="ordreRotation">Ordre de rotation</form:label>
+			<form:input type="number" path="ordreRotation" id="ordreRotation" name="ordreRotation" />
+		</div>
 		<button class="btn waves-effect waves-light red darken-4" type="submit" name="action">
 			Envoyer <i class="material-icons right">send</i>
 		</button>

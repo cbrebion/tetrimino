@@ -292,6 +292,47 @@ public class FigureController {
 	}
 	
 	
+	
+	@RequestMapping(value="/ordonnerFigure", method=RequestMethod.GET)
+	public String ordonnerFigure(@RequestParam(value="idFigure", required=true) int idFigure,
+			@RequestParam(value="sens", required=true) int sens) {
+
+		Figure figure = figureHibernateDAO.find(idFigure);
+
+		Tetrimino tetrimino = figure.getTetrimino();
+
+		int nelOrdre;
+		
+		// Décrémentation de l'ordre
+		if (sens == 0)
+			nelOrdre = figure.getOrdreRotation() - 1;
+		// Incrémentation de l'ordre
+		else
+			nelOrdre = figure.getOrdreRotation() + 1;
+		
+		// Gestion des cas où l'ordre deviendrait < à 0 ou > au nombre total de figure
+		if (nelOrdre < 0 ) {
+			nelOrdre = 0;
+		} else if (nelOrdre > tetrimino.getFigures().size() - 1 ) {
+			nelOrdre = tetrimino.getFigures().size() - 1 ;
+		}
+
+		
+		for (Figure f : tetrimino.getFigures()) {
+			if ( f.getOrdreRotation() == nelOrdre) {
+				f.setOrdreRotation(figure.getOrdreRotation());
+
+				figureHibernateDAO.save(f);
+			}
+		}
+		
+		figure.setOrdreRotation(nelOrdre);
+		figureHibernateDAO.save(figure);
+	
+		return "redirect:/tetrimino?id=" + tetrimino.getId();
+	}
+	
+	
 	@ModelAttribute("figure")
 	public Figure initFigure() {
 		Figure figure = new Figure();

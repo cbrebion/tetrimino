@@ -40,7 +40,11 @@
 				</div>
 			</c:forEach>
 		</c:forEach>
-		</div><br>
+		<a href="ordonnerFigure?idFigure=<c:out value="${ figure.id }"/>&sens=0" title="Remonter"><i class="material-icons small">keyboard_arrow_up</i></a>
+		<a href="ordonnerFigure?idFigure=<c:out value="${ figure.id }"/>&sens=1" title="Descendre"><i class="material-icons small">keyboard_arrow_down</i></a>
+		</div>
+		
+		<br>
 	</c:forEach>
 	</div>
 </div>

@@ -68,21 +68,21 @@ public class AccueilController {
 				}
 				// Si c'est un joueur
 				else {
-					model.addAttribute(ATT_ERREUR, "Vous n'êtes pas administrateur");
+					model.addAttribute(ATT_ERREUR, "home.notAdmin");
 					
 					return "accueil";
 				}
 			}
 			// MdP incorrect
 			else {
-				model.addAttribute(ATT_ERREUR, "Mot de passe incorrect");
+				model.addAttribute(ATT_ERREUR, "home.incorrectPwd");
 				
 				return "accueil";
 			}
 		}
 		// Non inscrit
 		else {
-			model.addAttribute(ATT_ERREUR, "Vous n'êtes pas inscrit");
+			model.addAttribute(ATT_ERREUR, "home.notRegistered");
 			
 			return "accueil";
 		}

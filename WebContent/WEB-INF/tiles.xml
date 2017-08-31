@@ -13,7 +13,7 @@
 
 	<!-- Configuration de la vue "accueil" -->
 	<definition name="accueil" extends="base.definition">
-		<put-attribute name="title" value="Accueil" />
+		<put-attribute name="title" value="home.title" />
 		<put-attribute name="contenu" value="/WEB-INF/views/jsp/accueil.jsp" />
 	</definition>
 	
