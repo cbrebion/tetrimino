@@ -4,7 +4,7 @@
 <div class="container">
 	<form:form method="post" class="row center" modelAttribute="personne">
 		<h5><form:label path="username">Nom utilisateur</form:label></h5>
-		<form:input type="text" name="username" path="username" class="row center" /><br>
+		<form:input type="text" name="username" path="username" class="row center" placeholder="Nom d'utilisateur" /><br>
 		<h5><form:label path="password">Mot de passe</form:label></h5>
 		<form:input type="password" path="password" class="row center" />
 

@@ -22,8 +22,8 @@
 			</div>
 			<input type="color" value="<c:out value="${item.couleur}" />" disabled />&nbsp;<span class="nomTetrimino"><c:out value="${item.nom}" />&nbsp;</span> <span class="nomTetrimino">coeff : <c:out value="${item.coeff}" /></span>
 			<div style="float: right;">
-				<a href="supprimerPiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Supprimer"><i class="material-icons">cancel</i></a>
-				<a href="modifPiece?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Editer"><i class="material-icons">edit</i></a>
+				<a href="supprimerTetrimino?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Supprimer"><i class="material-icons">cancel</i></a>
+				<a href="modifTetrimino?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Editer"><i class="material-icons">edit</i></a>
 				<a href="ajoutFigure?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Ajouter figure"><i class="material-icons">add_circle</i></a>
 				<a href="tetrimino?id=<c:out value="${ item.id }"/>" class="secondary-content posRelative" title="Afficher tetrimino"><i class="material-icons">visibility</i></a>
 			</div>

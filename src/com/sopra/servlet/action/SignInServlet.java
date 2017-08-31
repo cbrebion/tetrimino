@@ -18,7 +18,7 @@ import com.sopra.dao.IJoueurDAO;
 import com.sopra.exception.FormValidationException;
 import com.sopra.model.Joueur;
 
-@WebServlet("/signin")
+//@WebServlet("/signin")
 public class SignInServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

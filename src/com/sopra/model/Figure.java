@@ -12,7 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="figure")
@@ -25,8 +28,8 @@ public class Figure implements Serializable {
 	private int id;
 	
 	@Column(name="fig_ordre_rotation")
-	@NotNull
-	private int ordreRotation;
+	@NotNull(message="Merci de renseigner un ordre de rotation")
+	private Integer ordreRotation;
 	
 	@ManyToOne
 	@JoinColumn(name="fig_tetrimino_id")
@@ -40,7 +43,7 @@ public class Figure implements Serializable {
 		return id;
 	}
 
-	public int getOrdreRotation() {
+	public Integer getOrdreRotation() {
 		return ordreRotation;
 	}
 
@@ -56,7 +59,7 @@ public class Figure implements Serializable {
 		this.id = id;
 	}
 
-	public void setOrdreRotation(int ordreRotation) {
+	public void setOrdreRotation(Integer ordreRotation) {
 		this.ordreRotation = ordreRotation;
 	}
 

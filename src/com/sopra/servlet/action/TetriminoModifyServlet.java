@@ -18,7 +18,7 @@ import com.sopra.dao.ITetriminoDAO;
 import com.sopra.exception.FormValidationException;
 import com.sopra.model.Tetrimino;
 
-@WebServlet("/modifPiece")
+//@WebServlet("/modifPiece")
 public class TetriminoModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

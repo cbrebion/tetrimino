@@ -15,7 +15,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import com.sopra.dao.IJoueurDAO;
 import com.sopra.model.Joueur;
 
-@WebServlet("/bannir")
+//@WebServlet("/bannir")
 public class BannirServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

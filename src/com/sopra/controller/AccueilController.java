@@ -24,11 +24,23 @@ public class AccueilController {
 	@Autowired
 	private IPersonneDAO personneHibernateDAO;
 	
+	/**
+	 * ACCUEIL (GET)
+	 * @return
+	 */
 	@RequestMapping(value="/accueil", method = RequestMethod.GET)
-	public String accueil(Model model) {
+	public String accueil() {
 		return "accueil";
 	}
 	
+	/**
+	 * ACCEUIL (POST)
+	 * @param p
+	 * @param result
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/accueil", method = RequestMethod.POST)
 	public String accueil(@Valid @ModelAttribute("personne") Personne p,
 			BindingResult result,
@@ -74,6 +86,20 @@ public class AccueilController {
 			
 			return "accueil";
 		}
+	}
+	
+	
+	/**
+	 * ACCEUIL ADMIN (GET)
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/accueilAdmin", method = RequestMethod.GET)
+	public String accueilAdmin(HttpSession session) {
+		// Sécurité à cause de "ajoutFigure" (à modifier)
+		session.removeAttribute("blocs");
+		
+		return "accueilAdmin";
 	}
 	
 	

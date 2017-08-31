@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-@WebServlet("/deconnexion")
+//@WebServlet("/deconnexion")
 public class DeconnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

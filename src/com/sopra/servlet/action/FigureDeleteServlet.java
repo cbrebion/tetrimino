@@ -18,7 +18,7 @@ import com.sopra.model.Figure;
 /**
  * Servlet implementation class FigureDeleteServlet
  */
-@WebServlet("/supprimerFigure")
+//@WebServlet("/supprimerFigure")
 public class FigureDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

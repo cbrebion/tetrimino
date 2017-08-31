@@ -14,12 +14,19 @@ import com.sopra.dao.IPartieDAO;
 import com.sopra.model.Partie;
 
 @Controller
-public class PartiesController {
+public class PartieController {
 	private static final String ATT_PARTIES		= "parties";
 	
 	@Autowired
 	private IPartieDAO partieHibernateDAO;
 	
+	
+	/**
+	 * LISTER PARTIES
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/listeParties", method = RequestMethod.GET)
 	public String listeParties(HttpSession session, Model model) {
 		// Sécurité à cause de "ajoutFigure" (à modifier)

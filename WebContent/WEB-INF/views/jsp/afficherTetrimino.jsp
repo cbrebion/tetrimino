@@ -1,11 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- Définition de la taille (temporaire tant qu'on n'a pas implémenté la sélection de la taille -->
-	<c:set var="tailleMatrice">
-		<c:choose>
-			<c:when test="${ empty taille }">3</c:when>
-			<c:otherwise>${ taille }</c:otherwise>
-		</c:choose>
-	</c:set>
+<c:set var="tailleMatrice">
+	<c:choose>
+		<c:when test="${ empty taille }">3</c:when>
+		<c:otherwise>${ taille }</c:otherwise>
+	</c:choose>
+</c:set>
 
 <div class="container">
 	<p><b>Nom du tetrimino : ${ tetrimino.nom }</b></p>

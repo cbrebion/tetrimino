@@ -18,7 +18,7 @@
 	</definition>
 	
 	<!-- Configuration de la vue "signin" -->
-	<definition name="subscribe" extends="base.definition">
+	<definition name="signin" extends="base.definition">
 		<put-attribute name="title" value="Inscription" />
 		<put-attribute name="contenu" value="/WEB-INF/views/jsp/signin.jsp" />
 	</definition>

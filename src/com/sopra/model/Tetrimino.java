@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.OrderBy;
+import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
@@ -29,6 +30,7 @@ public class Tetrimino implements Serializable
 	
 	@Column(name="tet_nom")
 	@NotNull
+	@NotEmpty(message="Veuillez renseigner un nom")
 	@Size(max=30)
 	private String nom;
 	

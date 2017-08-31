@@ -26,7 +26,7 @@ import com.sopra.model.Tetrimino;
 /**
  * Servlet implementation class FigureModifyServlet
  */
-@WebServlet("/modifFigure")
+//@WebServlet("/modifFigure")
 public class FigureModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
