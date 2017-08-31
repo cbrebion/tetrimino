@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.OrderBy;
+
 
 @Entity
 @Table(name="tetrimino")
@@ -39,6 +41,7 @@ public class Tetrimino implements Serializable
 	@NotNull
 	private double coeff;
 	
+	@OrderBy(clause="ordreRotation")
 	@OneToMany(mappedBy="tetrimino")
 	private List<Figure> figures;
 	

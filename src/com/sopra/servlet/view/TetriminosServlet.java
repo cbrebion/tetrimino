@@ -16,11 +16,11 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import com.sopra.dao.ITetriminoDAO;
 import com.sopra.model.Tetrimino;
 
-@WebServlet("/listeTetriminos")
+//@WebServlet("/listeTetriminos")
 public class TetriminosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public static final String VUE_GET		= "/WEB-INF/afficherTetriminos.jsp";
+	public static final String VUE_GET		= "/WEB-INF/views/jsp/afficherTetriminos.jsp";
 	
 	@Autowired
 	private ITetriminoDAO tetriminoHibernateDAO;

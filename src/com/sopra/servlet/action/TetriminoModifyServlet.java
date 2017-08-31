@@ -25,7 +25,7 @@ public class TetriminoModifyServlet extends HttpServlet {
 	@Autowired
 	private ITetriminoDAO tetriminoHibernateDAO;
 	
-	public static final String VUE_GET			= "/WEB-INF/modifierTetrimino.jsp";
+	public static final String VUE_GET			= "/WEB-INF/views/jsp/modifierTetrimino.jsp";
 	public static final String VUE_POST			= "/tetrimino/listeTetriminos";
 	
 	private static final String PARAM_ID		= "id";

@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-@WebServlet("/accueilAdmin")
+//@WebServlet("/accueilAdmin")
 public class HomeAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	public static final String VUE_GET		= "/WEB-INF/accueilAdmin.jsp";
+	public static final String VUE_GET		= "/WEB-INF/views/jsp/accueilAdmin.jsp";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

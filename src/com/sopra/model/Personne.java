@@ -14,6 +14,8 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name="personne", uniqueConstraints=@UniqueConstraint(columnNames="per_username"))
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -27,20 +29,20 @@ public class Personne implements Serializable {
 	
 	@Column(name="per_username")
 	@NotNull
-	@Size(min=2, max=30)
+	@NotEmpty(message="Merci de renseigner le nom d'utilisateur")
 	private String username;
 	
 	@Column(name="per_password")
 	@NotNull
-	@Size(min=2, max=30)
+	@NotEmpty(message="Merci de renseigner le mot de passe")
 	private String password;
 	
 	@Column(name="per_nom")
-	@Size(min=2, max=100)
+	@NotEmpty(message="Merci de renseigner le nom")
 	private String nom;
 	
 	@Column(name="per_prenom")
-	@Size(min=2, max=100)
+	@NotEmpty(message="Merci de renseigner le prénom")
 	private String prenom;
 
 	

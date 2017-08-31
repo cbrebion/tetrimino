@@ -16,11 +16,11 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import com.sopra.dao.IJoueurDAO;
 import com.sopra.model.Joueur;
 
-@WebServlet("/listeJoueurs")
+//@WebServlet("/listeJoueurs")
 public class JoueursServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public static final String VUE_GET		= "/WEB-INF/afficherJoueurs.jsp";
+	public static final String VUE_GET		= "/WEB-INF/views/jsp/afficherJoueurs.jsp";
 	
 	@Autowired
 	private IJoueurDAO joueurHibernateDAO;

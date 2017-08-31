@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<!-- Configuration du layout principal -->
+	<definition name="base.definition" template="/WEB-INF/views/jsp/structure.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="navigation" value="/WEB-INF/views/jsp/navigation.jsp" />
+		<put-attribute name="contenu" value="" />
+	</definition>
+
+
+	<!-- Configuration de la vue "accueil" -->
+	<definition name="accueil" extends="base.definition">
+		<put-attribute name="title" value="Accueil" />
+		<put-attribute name="contenu" value="/WEB-INF/views/jsp/accueil.jsp" />
+	</definition>
+	
+	<!-- Configuration de la vue "signin" -->
+	<definition name="subscribe" extends="base.definition">
+		<put-attribute name="title" value="Inscription" />
+		<put-attribute name="contenu" value="/WEB-INF/views/jsp/signin.jsp" />
+	</definition>
+	
+	<!-- Configuration de la vue "accueilAdmin" -->
+	<definition name="accueilAdmin" extends="base.definition">
+		<put-attribute name="title" value="Accueil admin" />
+		<put-attribute name="contenu" value="/WEB-INF/views/jsp/accueilAdmin.jsp" />
+	</definition>
+	
+	<!-- Configuration de la vue "listeJoueurs" -->
+	<definition name="listeJoueurs" extends="base.definition">
+		<put-attribute name="title" value="Liste des joueurs" />
+		<put-attribute name="contenu" value="/WEB-INF/views/jsp/afficherJoueurs.jsp" />
+	</definition>
+	
+	<!-- Configuration de la vue "tetrimino" -->
+	<definition name="tetrimino" extends="base.definition">
+		<put-attribute name="title" value="Tetrimino" />
+		<put-attribute name="contenu" value="/WEB-INF/views/jsp/afficherTetrimino.jsp" />
+	</definition>
+	
+	<!-- Configuration de la vue "listeTetrimos" -->
+	<definition name="listeTetriminos" extends="base.definition">
+		<put-attribute name="title" value="Liste des tetriminos" />
+		<put-attribute name="contenu" value="/WEB-INF/views/jsp/afficherTetriminos.jsp" />
+	</definition>
+	
+	<!-- Configuration de la vue "ajoutFigure" -->
+	<definition name="ajoutFigure" extends="base.definition">
+		<put-attribute name="title" value="Ajout d'une figure" />
+		<put-attribute name="contenu" value="/WEB-INF/views/jsp/ajouterFigure.jsp" />
+	</definition>
+	
+	<!-- Configuration de la vue "ajoutTetrimino" -->
+	<definition name="ajoutTetrimino" extends="base.definition">
+		<put-attribute name="title" value="Ajout d'un tetrimino" />
+		<put-attribute name="contenu" value="/WEB-INF/views/jsp/ajouterTetrimino.jsp" />
+	</definition>
+	
+	<!-- Configuration de la vue "listeParties" -->
+	<definition name="listeParties" extends="base.definition">
+		<put-attribute name="title" value="Liste des parties" />
+		<put-attribute name="contenu" value="/WEB-INF/views/jsp/listerParties.jsp" />
+	</definition>
+	
+	<!-- Configuration de la vue "modifFigure" -->
+	<definition name="modifFigure" extends="base.definition">
+		<put-attribute name="title" value="Modification d'une figure" />
+		<put-attribute name="contenu" value="/WEB-INF/views/jsp/modifierFigure.jsp" />
+	</definition>
+	
+	<!-- Configuration de la vue "modifTetrimino" -->
+	<definition name="modifTetrimino" extends="base.definition">
+		<put-attribute name="title" value="Modification d'un tetrimino" />
+		<put-attribute name="contenu" value="/WEB-INF/views/jsp/modifierTetrimino.jsp" />
+	</definition>
+</tiles-definitions>

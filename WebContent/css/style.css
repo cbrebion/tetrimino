@@ -74,3 +74,7 @@ input[type=color]:not(.browser-default) {
 	box-sizing: content-box;
 	transition: all 0.3s;
 }
+
+.posRelative {
+	position: relative !important;
+}

@@ -25,7 +25,7 @@ public class SignInServlet extends HttpServlet {
 	@Autowired
 	private IJoueurDAO joueurHibernateDAO;
 	
-	private static final String VUE_SIGNIN		= "/WEB-INF/signin.jsp";
+	private static final String VUE_SIGNIN		= "/WEB-INF/views/jsp/signin.jsp";
 	private static final String VUE_POST		= "accueil";
 	
 	private static final String CHAMP_NOM		= "nom";

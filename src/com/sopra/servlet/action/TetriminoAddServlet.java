@@ -22,7 +22,7 @@ import com.sopra.model.Tetrimino;
 public class TetriminoAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static final String VUE_GET					= "/WEB-INF/ajouterTetrimino.jsp";
+	private static final String VUE_GET					= "/WEB-INF/views/jsp/ajouterTetrimino.jsp";
 	private static final String VUE_POST				= "/tetrimino/listeTetriminos";
 	
 	private static final String ATT_NOM					= "nom";

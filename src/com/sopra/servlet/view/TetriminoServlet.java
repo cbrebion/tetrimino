@@ -18,11 +18,11 @@ import com.sopra.model.Tetrimino;
 /**
  * Servlet implementation class TetriminoServlet
  */
-@WebServlet("/tetrimino")
+//@WebServlet("/tetrimino")
 public class TetriminoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static final String VUE_GET		= "/WEB-INF/afficherTetrimino.jsp";
+	private static final String VUE_GET		= "/WEB-INF/views/jsp/afficherTetrimino.jsp";
 	
 	private static final String PARAM_ID	= "id";
 	

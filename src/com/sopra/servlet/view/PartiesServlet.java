@@ -16,11 +16,11 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import com.sopra.dao.IPartieDAO;
 import com.sopra.model.Partie;
 
-@WebServlet("/listeParties")
+//@WebServlet("/listeParties")
 public class PartiesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final String VUE_LISTE	= "/WEB-INF/listerParties.jsp";
+	private static final String VUE_LISTE	= "/WEB-INF/views/jsp/listerParties.jsp";
 	
 	@Autowired
 	private IPartieDAO partieHibernateDAO;

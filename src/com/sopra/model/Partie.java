@@ -24,10 +24,6 @@ public class Partie implements Serializable {
 	@Column(name="par_id")
 	private int id;
 	
-	@Column(name="par_score")
-	@NotNull
-	private int score;
-	
 	@Column(name="par_finie")
 	@NotNull
 	private boolean finie;
@@ -51,10 +47,6 @@ public class Partie implements Serializable {
 		return id;
 	}
 
-	public int getScore() {
-		return score;
-	}
-
 	public boolean isFinie() {
 		return finie;
 	}
@@ -69,10 +61,6 @@ public class Partie implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public void setScore(int score) {
-		this.score = score;
 	}
 
 	public void setFinie(boolean finie) {

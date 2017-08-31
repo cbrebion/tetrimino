@@ -39,7 +39,7 @@ public class FigureModifyServlet extends HttpServlet {
 	@Autowired
 	private IBlocDAO blocHibernateDAO;
 	
-	public static final String VUE_GET				= "/WEB-INF/modifierFigure.jsp";
+	public static final String VUE_GET				= "/WEB-INF/views/jsp/modifierFigure.jsp";
 	public static final String VUE_POST				= "/tetrimino/tetrimino";
 	
 	private static final String PARAM_ID_TETRIMINO	= "idTetrimino";
