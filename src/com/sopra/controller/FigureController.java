@@ -270,7 +270,6 @@ public class FigureController {
 			model.addAttribute(ATT_TETRIMINO_ID, idTetrimino);
 			model.addAttribute(ATT_ERREUR, "Erreur dans la modification");
 			
-			//return "redirect:/modifFigure?idTetrimino=" + idTetrimino + "&idFigure=" + idFigure;
 			return "modifFigure";
 		}
 		
