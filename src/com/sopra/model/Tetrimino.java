@@ -16,6 +16,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.OrderBy;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="tetrimino")
@@ -26,7 +28,7 @@ public class Tetrimino implements Serializable
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="tet_id")
-	private int id;
+	private Integer id;
 	
 	@Column(name="tet_nom")
 	@NotNull
@@ -41,18 +43,19 @@ public class Tetrimino implements Serializable
 	
 	@Column(name="tet_coeff")
 	@NotNull
-	private double coeff;
+	private Double coeff;
 	
+	@JsonIgnore
 	@OrderBy(clause="ordreRotation")
 	@OneToMany(mappedBy="tetrimino")
 	private List<Figure> figures;
 	
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
@@ -88,11 +91,11 @@ public class Tetrimino implements Serializable
 		this.figures = figures;
 	}
 
-	public double getCoeff() {
+	public Double getCoeff() {
 		return coeff;
 	}
 
-	public void setCoeff(double coeff) {
+	public void setCoeff(Double coeff) {
 		this.coeff = coeff;
 	}
 }

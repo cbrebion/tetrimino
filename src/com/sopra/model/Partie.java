@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="partie")
 public class Partie implements Serializable {
@@ -22,11 +24,11 @@ public class Partie implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="par_id")
-	private int id;
+	private Integer id;
 	
 	@Column(name="par_finie")
 	@NotNull
-	private boolean finie;
+	private Boolean finie;
 	
 	@ManyToOne
 	@JoinColumn(name="par_joueur1_id")
@@ -36,6 +38,7 @@ public class Partie implements Serializable {
 	@JoinColumn(name="par_joueur2_id")
 	private Joueur joueur2;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="partie")
 	private List<Score> scores;
 
@@ -43,11 +46,11 @@ public class Partie implements Serializable {
 	public Partie() {}
 	
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public boolean isFinie() {
+	public Boolean getFinie() {
 		return finie;
 	}
 
@@ -59,11 +62,11 @@ public class Partie implements Serializable {
 		return joueur2;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public void setFinie(boolean finie) {
+	public void setFinie(Boolean finie) {
 		this.finie = finie;
 	}
 

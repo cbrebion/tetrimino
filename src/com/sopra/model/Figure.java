@@ -12,10 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="figure")
@@ -25,7 +24,7 @@ public class Figure implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="fig_id")
-	private int id;
+	private Integer id;
 	
 	@Column(name="fig_ordre_rotation")
 	@NotNull(message="Merci de renseigner un ordre de rotation")
@@ -35,11 +34,12 @@ public class Figure implements Serializable {
 	@JoinColumn(name="fig_tetrimino_id")
 	private Tetrimino tetrimino;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="figure")
 	private List<Bloc> blocs;
 
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -55,7 +55,7 @@ public class Figure implements Serializable {
 		return blocs;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

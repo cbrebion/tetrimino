@@ -12,7 +12,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -25,30 +24,30 @@ public class Personne implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="per_id")
-	private int id;
+	private Integer id;
 	
 	@Column(name="per_username")
 	@NotNull
 	@NotEmpty(message="Merci de renseigner le nom d'utilisateur")
-	private String username;
+	protected String username;
 	
 	@Column(name="per_password")
 	@NotNull
 	@NotEmpty(message="Merci de renseigner le mot de passe")
-	private String password;
+	protected String password;
 	
 	@Column(name="per_nom")
 	@NotEmpty(message="Merci de renseigner le nom")
-	private String nom;
+	protected String nom;
 	
 	@Column(name="per_prenom")
 	@NotEmpty(message="Merci de renseigner le prénom")
-	private String prenom;
+	protected String prenom;
 
 	
 	public Personne() {}
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -68,10 +67,10 @@ public class Personne implements Serializable {
 		return prenom;
 	}
 	
-	public int getType() { return 0; }
+	public Integer getType() { return 0; }
 	
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

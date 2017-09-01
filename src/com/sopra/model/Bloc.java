@@ -20,30 +20,30 @@ public class Bloc implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="blo_id")
-	private int id;
+	protected Integer id;
 	
 	@Column(name="blo_x")
 	@NotNull
-	private int x;
+	protected Integer x;
 	
 	@Column(name="blo_y")
 	@NotNull
-	private int y;
+	protected Integer y;
 	
 	@ManyToOne
 	@JoinColumn(name="blo_figure_id")
-	private Figure figure;
+	protected Figure figure;
 	
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public int getX() {
+	public Integer getX() {
 		return x;
 	}
 
-	public int getY() {
+	public Integer getY() {
 		return y;
 	}
 
@@ -51,15 +51,15 @@ public class Bloc implements Serializable {
 		return figure;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public void setX(int x) {
+	public void setX(Integer x) {
 		this.x = x;
 	}
 
-	public void setY(int y) {
+	public void setY(Integer y) {
 		this.y = y;
 	}
 

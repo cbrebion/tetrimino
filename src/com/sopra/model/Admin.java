@@ -12,7 +12,7 @@ public class Admin extends Personne {
 	
 	public Admin() {}
 	
-	public int getType() {
+	public Integer getType() {
 		return 1;
 	}
 

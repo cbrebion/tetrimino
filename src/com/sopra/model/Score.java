@@ -19,16 +19,16 @@ public class Score implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="sco_id")
-	private int id;
+	private Integer id;
 	
 	@Column(name="sco_points")
-	private int points;
+	private Integer points;
 	
 	@Column(name="sco_lines")
-	private int lines;
+	private Integer lines;
 	
 	@Column(name="sco_level")
-	private int level;
+	private Integer level;
 	
 	@ManyToOne
 	@JoinColumn(name="sco_joueur_id")
@@ -38,15 +38,15 @@ public class Score implements Serializable {
 	@JoinColumn(name="sco_partie_id")
 	private Partie partie;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public int getLines() {
+	public Integer getLines() {
 		return lines;
 	}
 
-	public int getLevel() {
+	public Integer getLevel() {
 		return level;
 	}
 
@@ -58,19 +58,19 @@ public class Score implements Serializable {
 		return partie;
 	}
 	
-	public int getPoints() {
+	public Integer getPoints() {
 		return points;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public void setLines(int lines) {
+	public void setLines(Integer lines) {
 		this.lines = lines;
 	}
 
-	public void setLevel(int level) {
+	public void setLevel(Integer level) {
 		this.level = level;
 	}
 
@@ -82,7 +82,7 @@ public class Score implements Serializable {
 		this.partie = partie;
 	}
 	
-	public void setPoints(int points) {
+	public void setPoints(Integer points) {
 		this.points = points;
 	}
 }
