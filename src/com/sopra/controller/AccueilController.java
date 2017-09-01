@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sopra.dao.IPersonneDAO;
 import com.sopra.model.Admin;
+import com.sopra.model.Joueur;
 import com.sopra.model.Personne;
 
 @Controller
 public class AccueilController {
 	
 	private static final String ATT_ADMIN	= "admin";
+	private static final String ATT_JOUEUR	= "joueur";
 	private static final String ATT_ERREUR	= "erreur";
 	
 	@Autowired
@@ -68,7 +70,8 @@ public class AccueilController {
 				}
 				// Si c'est un joueur
 				else {
-					model.addAttribute(ATT_ERREUR, "home.notAdmin");
+					Joueur joueur = (Joueur) personne;
+					session.setAttribute(ATT_JOUEUR, joueur);
 					
 					return "accueil";
 				}

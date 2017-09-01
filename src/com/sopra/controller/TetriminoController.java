@@ -21,6 +21,7 @@ import com.sopra.model.Tetrimino;
 public class TetriminoController {
 	private static final String ATT_TETRIMINO	= "tetrimino";
 	private static final String ATT_TETRIMINOS	= "tetriminos";
+	private static final String ATT_ERREUR		= "erreur";
 	
 	@Autowired
 	private ITetriminoDAO tetriminoHibernateDAO;
@@ -119,6 +120,8 @@ public class TetriminoController {
 		
 		if (result.hasErrors()) {
 			model.addAttribute(ATT_TETRIMINO, tetrimino);
+			
+			model.addAttribute(ATT_ERREUR, "Erreur dans la modification");
 			
 			return "modifTetrimino";
 		}

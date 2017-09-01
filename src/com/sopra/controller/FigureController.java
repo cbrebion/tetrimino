@@ -25,7 +25,9 @@ import com.sopra.model.Tetrimino;
 @Controller
 public class FigureController {
 	private static final String ATT_TETRIMINO		= "tetrimino";
+	private static final String ATT_TETRIMINO_ID	= "idTetrimino";
 	private static final String ATT_FIGURE			= "figure";
+	private static final String ATT_FIGURE_ID		= "idFigure";
 	private static final String ATT_ERREUR			= "erreur";
 	
 	private static final String SESSION_BLOCS		= "blocs";
@@ -130,7 +132,9 @@ public class FigureController {
 		if (result.hasErrors()) {
 			session.setAttribute(SESSION_BLOCS, blocs);
 			model.addAttribute(ATT_TETRIMINO, tetrimino);
-			return "redirect:/ajoutFigure?id=" + idTetrimino;
+			model.addAttribute(ATT_TETRIMINO_ID, idTetrimino);
+			
+			return "ajoutFigure";
 		}
 	 
 		// Si on tente de valider sans avoir cliqué sur un seul bloc
@@ -138,7 +142,8 @@ public class FigureController {
 			model.addAttribute(ATT_ERREUR, "Veuillez créer au moins une figure");
 			session.setAttribute(SESSION_BLOCS, blocs);
 			model.addAttribute(ATT_TETRIMINO, tetrimino);
-			return "redirect:/ajoutFigure?id=" + idTetrimino;
+			model.addAttribute(ATT_TETRIMINO_ID, idTetrimino);
+			return "ajoutFigure";
 		}
 		
 		
@@ -259,8 +264,12 @@ public class FigureController {
 		if (result.hasErrors()) {
 			model.addAttribute(ATT_TETRIMINO, tetrimino);
 			model.addAttribute(ATT_FIGURE, figure);
+			model.addAttribute(ATT_FIGURE_ID, idFigure);
+			model.addAttribute(ATT_TETRIMINO_ID, idTetrimino);
+			model.addAttribute(ATT_ERREUR, "Erreur dans la modification");
 			
-			return "redirect:/modifFigure?idTetrimino=" + idTetrimino + "&idFigure=" + idFigure;
+			//return "redirect:/modifFigure?idTetrimino=" + idTetrimino + "&idFigure=" + idFigure;
+			return "modifFigure";
 		}
 		
 		figure.setOrdreRotation(f.getOrdreRotation());

@@ -42,7 +42,7 @@ public class Tetrimino implements Serializable
 	private String couleur;
 	
 	@Column(name="tet_coeff")
-	@NotNull
+	@NotNull(message="Veuillez renseigner un coefficient")
 	private Double coeff;
 	
 	@JsonIgnore

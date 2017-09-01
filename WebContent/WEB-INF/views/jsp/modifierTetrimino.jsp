@@ -19,7 +19,8 @@
 		<button class="btn waves-effect waves-light red darken-4" type="submit" name="action">
 			Modifier <i class="material-icons right">send</i>
 		</button>
-		<br><span class="erreur" style="color: red;"><form:errors path="nom" /></span><br>
+		<br><span class="erreur" style="color: red;">${ erreur }</span><br>
+		<span class="erreur" style="color: red;"><form:errors path="nom" /></span><br>
 		<span class="erreur" style="color: red;"><form:errors path="couleur" /></span><br>
 		<span class="erreur" style="color: red;"><form:errors path="coeff" /></span>
 		

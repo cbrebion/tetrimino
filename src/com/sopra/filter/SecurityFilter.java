@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//@WebFilter("/*")
+@WebFilter("/*")
 public class SecurityFilter implements Filter {
 
 	private static final String VUE_LOGIN	= "/tetrimino/accueil";
@@ -28,6 +28,21 @@ public class SecurityFilter implements Filter {
         if ( chemin.startsWith( "/inc" ) || chemin.startsWith("/css") || chemin.startsWith("/img") || chemin.startsWith("/fonts") || chemin.startsWith("/js") ) {
             chain.doFilter( request, response );
             return;
+        }
+        
+        // Accès à l'API pour le joueur
+        if (request.getRequestURI().contains("/api/")) {
+        	// Accès à la connexion
+        	if (request.getRequestURI().contains("/tetrimino/api/joueur/connect")) {
+        		chain.doFilter(request, response);
+        		return;
+        	}
+        	
+        	// Accès uniquement si connecté en tant que joueur
+        	if (request.getSession().getAttribute("joueur") != null) {
+        		chain.doFilter(request, response);
+        		return;
+        	}
         }
 
 		// Demande d'accès à l'accueil

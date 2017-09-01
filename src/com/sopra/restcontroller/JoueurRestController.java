@@ -9,18 +9,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sopra.dao.IJoueurDAO;
+import com.sopra.dao.IPersonneDAO;
 import com.sopra.generic.Tools;
 import com.sopra.model.Joueur;
+import com.sopra.model.Personne;
 
 @RestController
 @RequestMapping("/joueur")
 public class JoueurRestController {
 	@Autowired
 	private IJoueurDAO joueurHibernateDAO;
+	
+	@Autowired
+	private IPersonneDAO personneHibernateDAO;
 	
 	
 	/**
@@ -84,4 +90,30 @@ public class JoueurRestController {
 	public ResponseEntity<Joueur> getById(@PathVariable(value="id", required=true) Integer id) {
 		return new ResponseEntity<Joueur>(this.joueurHibernateDAO.find(id), HttpStatus.OK);
 	}
+	
+	
+	@RequestMapping(value="connect/{username}", method=RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<Joueur> connect(@PathVariable(value="username", required=true) String username,
+			@RequestParam(value="password", required=true) String password) {
+				
+			Personne personne = this.personneHibernateDAO.findByUsername(username);
+			Joueur joueur;
+			
+			if (personne != null) {
+				if (personne.getPassword().equals(password)) {
+					if (personne.getType() == 2) {
+						joueur = (Joueur) personne;
+						
+						System.out.println("EXISTE");
+						return new ResponseEntity<Joueur>(joueur, HttpStatus.OK);
+					}
+					System.out.println("PAS JOUEUR");
+				}
+				System.out.println("MDP INCORRECT");
+			}
+			System.out.println("EXISTE PAS");
+			// La personne n'existe pas en DB
+			return new ResponseEntity<Joueur>(HttpStatus.BAD_REQUEST);
+		}
 }
