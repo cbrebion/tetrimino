@@ -53,6 +53,7 @@ public class FigureController {
 	 * @param model
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/ajoutFigure", method = RequestMethod.GET)
 	public String ajoutFigure(@RequestParam(value="id", required=true) int idTetrimino,
 			@RequestParam(value="x", required=false) Integer x,
@@ -113,6 +114,7 @@ public class FigureController {
 	 * @param model
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/ajoutFigure", method = RequestMethod.POST)
 	public String ajoutFigure(@Valid @ModelAttribute("figure") Figure f,
 			BindingResult result,
