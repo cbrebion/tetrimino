@@ -24,23 +24,27 @@ public class Partie implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="par_id")
-	private Integer id;
+	protected Integer id;
 	
 	@Column(name="par_finie")
 	@NotNull
-	private Boolean finie;
+	protected Boolean finie;
+	
+	@Column(name="par_type")
+	@NotNull
+	protected Boolean type;
 	
 	@ManyToOne
 	@JoinColumn(name="par_joueur1_id")
-	private Joueur joueur1;
+	protected Joueur joueur1;
 	
 	@ManyToOne
 	@JoinColumn(name="par_joueur2_id")
-	private Joueur joueur2;
+	protected Joueur joueur2;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="partie")
-	private List<Score> scores;
+	protected List<Score> scores;
 
 	
 	public Partie() {}
@@ -86,6 +90,16 @@ public class Partie implements Serializable {
 
 	public void setScores(List<Score> scores) {
 		this.scores = scores;
+	}
+
+
+	public Boolean getType() {
+		return type;
+	}
+
+
+	public void setType(Boolean type) {
+		this.type = type;
 	}
 
 }

@@ -1,5 +1,9 @@
 package com.sopra.restcontroller;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sopra.dao.IPartieDAO;
 import com.sopra.model.Partie;
+import com.sopra.model.PartieJSON;
 
 
 @RestController
@@ -35,4 +40,16 @@ public class PartieRestController {
 	
 	
 	
+	@RequestMapping(value="", method=RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<List<PartieJSON>> getAll() {
+		List<Partie> parties = this.partieHibernateDAO.findAll();
+		List<PartieJSON> partiesJSON = new ArrayList<PartieJSON>();
+		
+		for (Partie partie : parties) {
+			partiesJSON.add(new PartieJSON(partie));
+		}
+		
+		return new ResponseEntity<List<PartieJSON>>(partiesJSON, HttpStatus.OK);
+	}
 }
