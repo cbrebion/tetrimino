@@ -92,7 +92,13 @@ public class JoueurRestController {
 	}
 	
 	
-	@RequestMapping(value="connect/{username}", method=RequestMethod.POST)
+	/**
+	 * CONNEXION D'UN JOUEUR
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	@RequestMapping(value="login/{username}", method=RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<Joueur> connect(@PathVariable(value="username", required=true) String username,
 			@RequestParam(value="password", required=true) String password) {
