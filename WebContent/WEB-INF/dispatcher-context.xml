@@ -46,6 +46,8 @@
 	<mvc:resources location="/js/" mapping="/js/**" />
 	<!-- Chargement des resources FONTS -->
 	<mvc:resources location="/fonts/" mapping="/fonts/**" />
+	<!-- Chargement des resources IMAGES -->
+	<mvc:resources location="/img/" mapping="/img/**" />
 	
 	
 	<!-- Configuration du Cookie pour le changement de la langue à la volée -->
