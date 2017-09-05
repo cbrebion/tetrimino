@@ -1,0 +1,103 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+	
+	<f:view contentType="text/html">
+		<h:head>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+			<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+				rel="stylesheet" />
+				
+			<link href="/tetrimino/css/materialize.min.css" type="text/css" rel="stylesheet"
+				media="screen,projection" />
+			
+			<link href="/tetrimino/css/style.css" type="text/css" rel="stylesheet"
+				media="screen,projection" />
+			
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			
+			<title>FAQ</title>
+		</h:head>
+		
+		<h:body>
+		
+			<nav class="red darken-4" role="navigation">
+				<div class="nav-wrapper container">
+					<a id="logo-container" href="/tetrimino/acceuilAdmin" class="brand-logo">Tetrimino</a>
+					
+					<!-- Affichage des drapeaux pour l'internationalisation -->
+					<a href="${uri}?lang=en"><img title="Anglais" alt="Anglais" src="/tetrimino/img/en.png" style="float:right;" /></a>
+					<a href="${uri}?lang=fr"><img title="Français" alt="Français" src="/tetrimino/img/fr.png" style="float:right;" /></a>
+					
+					
+					
+					<!-- Lien de déconnexion si connecté -->
+					<ul class="right hide-on-med-and-down">
+						<li><a href="/tetrimino/deconnexion">Déconnexion</a></li>
+					</ul>
+					
+					<!-- Lien du menu, uniquement si connecté en tant qu'admin -->
+					<ul class="right hide-on-med-and-down">
+						<li>
+							<a href="/tetrimino/listeJoueurs">Liste des joueurs</a>
+						</li>
+					</ul>
+					
+					<ul class="right hide-on-med-and-down">
+						<li>
+							<a href="/tetrimino/listeParties">Liste des parties</a>
+						</li>
+					</ul>
+				
+					<ul class="right hide-on-med-and-down">
+						<li>
+							<a href="/tetrimino/listeTetriminos">Liste des tetriminos</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		
+			<div class="row container" >
+				<h5><b>Ajout FAQ</b></h5>
+				<h:form>
+					<div class="input-field col s6">
+						<h:outputLabel for="langueChoisie">Langues</h:outputLabel><br />
+						<h:selectOneMenu id="langueChoisie" value="#{ faqController.langues }">
+							<f:selectItems value="#{ faqController.langues }" var="langue" itemLabel="#{ langue.libelle }" itemValue="#{ langue.id }" />
+						</h:selectOneMenu>
+					</div>
+					<div class="input-field col s6">
+						<h:outputLabel for="faqChoisie">Libellé FAQ</h:outputLabel><br />
+						<h:selectOneMenu id="faqChoisie" value="#{ faqController.faqsBD }">
+							<f:selectItems value="#{ faqController.faqsBD }" var="faq" itemLabel="#{ faq.libelle }" itemValue="#{ faq.id }" />
+						</h:selectOneMenu>
+					</div>
+					<div class="input-field col s12">
+						<h:outputLabel for="question">Question</h:outputLabel>
+						<h:inputText id="question" value="#{ faqController.faqLangue.question }" />
+					</div>
+					<div class="input-field col s12">
+						<h:inputTextarea id="reponse" value="#{ faqController.faqLangue.reponse }" class="materialize-textarea" />
+						<h:outputLabel for="reponse">Réponse</h:outputLabel>
+					</div>
+					<h:commandButton value="Ajouter" action="#{ faqController.save }" />
+				</h:form>
+			</div>
+			
+			<!-- Code Javascript -->
+			<script type="text/javascript"
+				src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+			<script type="text/javascript" src="/tetrimino/js/materialize.min.js"></script>
+			
+			
+			<script>
+			$(document).ready(function() {
+			    $('select').material_select();
+			  });
+			</script>
+		</h:body>
+	
+	</f:view>
+</html>

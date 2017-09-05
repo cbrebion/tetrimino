@@ -24,6 +24,10 @@ public class Langue implements Serializable {
 	@Column(name="lan_id")
 	protected Integer id;
 	
+	@Column(name="lan_libelle")
+	@NotNull
+	protected String libelle;
+	
 	@Column(name="lan_code")
 	@NotNull
 	protected String code;
@@ -62,6 +66,14 @@ public class Langue implements Serializable {
 
 	public void setFaqLangues(List<FAQLangue> faqLangues) {
 		this.faqLangues = faqLangues;
+	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
 
 }
