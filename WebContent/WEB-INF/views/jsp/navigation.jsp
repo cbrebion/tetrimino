@@ -22,10 +22,10 @@
 			<c:when test="${ empty langURL }">
 				<c:choose>
 					<c:when test='${ langCookie.equals("fr") }'>
-							<a href="${uri}?lang=en"><img alt="Anglais" src="/tetrimino/img/en.png" style="float:right;" /></a>
+							<a href="${uri}?lang=en"><img title="Anglais" alt="Anglais" src="/tetrimino/img/en.png" style="float:right;" /></a>
 					</c:when>
 					<c:otherwise>
-							<a href="${uri}?lang=fr"><img alt="Français" src="/tetrimino/img/fr.png" style="float:right;" /></a>
+							<a href="${uri}?lang=fr"><img title="Français" alt="Français" src="/tetrimino/img/fr.png" style="float:right;" /></a>
 					</c:otherwise>
 				</c:choose>
 			</c:when>
@@ -33,10 +33,10 @@
 			<c:otherwise>
 				<c:choose>
 					<c:when test='${ langURL.equals("fr") }'>
-							<a href="${uri}?lang=en"><img alt="Anglais" src="/tetrimino/img/en.png" style="float:right;" /></a>
+							<a href="${uri}?lang=en"><img title="Anglais" alt="Anglais" src="/tetrimino/img/en.png" style="float:right;" /></a>
 					</c:when>
 					<c:when test='${ langURL.equals("en") }'>
-							<a href="${uri}?lang=fr"><img alt="Français" src="/tetrimino/img/fr.png" style="float:right;" /></a>
+							<a href="${uri}?lang=fr"><img title="Français" alt="Français" src="/tetrimino/img/fr.png" style="float:right;" /></a>
 					</c:when>
 				</c:choose>
 			</c:otherwise>
