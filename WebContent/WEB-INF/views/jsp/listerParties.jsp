@@ -11,6 +11,13 @@
 				</c:choose>
 			</c:set>
 			
+			<c:set var="typePartie">
+				<c:choose>
+					<c:when test="${!item.type}">Solo</c:when>
+					<c:otherwise>1 vs 1</c:otherwise>
+				</c:choose>
+			</c:set>
+			
 			<c:set var="scoreJoueur1">null</c:set>
 			<c:set var="scoreJoueur2">null</c:set>
 			
@@ -24,9 +31,11 @@
 			</c:forEach>
 
 			<div class="collection-item avatar">
-				<b>Partie <c:out value="${item.id}" /></b><br>
+				<b>Partie <c:out value="${item.id}" /> - <c:out value="${typePartie}" /></b><br>
 				Score <c:out value="${item.joueur1.username}" /> : <c:out value="${ scoreJoueur1 }" /><br>
-				Score <c:out value="${item.joueur2.username}" /> : <c:out value="${ scoreJoueur2 }" /><br>
+				<c:if test="${ !empty item.joueur2 }">
+					Score <c:out value="${item.joueur2.username}" /> : <c:out value="${ scoreJoueur2 }" /><br>
+				</c:if>
 				<c:out value="${etatPartie}" />
 			</div>
 		</c:forEach>

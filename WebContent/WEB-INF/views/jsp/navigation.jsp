@@ -14,31 +14,61 @@
 	<div class="nav-wrapper container">
 		<a id="logo-container" href="${ accueil }" class="brand-logo">Tetrimino</a>
 		
-		<c:if test="${ !empty sessionScope.admin }">
-			<ul class="right hide-on-med-and-down">
-				<li <c:if test='${ uri.equals("/tetrimino/listeTetriminos") }'>class="active"</c:if>><a href="/tetrimino/listeTetriminos"><spring:message code="navigation.tetriminos" /></a></li>
-			</ul>
-			
-			<ul class="right hide-on-med-and-down">
-				<li <c:if test='${ uri.equals("/tetrimino/listeJoueurs") }'>class="active"</c:if>><a href="/tetrimino/listeJoueurs"><spring:message code="navigation.joueurs" /></a></li>
-			</ul>
-			
-			<ul class="right hide-on-med-and-down">
-				<li <c:if test='${ uri.equals("/tetrimino/listeParties") }'>class="active"</c:if>><a href="/tetrimino/listeParties"><spring:message code="navigation.parties" /></a></li>
-			</ul>
+		<!-- Affichage des drapeaux pour l'internationalisation -->
+		<c:set var="langCookie">${ cookie['lang'].value }</c:set>
+		<c:set var="langURL">${ param.lang }</c:set>
 		
-		</c:if>
+		<c:choose>
+			<c:when test="${ empty langURL }">
+				<c:choose>
+					<c:when test='${ langCookie.equals("fr") }'>
+							<a href="${uri}?lang=en"><img alt="Anglais" src="/tetrimino/img/en.png" style="float:right;" /></a>
+					</c:when>
+					<c:otherwise>
+							<a href="${uri}?lang=fr"><img alt="Français" src="/tetrimino/img/fr.png" style="float:right;" /></a>
+					</c:otherwise>
+				</c:choose>
+			</c:when>
+			
+			<c:otherwise>
+				<c:choose>
+					<c:when test='${ langURL.equals("fr") }'>
+							<a href="${uri}?lang=en"><img alt="Anglais" src="/tetrimino/img/en.png" style="float:right;" /></a>
+					</c:when>
+					<c:when test='${ langURL.equals("en") }'>
+							<a href="${uri}?lang=fr"><img alt="Français" src="/tetrimino/img/fr.png" style="float:right;" /></a>
+					</c:when>
+				</c:choose>
+			</c:otherwise>
+		</c:choose>
 		
+		
+		<!-- Lien de déconnexion si connecté -->
 		<c:if test="${ !empty sessionScope.admin or !empty sessionScope.joueur }">
 			<ul class="right hide-on-med-and-down">
 				<li><a href="/tetrimino/deconnexion"><spring:message code="navigation.deconnexion" /></a></li>
 			</ul>
 		</c:if>
 		
-		<!-- OK mais nécessité de refresh la page pour que le drapeau change -->
-		<c:set var="lang">${ cookie['lang'].value }</c:set>
-		<c:if test='${ !lang.equals("fr") }'><a href="${uri}?lang=fr"><img alt="Français" src="/tetrimino/img/fr.png" style="float:right;" /></a></c:if>
-		<c:if test='${ !lang.equals("en") }'><a href="${uri}?lang=en"><img alt="Anglais" src="/tetrimino/img/en.png" style="float:right;" /></a></c:if>
+		<!-- Lien du menu, uniquement si connecté en tant qu'admin -->
+		<c:if test="${ !empty sessionScope.admin }">
+			<ul class="right hide-on-med-and-down">
+				<li <c:if test='${ uri.equals("/tetrimino/listeJoueurs") }'>class="active"</c:if>>
+					<a href="/tetrimino/listeJoueurs"><spring:message code="navigation.joueurs" /></a>
+				</li>
+			</ul>
+			
+			<ul class="right hide-on-med-and-down">
+				<li <c:if test='${ uri.equals("/tetrimino/listeParties") }'>class="active"</c:if>>
+					<a href="/tetrimino/listeParties"><spring:message code="navigation.parties" /></a>
+				</li>
+			</ul>
 		
+			<ul class="right hide-on-med-and-down">
+				<li <c:if test='${ uri.equals("/tetrimino/listeTetriminos") }'>class="active"</c:if>>
+					<a href="/tetrimino/listeTetriminos"><spring:message code="navigation.tetriminos" /></a>
+				</li>
+			</ul>
+		</c:if>
 	</div>
 </nav>
