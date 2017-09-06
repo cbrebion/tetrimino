@@ -98,10 +98,11 @@ public class FaqController implements Serializable {
 	
 	public String delete(int id) {
 		this.faqLangue = faqLangueHibernateDAO.find(id);
+		System.out.println(faqLangue.getId());
 		
-		//faqLangueHibernateDAO.delete(faqLangue);
+		faqLangueHibernateDAO.delete(faqLangue);
 		
-		return "faq.xhtml";
+		return "faq.xhtml?faces-redirect=true";
 	}
 
 	public List<FAQLangue> getFaqs() {

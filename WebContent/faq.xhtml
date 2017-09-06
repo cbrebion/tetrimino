@@ -13,8 +13,6 @@
 		<div class="container" >
 			<h5><b>FAQ</b></h5>
 			<ul>
-			<h:form>
-			
 			<ui:repeat var="faqBD" value="#{ faqController.faqsBD }">
 				<li>
 					<div>
@@ -30,10 +28,12 @@
 							<ui:fragment rendered="#{ faq.langue.code eq cookie['lang'].value }">
 							<li>
 								<div class="collapsible-header">
-									<!-- <h:commandLink action="#{ faqController.delete(faq.id) }" ><i class="material-icons">cancel</i></h:commandLink> -->
-									<!-- <a href="#{ faqController.delete(faq.id) }" class="secondary-content posRelative" title="Supprimer"><i class="material-icons">cancel</i></a> -->
-									<a href="modifierFAQ.xhtml?idFAQLangue=#{faq.id}" class="secondary-content posRelative" title="Editer"><i class="material-icons">edit</i></a>
+								<h:form>
+									<h:commandLink action="#{ faqController.delete(faq.id) }" ><i class="material-icons">cancel</i></h:commandLink>
+									<a href="modifierFAQ.xhtml?idFAQLangue=#{faq.id}" title="Editer"><i class="material-icons">edit</i></a>
 									#{ faq.question }
+								
+								</h:form>
 								</div>
 								
 								<div class="collapsible-body">#{ faq.reponse }</div>
@@ -44,8 +44,6 @@
 					</ul>
 				</div></li>
 			</ui:repeat>
-			
-			</h:form>
 			</ul>
 			<p>
 				<a class="waves-effect waves-light btn red darken-4" href="/tetrimino/ajoutFAQ.xhtml"><i class="material-icons left">add</i>Ajouter une question</a>
