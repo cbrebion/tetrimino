@@ -5,7 +5,9 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -48,12 +50,22 @@ public class FaqController implements Serializable {
 		this.langues = langueHibernateDAO.findAll();
 		this.faqsBD = faqHibernateDAO.findAll();
 		this.faqLangue = new FAQLangue();
-		
+
 		HttpServletRequest req = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		HttpServletResponse resp = (HttpServletResponse)FacesContext.getCurrentInstance().getExternalContext().getResponse();
 		
 		if (req.getParameter("idFAQLangue") != null) {
 			idFAQ= Integer.parseInt(req.getParameter("idFAQLangue"));
 			this.faqLangue = faqLangueHibernateDAO.find(idFAQ);
+		}
+		
+		if (req.getParameter("lang") != null) {
+			for (Cookie cookie : req.getCookies()) {
+				if (cookie.getName().equals("lang")) {
+					cookie.setValue(req.getParameter("lang"));
+					resp.addCookie(cookie);
+				}
+			}
 		}
 	}
 	
@@ -67,7 +79,7 @@ public class FaqController implements Serializable {
 		
 		faqLangue = faqLangueHibernateDAO.save(faqLangue);
 		
-		return "faq";
+		return "faq?faces-redirect=true";
 	}
 	
 	public String modifier() {
@@ -83,7 +95,14 @@ public class FaqController implements Serializable {
 		this.faqLangue.setFaq(f);
 		
 		this.faqLangue = faqLangueHibernateDAO.save(this.faqLangue);
-		return "faq";
+		return "faq?faces-redirect=true";
+	}
+	
+	public String delete(int id) {
+		System.out.println(id);
+		this.faqLangue = faqLangueHibernateDAO.find(id);
+		System.out.println(faqLangue.getQuestion());
+		return "faq.xhtml";
 	}
 
 	public List<FAQLangue> getFaqs() {

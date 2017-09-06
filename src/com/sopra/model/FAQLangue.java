@@ -9,11 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.OrderBy;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="faqlangue")
@@ -41,6 +43,7 @@ public class FAQLangue implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="faql_faq_id")
+	@OrderBy("libelle")
 	protected FAQ faq;
 	
 	public Integer getId() {

@@ -48,4 +48,13 @@ public class FAQLangueHibernateDAO implements IFAQLangueDAO {
 		em.remove(em.merge(faqLangue));
 	}
 
+	@Override
+	public List<FAQLangue> findAllLanguage(String lang) {
+		try {
+			return (List<FAQLangue>)em.createQuery("FROM FAQLangue f WHERE f.langue.code = '" + lang + "'").getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
 }

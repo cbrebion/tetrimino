@@ -23,6 +23,11 @@
 		
 		<h:body>
 		
+			<ul id="menuFAQ" class="dropdown-content">
+				<li><a href="/tetrimino/faq.xhtml">FAQ</a></li>
+				<li><a href="/tetrimino/ajoutFAQ.xhtml">Ajout FAQ</a></li>
+			</ul>
+			
 			<nav class="red darken-4" role="navigation">
 				<div class="nav-wrapper container">
 					<a id="logo-container" href="/tetrimino/accueilAdmin" class="brand-logo">Tetrimino</a>
@@ -35,45 +40,57 @@
 					
 					<!-- Lien de déconnexion si connecté -->
 					<ul class="right hide-on-med-and-down">
+						<li>
+							<a href="/tetrimino/listeTetriminos">Tetriminos</a>
+						</li>
+						<li>
+							<a href="/tetrimino/listeParties">Parties</a>
+						</li>
+						<li>
+							<a href="/tetrimino/listeJoueurs">Joueurs</a>
+						</li>
+						<li><a class="dropdown-button" href="/tetrimino/faq.xhtml" data-activates="menuFAQ">FAQ</a></li>
 						<li><a href="/tetrimino/deconnexion">Déconnexion</a></li>
-					</ul>
-					
-					<!-- Lien du menu, uniquement si connecté en tant qu'admin -->
-					<ul class="right hide-on-med-and-down">
-						<li>
-							<a href="/tetrimino/listeJoueurs">Liste des joueurs</a>
-						</li>
-					</ul>
-					
-					<ul class="right hide-on-med-and-down">
-						<li>
-							<a href="/tetrimino/listeParties">Liste des parties</a>
-						</li>
-					</ul>
-				
-					<ul class="right hide-on-med-and-down">
-						<li>
-							<a href="/tetrimino/listeTetriminos">Liste des tetriminos</a>
-						</li>
 					</ul>
 				</div>
 			</nav>
 		
 			<div class="container" >
 				<h5><b>FAQ</b></h5>
-				<ul class="collapsible popup" data-collapsible="accordion">
-					<ui:repeat var="faq" value="#{ faqController.faqs }">
-						<ui:fragment rendered="#{ faq.langue.code eq cookie['lang'].value }">
-						<li>
-							<div class="collapsible-header">
-								<a href="modifierFAQ.xhtml?idFAQLangue=#{faq.id}" class="secondary-content posRelative" title="Editer"><i class="material-icons">edit</i></a>
-								#{ faq.question }
-							</div>
+				<ul>
+				<h:form>
+				
+				<ui:repeat var="faqBD" value="#{ faqController.faqsBD }">
+					<li>
+						<div>
+						#{ faqBD.libelle }
+						</div>
+						<div>
+							<ul class="collapsible popup" data-collapsible="accordion">
 							
-							<div class="collapsible-body">#{ faq.reponse }</div>
-						</li>
-						</ui:fragment>
-					</ui:repeat>
+							<ui:repeat var="faq" value="#{ faqController.faqs }">
+							<!-- Affiche les FAQLangue correspondantes au libelle FAQ en cours -->
+							<ui:fragment rendered="#{ faqBD.libelle eq faq.faq.libelle }">
+								<!-- Affiche les FAQ correspondantes à la langue du cookie -->
+								<ui:fragment rendered="#{ faq.langue.code eq cookie['lang'].value }">
+								<li>
+									<div class="collapsible-header">
+										<h:commandLink action="#{ faqController.delete(faq.id) }" ><i class="material-icons">cancel</i></h:commandLink>
+										<!-- <a href="#{ faqController.delete(faq.id) }" class="secondary-content posRelative" title="Supprimer"><i class="material-icons">cancel</i></a> -->
+										<a href="modifierFAQ.xhtml?idFAQLangue=#{faq.id}" class="secondary-content posRelative" title="Editer"><i class="material-icons">edit</i></a>
+										#{ faq.question }
+									</div>
+									
+									<div class="collapsible-body">#{ faq.reponse }</div>
+								</li>
+								</ui:fragment>
+							</ui:fragment>
+						</ui:repeat>
+						</ul>
+					</div></li>
+				</ui:repeat>
+				
+				</h:form>
 				</ul>
 				<p>
 					<a class="waves-effect waves-light btn red darken-4" href="/tetrimino/ajoutFAQ.xhtml"><i class="material-icons left">add</i>Ajouter une question</a>
@@ -89,6 +106,13 @@
 				    $('.collapsible').collapsible();
 				  });
 			</script>
+			
+			<script>
+			$(document).ready(function() {
+			    $(".dropdown-button").dropdown({ hover: true });
+			  });
+			</script>
+			
 		</h:body>
 	
 	</f:view>

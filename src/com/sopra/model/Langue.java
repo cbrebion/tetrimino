@@ -52,14 +52,6 @@ public class Langue implements Serializable {
 		this.code = code;
 	}
 
-	public List<FAQLangue> getFAQLangues() {
-		return faqLangues;
-	}
-
-	public void setFAQLangues(List<FAQLangue> fAQLangues) {
-		faqLangues = fAQLangues;
-	}
-
 	public List<FAQLangue> getFaqLangues() {
 		return faqLangues;
 	}

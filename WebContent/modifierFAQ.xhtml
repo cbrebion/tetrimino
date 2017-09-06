@@ -40,23 +40,23 @@
 					
 					<!-- Lien de déconnexion si connecté -->
 					<ul class="right hide-on-med-and-down">
-						<li><a href="/tetrimino/deconnexion">Déconnexion</a></li>
-						<li><a class="dropdown-button" href="/tetrimino/faq.xhtml" data-activates="menuFAQ">FAQ</a></li>
 						<li>
-							<a href="/tetrimino/listeJoueurs">Joueurs</a>
+							<a href="/tetrimino/listeTetriminos">Tetriminos</a>
 						</li>
 						<li>
 							<a href="/tetrimino/listeParties">Parties</a>
 						</li>
 						<li>
-							<a href="/tetrimino/listeTetriminos">Tetriminos</a>
+							<a href="/tetrimino/listeJoueurs">Joueurs</a>
 						</li>
+						<li><a class="dropdown-button" href="/tetrimino/faq.xhtml" data-activates="menuFAQ">FAQ</a></li>
+						<li><a href="/tetrimino/deconnexion">Déconnexion</a></li>
 					</ul>
 				</div>
 			</nav>
 		
 			<div class="row container" >
-				<h5><b>Ajout FAQ</b></h5>
+				<h5><b>Modifier FAQ</b></h5>
 				<h:form>
 					<h:inputHidden value="#{ faqController.idFAQ }" />
 					<div class="input-field col s6">
@@ -79,7 +79,7 @@
 						<h:inputTextarea id="reponse" value="#{ faqController.faqLangue.reponse }" class="materialize-textarea" />
 						<h:outputLabel for="reponse">Réponse</h:outputLabel>
 					</div>
-					<h:commandButton value="Ajouter" action="#{ faqController.modifier() }" />
+					<h:commandButton value="Modifier" action="#{ faqController.modifier() }" />
 				</h:form>
 			</div>
 			
