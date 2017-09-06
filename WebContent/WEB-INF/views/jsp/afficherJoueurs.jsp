@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class="container">
+	<h5><b>Liste des joueurs</b></h5>
 	<ul class="collection">
 
 		<c:forEach items="${joueurs}" var="item">

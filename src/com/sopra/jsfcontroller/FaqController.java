@@ -83,8 +83,6 @@ public class FaqController implements Serializable {
 	}
 	
 	public String modifier() {
-		System.out.println(idFAQ);
-		
 		FAQLangue fl = faqLangueHibernateDAO.find(idFAQ);
 		
 		FAQ f = faqHibernateDAO.find(this.faqChoisie);
@@ -99,9 +97,10 @@ public class FaqController implements Serializable {
 	}
 	
 	public String delete(int id) {
-		System.out.println(id);
 		this.faqLangue = faqLangueHibernateDAO.find(id);
-		System.out.println(faqLangue.getQuestion());
+		
+		//faqLangueHibernateDAO.delete(faqLangue);
+		
 		return "faq.xhtml";
 	}
 

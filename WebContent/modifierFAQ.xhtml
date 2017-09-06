@@ -1,101 +1,41 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/layout.xhtml">
 	
-	<f:view contentType="text/html">
-		<h:head>
-			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<ui:define name="titre">Modification FAQ</ui:define>
 	
-			<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-				rel="stylesheet" />
-				
-			<link href="/tetrimino/css/materialize.min.css" type="text/css" rel="stylesheet"
-				media="screen,projection" />
-			
-			<link href="/tetrimino/css/style.css" type="text/css" rel="stylesheet"
-				media="screen,projection" />
-			
-			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-			
-			<title>FAQ</title>
-		</h:head>
+	<ui:define name="contenu">
 		
-		<h:body>
-		
-		<ul id="menuFAQ" class="dropdown-content">
-			<li><a href="/tetrimino/faq.xhtml">FAQ</a></li>
-			<li><a href="/tetrimino/ajoutFAQ.xhtml">Ajout FAQ</a></li>
-		</ul>
-		
-			<nav class="red darken-4" role="navigation">
-				<div class="nav-wrapper container">
-					<a id="logo-container" href="/tetrimino/accueilAdmin" class="brand-logo">Tetrimino</a>
-					
-					<!-- Affichage des drapeaux pour l'internationalisation -->
-					<a href="${uri}?lang=en"><img title="Anglais" alt="Anglais" src="/tetrimino/img/en.png" style="float:right;" /></a>
-					<a href="${uri}?lang=fr"><img title="Français" alt="Français" src="/tetrimino/img/fr.png" style="float:right;" /></a>
-					
-					
-					
-					<!-- Lien de déconnexion si connecté -->
-					<ul class="right hide-on-med-and-down">
-						<li>
-							<a href="/tetrimino/listeTetriminos">Tetriminos</a>
-						</li>
-						<li>
-							<a href="/tetrimino/listeParties">Parties</a>
-						</li>
-						<li>
-							<a href="/tetrimino/listeJoueurs">Joueurs</a>
-						</li>
-						<li><a class="dropdown-button" href="/tetrimino/faq.xhtml" data-activates="menuFAQ">FAQ</a></li>
-						<li><a href="/tetrimino/deconnexion">Déconnexion</a></li>
-					</ul>
+		<div class="row container" >
+			<h5><b>Modifier FAQ</b></h5>
+			<h:form>
+				<h:inputHidden value="#{ faqController.idFAQ }" />
+				<div class="input-field col s6">
+					<h:outputLabel for="langueChoisie">Langues</h:outputLabel><br />
+					<h:selectOneMenu id="langueChoisie" value="#{ faqController.langueChoisie }">
+						<f:selectItems value="#{ faqController.langues }" var="langue" itemLabel="#{ langue.libelle }" itemValue="#{ langue.id }" />
+					</h:selectOneMenu>
 				</div>
-			</nav>
-		
-			<div class="row container" >
-				<h5><b>Modifier FAQ</b></h5>
-				<h:form>
-					<h:inputHidden value="#{ faqController.idFAQ }" />
-					<div class="input-field col s6">
-						<h:outputLabel for="langueChoisie">Langues</h:outputLabel><br />
-						<h:selectOneMenu id="langueChoisie" value="#{ faqController.langueChoisie }">
-							<f:selectItems value="#{ faqController.langues }" var="langue" itemLabel="#{ langue.libelle }" itemValue="#{ langue.id }" />
-						</h:selectOneMenu>
-					</div>
-					<div class="input-field col s6">
-						<h:outputLabel for="faqChoisie">Libellé FAQ</h:outputLabel><br />
-						<h:selectOneMenu id="faqChoisie" value="#{ faqController.faqChoisie }">
-							<f:selectItems value="#{ faqController.faqsBD }" var="faq" itemLabel="#{ faq.libelle }" itemValue="#{ faq.id }" />
-						</h:selectOneMenu>
-					</div>
-					<div class="input-field col s12">
-						<h:outputLabel for="question">Question</h:outputLabel>
-						<h:inputText id="question" value="#{ faqController.faqLangue.question }" />
-					</div>
-					<div class="input-field col s12">
-						<h:inputTextarea id="reponse" value="#{ faqController.faqLangue.reponse }" class="materialize-textarea" />
-						<h:outputLabel for="reponse">Réponse</h:outputLabel>
-					</div>
-					<h:commandButton value="Modifier" action="#{ faqController.modifier() }" />
-				</h:form>
-			</div>
-			
-			<!-- Code Javascript -->
-			<script type="text/javascript"
-				src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-			<script type="text/javascript" src="/tetrimino/js/materialize.min.js"></script>
-			
-			
-			<script>
-			$(document).ready(function() {
-			    $('select').material_select();
-			    $(".dropdown-button").dropdown({ hover: true });
-			  });
-			</script>
-		</h:body>
-	
-	</f:view>
-</html>
+				<div class="input-field col s6">
+					<h:outputLabel for="faqChoisie">Catégorie FAQ</h:outputLabel><br />
+					<h:selectOneMenu id="faqChoisie" value="#{ faqController.faqChoisie }">
+						<f:selectItems value="#{ faqController.faqsBD }" var="faq" itemLabel="#{ faq.libelle }" itemValue="#{ faq.id }" />
+					</h:selectOneMenu>
+				</div>
+				<div class="input-field col s12">
+					<h:outputLabel for="question">Question</h:outputLabel>
+					<h:inputText id="question" value="#{ faqController.faqLangue.question }" />
+				</div>
+				<div class="input-field col s12">
+					<h:inputTextarea id="reponse" value="#{ faqController.faqLangue.reponse }" class="materialize-textarea" />
+					<h:outputLabel for="reponse">Réponse</h:outputLabel>
+				</div>
+				<h:commandButton value="Modifier" action="#{ faqController.modifier() }" />
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

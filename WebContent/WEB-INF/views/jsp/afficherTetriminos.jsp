@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class="container">
+	<h5><b>Liste des Tetriminos</b></h5>
 	<ul class="collection">
 		<c:forEach items="${tetriminos}" var="item">
 		<li class="collection-item avatar">
