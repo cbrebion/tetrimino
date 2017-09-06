@@ -4,8 +4,11 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.sopra.dao.IFAQDAO;
@@ -16,6 +19,7 @@ import com.sopra.model.FAQLangue;
 import com.sopra.model.Langue;
 
 @Controller
+@Scope("request")
 public class FaqController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -35,6 +39,8 @@ public class FaqController implements Serializable {
 	private Integer faqChoisie;
 	private FAQLangue faqLangue;
 	
+	private Integer idFAQ;
+	
 	
 	@PostConstruct
 	public void init() {
@@ -42,6 +48,13 @@ public class FaqController implements Serializable {
 		this.langues = langueHibernateDAO.findAll();
 		this.faqsBD = faqHibernateDAO.findAll();
 		this.faqLangue = new FAQLangue();
+		
+		HttpServletRequest req = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		
+		if (req.getParameter("idFAQLangue") != null) {
+			idFAQ= Integer.parseInt(req.getParameter("idFAQLangue"));
+			this.faqLangue = faqLangueHibernateDAO.find(idFAQ);
+		}
 	}
 	
 	
@@ -54,6 +67,22 @@ public class FaqController implements Serializable {
 		
 		faqLangue = faqLangueHibernateDAO.save(faqLangue);
 		
+		return "faq";
+	}
+	
+	public String modifier() {
+		System.out.println(idFAQ);
+		
+		FAQLangue fl = faqLangueHibernateDAO.find(idFAQ);
+		
+		FAQ f = faqHibernateDAO.find(this.faqChoisie);
+		Langue l = langueHibernateDAO.find(this.langueChoisie);
+		
+		this.faqLangue.setId(fl.getId());
+		this.faqLangue.setLangue(l);
+		this.faqLangue.setFaq(f);
+		
+		this.faqLangue = faqLangueHibernateDAO.save(this.faqLangue);
 		return "faq";
 	}
 
@@ -105,6 +134,16 @@ public class FaqController implements Serializable {
 
 	public void setFaqChoisie(Integer faqChoisie) {
 		this.faqChoisie = faqChoisie;
+	}
+
+
+	public Integer getIdFAQ() {
+		return idFAQ;
+	}
+
+
+	public void setIdFAQ(Integer idFAQ) {
+		this.idFAQ = idFAQ;
 	}
 
 }

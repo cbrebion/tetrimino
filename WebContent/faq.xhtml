@@ -61,14 +61,23 @@
 		
 			<div class="container" >
 				<h5><b>FAQ</b></h5>
-					<ul class="collapsible popup" data-collapsible="accordion">
-						<ui:repeat var="faq" value="#{ faqController.faqs }">
+				<ul class="collapsible popup" data-collapsible="accordion">
+					<ui:repeat var="faq" value="#{ faqController.faqs }">
+						<ui:fragment rendered="#{ faq.langue.code eq cookie['lang'].value }">
 						<li>
-							<div class="collapsible-header">#{ faq.question }</div>
+							<div class="collapsible-header">
+								<a href="modifierFAQ.xhtml?idFAQLangue=#{faq.id}" class="secondary-content posRelative" title="Editer"><i class="material-icons">edit</i></a>
+								#{ faq.question }
+							</div>
+							
 							<div class="collapsible-body">#{ faq.reponse }</div>
 						</li>
-						</ui:repeat>
-					</ul>
+						</ui:fragment>
+					</ui:repeat>
+				</ul>
+				<p>
+					<a class="waves-effect waves-light btn red darken-4" href="/tetrimino/ajoutFAQ.xhtml"><i class="material-icons left">add</i>Ajouter une question</a>
+				</p>
 			</div>
 			
 			<!-- Code Javascript -->
