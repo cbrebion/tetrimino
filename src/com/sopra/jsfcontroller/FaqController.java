@@ -32,6 +32,7 @@ public class FaqController implements Serializable {
 	private List<Langue> langues;
 	private List<FAQ> faqsBD;
 	private Integer langueChoisie;
+	private Integer faqChoisie;
 	private FAQLangue faqLangue;
 	
 	
@@ -41,12 +42,16 @@ public class FaqController implements Serializable {
 		this.langues = langueHibernateDAO.findAll();
 		this.faqsBD = faqHibernateDAO.findAll();
 		this.faqLangue = new FAQLangue();
-		for (Langue l : langues)
-			System.out.println(l.getLibelle());
 	}
 	
 	
 	public String save() {
+		FAQ f = faqHibernateDAO.find(this.faqChoisie);
+		Langue l = langueHibernateDAO.find(this.langueChoisie);
+		
+		faqLangue.setLangue(l);
+		faqLangue.setFaq(f);
+		
 		faqLangue = faqLangueHibernateDAO.save(faqLangue);
 		
 		return "faq";
@@ -90,6 +95,16 @@ public class FaqController implements Serializable {
 
 	public void setFaqLangue(FAQLangue faqLangue) {
 		this.faqLangue = faqLangue;
+	}
+
+
+	public Integer getFaqChoisie() {
+		return faqChoisie;
+	}
+
+
+	public void setFaqChoisie(Integer faqChoisie) {
+		this.faqChoisie = faqChoisie;
 	}
 
 }

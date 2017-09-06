@@ -42,11 +42,18 @@
 			</c:otherwise>
 		</c:choose>
 		
+		<!-- Déclaration du menu dropdown -->
+		<ul id="menuFAQ" class="dropdown-content">
+			<li><a href="/tetrimino/faq.xhtml">FAQ</a></li>
+			<li><a href="/tetrimino/ajoutFAQ.xhtml">Ajout FAQ</a></li>
+		</ul>
+		
 		
 		<!-- Lien de déconnexion si connecté -->
 		<c:if test="${ !empty sessionScope.admin or !empty sessionScope.joueur }">
 			<ul class="right hide-on-med-and-down">
 				<li><a href="/tetrimino/deconnexion"><spring:message code="navigation.deconnexion" /></a></li>
+				<li><a class="dropdown-button" href="/tetrimino/faq.xhtml" data-activates="menuFAQ">FAQ</a></li>
 			</ul>
 		</c:if>
 		

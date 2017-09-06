@@ -23,9 +23,14 @@
 		
 		<h:body>
 		
+		<ul id="menuFAQ" class="dropdown-content">
+			<li><a href="/tetrimino/faq.xhtml">FAQ</a></li>
+			<li><a href="/tetrimino/ajoutFAQ.xhtml">Ajout FAQ</a></li>
+		</ul>
+		
 			<nav class="red darken-4" role="navigation">
 				<div class="nav-wrapper container">
-					<a id="logo-container" href="/tetrimino/acceuilAdmin" class="brand-logo">Tetrimino</a>
+					<a id="logo-container" href="/tetrimino/accueilAdmin" class="brand-logo">Tetrimino</a>
 					
 					<!-- Affichage des drapeaux pour l'internationalisation -->
 					<a href="${uri}?lang=en"><img title="Anglais" alt="Anglais" src="/tetrimino/img/en.png" style="float:right;" /></a>
@@ -36,24 +41,15 @@
 					<!-- Lien de déconnexion si connecté -->
 					<ul class="right hide-on-med-and-down">
 						<li><a href="/tetrimino/deconnexion">Déconnexion</a></li>
-					</ul>
-					
-					<!-- Lien du menu, uniquement si connecté en tant qu'admin -->
-					<ul class="right hide-on-med-and-down">
+						<li><a class="dropdown-button" href="/tetrimino/faq.xhtml" data-activates="menuFAQ">FAQ</a></li>
 						<li>
-							<a href="/tetrimino/listeJoueurs">Liste des joueurs</a>
+							<a href="/tetrimino/listeJoueurs">Joueurs</a>
 						</li>
-					</ul>
-					
-					<ul class="right hide-on-med-and-down">
 						<li>
-							<a href="/tetrimino/listeParties">Liste des parties</a>
+							<a href="/tetrimino/listeParties">Parties</a>
 						</li>
-					</ul>
-				
-					<ul class="right hide-on-med-and-down">
 						<li>
-							<a href="/tetrimino/listeTetriminos">Liste des tetriminos</a>
+							<a href="/tetrimino/listeTetriminos">Tetriminos</a>
 						</li>
 					</ul>
 				</div>
@@ -64,13 +60,13 @@
 				<h:form>
 					<div class="input-field col s6">
 						<h:outputLabel for="langueChoisie">Langues</h:outputLabel><br />
-						<h:selectOneMenu id="langueChoisie" value="#{ faqController.langues }">
+						<h:selectOneMenu id="langueChoisie" value="#{ faqController.langueChoisie }">
 							<f:selectItems value="#{ faqController.langues }" var="langue" itemLabel="#{ langue.libelle }" itemValue="#{ langue.id }" />
 						</h:selectOneMenu>
 					</div>
 					<div class="input-field col s6">
 						<h:outputLabel for="faqChoisie">Libellé FAQ</h:outputLabel><br />
-						<h:selectOneMenu id="faqChoisie" value="#{ faqController.faqsBD }">
+						<h:selectOneMenu id="faqChoisie" value="#{ faqController.faqChoisie }">
 							<f:selectItems value="#{ faqController.faqsBD }" var="faq" itemLabel="#{ faq.libelle }" itemValue="#{ faq.id }" />
 						</h:selectOneMenu>
 					</div>
@@ -95,6 +91,7 @@
 			<script>
 			$(document).ready(function() {
 			    $('select').material_select();
+			    $(".dropdown-button").dropdown({ hover: true });
 			  });
 			</script>
 		</h:body>
