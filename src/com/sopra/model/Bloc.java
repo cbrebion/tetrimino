@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name="bloc")
 public class Bloc implements Serializable {
@@ -24,13 +27,16 @@ public class Bloc implements Serializable {
 	
 	@Column(name="blo_x")
 	@NotNull
+	@JsonProperty("positionX")
 	protected Integer x;
 	
 	@Column(name="blo_y")
 	@NotNull
+	@JsonProperty("positionY")
 	protected Integer y;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="blo_figure_id")
 	protected Figure figure;
 	

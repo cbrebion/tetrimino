@@ -45,7 +45,6 @@ public class Tetrimino implements Serializable
 	@NotNull(message="Veuillez renseigner un coefficient")
 	private Double coeff;
 	
-	@JsonIgnore
 	@OrderBy(clause="ordreRotation")
 	@OneToMany(mappedBy="tetrimino")
 	private List<Figure> figures;

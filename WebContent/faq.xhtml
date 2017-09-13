@@ -5,11 +5,11 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/layout.xhtml">
-	
+
 	<ui:define name="titre">FAQ</ui:define>
-	
-	<ui:define name="contenu">	
-	
+
+	<ui:define name="contenu">
+
 		<div class="container" >
 			<h5><b>FAQ</b></h5>
 			<ul>
@@ -19,8 +19,8 @@
 					#{ faqBD.libelle }
 					</div>
 					<div>
-						<ul class="collapsible popup" data-collapsible="accordion">
-						
+						<ul class="collapsible popout" data-collapsible="accordion">
+
 						<ui:repeat var="faq" value="#{ faqController.faqs }">
 						<!-- Affiche les FAQLangue correspondantes au libelle FAQ en cours -->
 						<ui:fragment rendered="#{ faqBD.libelle eq faq.faq.libelle }">
@@ -32,10 +32,10 @@
 									<h:commandLink action="#{ faqController.delete(faq.id) }" ><i class="material-icons">cancel</i></h:commandLink>
 									<a href="modifierFAQ.xhtml?idFAQLangue=#{faq.id}" title="Editer"><i class="material-icons">edit</i></a>
 									#{ faq.question }
-								
+
 								</h:form>
 								</div>
-								
+
 								<div class="collapsible-body">#{ faq.reponse }</div>
 							</li>
 							</ui:fragment>

@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name="figure")
@@ -28,13 +29,14 @@ public class Figure implements Serializable {
 	
 	@Column(name="fig_ordre_rotation")
 	@NotNull(message="Merci de renseigner un ordre de rotation")
+	@JsonProperty("ordre")
 	private Integer ordreRotation;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="fig_tetrimino_id")
 	private Tetrimino tetrimino;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy="figure")
 	private List<Bloc> blocs;
 

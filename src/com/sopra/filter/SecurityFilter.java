@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebFilter("/*")
+//@WebFilter("/*")
 public class SecurityFilter implements Filter {
 
 	private static final String VUE_LOGIN	= "/tetrimino/accueil";

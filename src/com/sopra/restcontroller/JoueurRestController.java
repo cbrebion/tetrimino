@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import com.sopra.model.Joueur;
 import com.sopra.model.Personne;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/joueur")
 public class JoueurRestController {
 	@Autowired
@@ -98,16 +100,15 @@ public class JoueurRestController {
 	 * @param password
 	 * @return
 	 */
-	@RequestMapping(value="login/{username}", method=RequestMethod.POST)
+	@RequestMapping(value="login", method=RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<Joueur> connect(@PathVariable(value="username", required=true) String username,
-			@RequestParam(value="password", required=true) String password) {
+	public ResponseEntity<Joueur> connect(@RequestBody Joueur j) {
 				
-			Personne personne = this.personneHibernateDAO.findByUsername(username);
+			Personne personne = this.personneHibernateDAO.findByUsername(j.getUsername());
 			Joueur joueur;
 			
 			if (personne != null) {
-				if (personne.getPassword().equals(password)) {
+				if (personne.getPassword().equals(j.getPassword())) {
 					if (personne.getType() == 2) {
 						joueur = (Joueur) personne;
 						

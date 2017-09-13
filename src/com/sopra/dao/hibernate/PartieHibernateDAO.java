@@ -64,4 +64,14 @@ public class PartieHibernateDAO implements IPartieDAO {
 		em.remove(em.merge(partie));
 	}
 
+	@Override
+	public Partie findLastCreated() {
+		return (Partie) em.createQuery("SELECT p FROM Partie p ORDER BY p.id DESC").setMaxResults(1).getSingleResult();
+	}
+
+	@Override
+	public List<Partie> findAllPending() {
+		return (List<Partie>) em.createQuery("FROM Partie p WHERE p.finie = 0 AND p.type = 1").getResultList();
+	}
+
 }

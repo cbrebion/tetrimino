@@ -1,8 +1,11 @@
 package com.sopra.restcontroller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +17,7 @@ import com.sopra.dao.IScoreDAO;
 import com.sopra.model.Score;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping(value="/score")
 public class ScoreRestController {
 
@@ -30,6 +34,13 @@ public class ScoreRestController {
 	@ResponseBody
 	public ResponseEntity<Score> getById(@PathVariable(value="id", required=true) Integer id) {
 		return new ResponseEntity<Score>(this.scoreHibernateDAO.find(id), HttpStatus.OK);
+	}
+	
+	
+	@RequestMapping(value="", method=RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<List<Score>> getAll() {
+		return new ResponseEntity<List<Score>>(this.scoreHibernateDAO.findAll(), HttpStatus.OK);
 	}
 	
 	
